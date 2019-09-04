@@ -1,0 +1,108 @@
+<div class="content details-page" *ngIf="details">
+        <!---start-product-details--->
+        <div class="product-details">
+            <div class="wrap">
+                <!----details-product-slider--->
+                <!-- Include the Etalage files -->
+                <link rel="stylesheet" href="assets/css/etalage.css">
+                <script src="assets/js/jquery.etalage.min.js"></script>
+                <!-- Include the Etalage files -->
+                <script>
+                    jQuery(document).ready(function($){
+    
+                        $('#etalage').etalage({
+                            thumb_image_width: 300,
+                            thumb_image_height: 400,
+                            source_image_width: 900,
+                            source_image_height: 1000,
+                            show_hint: true,
+                            click_callback: function(image_anchor, instance_id){
+                                alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
+                            }
+                        });
+                        // This is for the dropdown list example:
+                        $('.dropdownlist').change(function(){
+                            etalage_show( $(this).find('option:selected').attr('class') );
+                        });
+    
+                    });
+                </script>
+                <!----//details-product-slider--->
+                <div class="details-left">
+                    <div class="details-left-slider">
+                        <ul id="etalage">
+                            <li>
+                                <a href="#">
+                                    <img class="etalage_thumb_image" src="assets/{{ details.image_path }}" />
+                                    <img class="etalage_source_image" src="" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="details-left-info">
+                        <div class="details-right-head">
+                            <h1>ime</h1>
+                            <ul class="pro-rate">
+                                <li>Popular rating: </li>
+                                <li>rejting</li>
+                            </ul>
+                            <p class="product-detail-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                            <div class="product-more-details">
+                                <ul class="price-avl">
+                                    <li class="price"><label>{{ details.price }}</label></li>
+                                    <li class="stock"><i>In stock</i></li>
+                                    <div class="clear"> </div>
+                                </ul>
+                                <ul class="prosuct-qty">
+                                    <span>Available color: {{ details.price }}</span>
+                                </ul>
+                                <ul class="prosuct-qty">
+                                    <span>Date Arrive: {{ details.date_arrive }} </span>
+                                </ul>
+    
+                                <!-- @if(session('user'))
+    
+                                <form action="{{ route ('addToCart', ['productId ' => $product->id]) }}" method="post">
+                                    {{csrf_field()}}
+                                    <ul class="prosuct-qty">
+                                        <span>Quantity:</span>
+                                        <select name="quantity">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </ul>
+                                    <ul class="prosuct-qty">
+                                        <span>Number:</span>
+                                        <select name="number">
+                                            @for($i=32; $i<=46; $i++)
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                        </select>
+                                    </ul>
+                                    <input type="submit" value="add to cart" />
+                                </form>
+                                @endif -->
+    
+    
+                            
+                                <ul class="product-share">
+                                    <h3>All so Share On</h3>
+                                    <ul>
+                                        <li><a class="share-face" href="#"><span> </span> </a></li>
+                                        <li><a class="share-twitter" href="#"><span> </span> </a></li>
+                                        <li><a class="share-google" href="#"><span> </span> </a></li>
+                                        <li><a class="share-rss" href="#"><span> </span> </a></li>
+                                        <div class="clear"> </div>
+                                    </ul>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"> </div>
+                </div>
+                <div class="clear"> </div>
+            </div>

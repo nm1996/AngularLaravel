@@ -1,0 +1,64 @@
+<div class="content login-box">
+        <div class="login-main">
+            <div class="wrap">
+                <h1>CREATE AN ACCOUNT</h1>
+                <div class="login-left">
+                    <h3>NEW CUSTOMERS</h3>
+                    <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+                </div>
+                <div class="login-right">
+                        <form #signupForm=ngForm (ngSubmit)="onSubmit()">
+                                <div>
+                                    <span>Name<label>*</label></span>
+                                    <input type="text" name="name" [(ngModel)]="form.name" required/>
+                                    <div class="alert alert-danger" [hidden]="!error.name">
+                                        {{error.name}}
+                                      </div>
+                                </div>
+                                
+                                <div>
+                                    <span>Email Address<label>*</label></span>
+                                    <input type="text" name="email" [(ngModel)]="form.email" required /> 
+                                    <div class="alert alert-danger" [hidden]="!error.email">
+                                        {{error.email}}
+                                      </div>
+                                    <div>
+                                </div>
+                                    <span>Password<label>*</label></span>
+                                    <input type="password" name="password" [(ngModel)]="form.password" required/> 
+                                    
+                                <div class="alert alert-danger" [hidden]="!error.password">
+                                    {{error.password}}
+                                </div>
+                                </div>
+                                <div>
+                                    <span>Re-Password<label>*</label></span>
+                                    <input type="password" name="password_confirmation" [(ngModel)]="form.password_confirmation" required/> 
+                                    
+                                <div class="alert alert-danger" [hidden]="!error.password_confirmation">
+                                    {{error.password_confirmation}}
+                                </div>
+                                </div>
+                                <div>
+                                    <span>City<label>*</label></span>
+                                    <input type="text" name="city" [(ngModel)]="form.city" required/>
+                                    
+                                <div class="alert alert-danger" [hidden]="!error.city">
+                                    {{error.city}}
+                                  </div>
+                                </div>
+                                <div>
+                                    <span>Address<label>*</label></span>
+                                    <input type="text" name="address" [(ngModel)]="form.address" required/>
+                                    
+                                <div class="alert alert-danger" [hidden]="!error.address">
+                                    {{error.address}}
+                                  </div>
+                                </div>
+                                <button type="submit" [disabled]="!signupForm.valid">Sign up</button>
+                            </form>
+                </div>
+                <div class="clear"> </div>
+            </div>
+        </div>
+    </div>
