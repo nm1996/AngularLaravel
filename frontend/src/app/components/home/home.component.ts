@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from 'src/app/services/token/token.service';
 
 
 @Component({
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {}
+  constructor(
+    private token : TokenService
+  ) {}
+
 
   ngOnInit() {
+    console.log(this.token.getUser());
   }
 
 

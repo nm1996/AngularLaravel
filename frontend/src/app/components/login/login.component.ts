@@ -29,7 +29,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.Jar.login(this.form).subscribe(
-      data => this.handleResponse(data),
+      data => {
+        this.handleResponse(data);
+        this.handleUser(data['user']);
+        console.log(data['user'], 'user');
+      },
       error => this.handleError(error)
     );
   }
@@ -38,6 +42,10 @@ export class LoginComponent implements OnInit {
     this.Token.handle(data.access_token);
     this.Auth.changeAuthStatus(true);
     this.router.navigateByUrl('');
+  }
+
+  handleUser(user) {
+    this.Token.handleUser(user);
   }
 
   handleError(error) {

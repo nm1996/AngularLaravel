@@ -13,11 +13,26 @@ export class TokenService {
     this.set(token);
   }
 
+  handleUser(user) {
+    console.log(user, 'handle user');
+    this.setUser(user);
+  }
+
   set(token) {
     localStorage.setItem('token', token);
   }
+
+  setUser(user) {
+    console.log(user);
+    localStorage.setItem('user', user);
+  }
+
   get() {
     return localStorage.getItem('token');
+  }
+
+  getUser() {
+    return localStorage.getItem('user');
   }
 
   remove() {
@@ -47,4 +62,13 @@ export class TokenService {
   loggedIn() {
     return this.isValid();
   }
+
+  
+
+  
+
+  
+
 }
+
+

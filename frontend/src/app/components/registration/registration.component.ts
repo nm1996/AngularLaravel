@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth/auth.service';
 import { TokenService } from './../../services/token/token.service';
 import { JarService } from './../../services/jar/jar.service';
 import { Component, OnInit } from '@angular/core';
@@ -24,7 +25,8 @@ export class RegistrationComponent implements OnInit {
   constructor(
     private Jar : JarService,
     private Token : TokenService,
-    private router : Router
+    private router : Router,
+    private auth: AuthService
   ) { }
 
 
@@ -37,7 +39,8 @@ export class RegistrationComponent implements OnInit {
 
   handleResponse(data) {
     this.Token.handle(data.access_token);
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('');
+    this.auth.changeAuthStatus(true);
   }
 
   handleError(error) {
