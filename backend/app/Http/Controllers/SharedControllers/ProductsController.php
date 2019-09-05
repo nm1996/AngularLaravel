@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SharedControllers;
 
-use App\Models\ProductModel;
+use App\Models\SharedModelLogic\ProductModel;
 use Exception;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class ProductsController
 {
     
     # show products methods 
