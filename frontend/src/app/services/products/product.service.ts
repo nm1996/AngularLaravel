@@ -29,8 +29,8 @@ export class ProductService {
     return products;
   }
 
-  getProductDetails() {
-    var product = this.http.get(`${this.path}/showProductDetails/:id`)
+  getProductDetails(id) {
+    var product = this.http.get(`${this.path}/showProductDetails/${id}`)
     return product;
   }
 

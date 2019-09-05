@@ -17,14 +17,14 @@
         
             <div class="product-grid fade" *ngFor="let product of products">
                     <div class="product-pic">
-                        <a routerLink="/product-details/{{product.id}}"><img src="assets/{{ product.image_path }}"></a>
+                        <a routerLink="/product-details/{{ product.id }}"><img src="assets/{{ product.image_path }}"></a>
                         <p>
                         <span>{{product.name}}</span>
                         </p>
                     </div>
                     <div class="product-info">
                         <div class="product-info-cust">
-                            <a href="details.html">Details {{product.id}} </a>
+                            <a routerLink="/product-details/{{ product.id }}">Details {{product.id}} </a>
                         </div>
                         <div class="product-info-price">
                             <a href="#">{{ product.price }} $</a>

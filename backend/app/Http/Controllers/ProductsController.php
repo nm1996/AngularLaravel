@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductModel;
+use Exception;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -48,12 +49,7 @@ class ProductsController extends Controller
     public function showProductDetails($id)
     {
         $model = new ProductModel();
-        $product = $model->getOneProduct($id);
-        
-        if(!$product) {
-            abort (404);
-        }
-        
+        $product = $model->getOneProduct($id);   
         return response()->json($product, 200);
     }
 
