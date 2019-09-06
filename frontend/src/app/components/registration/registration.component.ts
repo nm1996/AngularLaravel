@@ -13,11 +13,7 @@ export class RegistrationComponent implements OnInit {
 
   public form = {
     email: null,
-    name: null,
-    password: null,
-    password_confirmation: null,
-    city: null,
-    address: null,
+    name: null
   }
 
   public error = [];

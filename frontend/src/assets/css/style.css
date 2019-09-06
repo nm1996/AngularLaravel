@@ -1085,6 +1085,34 @@ h2.resp-accordion:first-child {
 	border-left: none;
 	border-top: none;
 }
+
+
+.cart button[type="submit"]{
+	background: #E45D5D;
+	color: #FFF;
+	font-size: 0.8em;
+	padding: 0.7em 1.2em;
+	border-radius: 5px;
+	border-bottom: 4px solid #B93838;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	display: inline-block;
+	font-family: 'Open Sans', sans-serif;
+	cursor: pointer;
+	outline: none;
+	text-transform: uppercase;
+	border-right: none;
+	border-left: none;
+	border-top: none;
+}
+
+.cart button[type="submit"]:hover{
+	background: #1C1C20;
+	border-bottom: 4px solid #333;
+}
+
 .login-right button[type="submit"]:hover{
 	background: #1C1C20;
 	border-bottom: 4px solid #333;

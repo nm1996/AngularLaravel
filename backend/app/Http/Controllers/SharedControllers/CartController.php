@@ -24,19 +24,9 @@ class CartController
 
     public function addToCart(Request $request, $productId)
     {
-        $cartItem = new CartModel();
-        $cartItem->user_id = $request->get('user_id');
-        $cartItem->product_id = $productId;
-        $cartItem->quantity = $request->get('quantity');
-        $cartItem->number = $request->get('number');
+        CartModel::addToCart($request->all());
 
-        try {
-            $cartItem->addToCart();
-            return  $this->showUserCart($request);
-        }
-        catch(QueryException $e) {
-            Log::error($e->getMessage());
-        }
+    
 
     }
 }
