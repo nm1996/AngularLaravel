@@ -17,8 +17,10 @@ export class ProductDetailsComponent implements OnInit {
   numbers;
 
   public form = {
-    quantity: '',
-    number: ''
+    quantity: null,
+    number: 0,
+    user_id: 0,
+    product_id: 0
   };
 
   constructor(
@@ -54,11 +56,13 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProductId() {
-    this.details.id;
+    let ProductId = parseInt(this.details.id);
+    return ProductId;
   }
 
   getUserId() {
-    this.user_id;
+    let UserId = parseInt(this.user_id);
+    return UserId;
   }
 
   addToCart(data) {
@@ -68,6 +72,7 @@ export class ProductDetailsComponent implements OnInit {
   handleResponse(data) {
     this.details.id;
     this.user_id;
+    this.router.navigateByUrl('/');
   }
 
   handleError(error) {
@@ -75,7 +80,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.addToCart(this.form).subscribe(
+    this.addToCart({user_id: this.getUserId(), product_id: this.getProductId(), quantity: this.form.quantity, number: this.form.number}).subscribe(
       data => {this.handleResponse(data), console.log(data)},
       error => this.handleError(error)
     );

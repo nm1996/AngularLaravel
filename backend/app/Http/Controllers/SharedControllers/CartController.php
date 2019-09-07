@@ -22,10 +22,18 @@ class CartController
 
     # method for adding item to cart
 
-    public function addToCart(Request $request, $productId)
+    public function addToCart(Request $request)
     {
-        CartModel::addToCart($request->all());
+        $cartModel = New CartModel();
 
+        $cartModel->user_id = $request->user_id;
+        $cartModel->product_id = $request->product_id;
+        $cartModel->quantity = $request->quantity;
+        $cartModel->number = $request->number;
+
+        $cartItems = $cartModel->addToCart();
+
+        return response()->json($cartItems, 200);
     
 
     }
