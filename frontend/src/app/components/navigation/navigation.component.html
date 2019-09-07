@@ -5,7 +5,7 @@
 					<div class="wrap">
 						<div class="top-header-left">
 							<ul>
-								<li><a class="cart" href="#"><span id="clickme"> </span></a></li>
+								<li><a class="cart" routerLink="cart/{{user_id}}" *ngIf="loggedIn"><span id="clickme"></span></a></li>
 							</ul>
 						</div>
 						<div class="top-header-center">

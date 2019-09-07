@@ -20,15 +20,15 @@ export class LoginComponent implements OnInit {
   public error = [];
 
   constructor(
-    private Jar : JarService,
+    private jar : JarService,
     private Token : TokenService,
-    private Auth : AuthService,
+    private auth : AuthService,
     private router : Router
   ) { }
 
 
   onSubmit() {
-    this.Jar.login(this.form).subscribe(
+    this.jar.login(this.form).subscribe(
       data => {
         this.handleResponse(data);
         this.handleUser(data['user']);
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   handleResponse(data) {
     this.Token.handle(data.access_token);
-    this.Auth.changeAuthStatus(true);
+    this.auth.changeAuthStatus(true);
     this.router.navigateByUrl('');
   }
 

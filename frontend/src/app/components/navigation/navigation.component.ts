@@ -11,21 +11,22 @@ import { Router } from '@angular/router';
 export class NavigationComponent implements OnInit {
 
   public loggedIn: boolean;
-
+  user_id;
   constructor(
-    private Auth: AuthService,
+    private auth: AuthService,
     private router: Router,
-    private Token: TokenService
+    private token: TokenService
   ) { }
 
   ngOnInit() {
-    this.Auth.authStatus.subscribe(value => this.loggedIn = value);
+    this.auth.authStatus.subscribe(value => this.loggedIn = value);
+    this.user_id = this.token.getUser();
   }
 
   logout(event: MouseEvent) {
     event.preventDefault();
-    this.Token.remove();
-    this.Auth.changeAuthStatus(false);
+    this.token.remove();
+    this.auth.changeAuthStatus(false);
     this.router.navigateByUrl('/login');
   }
 

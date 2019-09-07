@@ -19,7 +19,7 @@ export class RegistrationComponent implements OnInit {
   public error = [];
 
   constructor(
-    private Jar : JarService,
+    private jar : JarService,
     private Token : TokenService,
     private router : Router,
     private auth: AuthService
@@ -27,7 +27,7 @@ export class RegistrationComponent implements OnInit {
 
 
   onSubmit() {
-    this.Jar.signup(this.form).subscribe(
+    this.jar.signup(this.form).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
     )

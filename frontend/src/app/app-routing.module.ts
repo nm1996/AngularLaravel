@@ -1,3 +1,4 @@
+import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { KidsProductComponent } from './components/products/kids-product/kids-product.component';
 import { WomenProductComponent } from './components/products/women-product/women-product.component';
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: "women-products", component: WomenProductComponent },
   { path: "kids-products", component: KidsProductComponent },
   { path: "sports-products", component: SportsProductComponent },
-  { path: "product-details/:id", component: ProductDetailsComponent }
+  { path: "product-details/:id", component: ProductDetailsComponent },
+  { path: "cart/:id", component: CartComponent }
 ];
 
 @NgModule({

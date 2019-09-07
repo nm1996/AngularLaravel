@@ -55,6 +55,10 @@ export class ProductDetailsComponent implements OnInit {
     );
   }
 
+
+
+
+  /* Adding item to cart */
   getProductId() {
     let ProductId = parseInt(this.details.id);
     return ProductId;

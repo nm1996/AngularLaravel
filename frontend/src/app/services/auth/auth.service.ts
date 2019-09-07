@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class AuthService {
 
-  private loggedIn = new BehaviorSubject<boolean>(this.Token.loggedIn());
+  private loggedIn = new BehaviorSubject<boolean>(this.token.loggedIn());
   authStatus = this.loggedIn.asObservable();
 
   changeAuthStatus(value: boolean) {
@@ -13,6 +13,6 @@ export class AuthService {
   }
 
   constructor(
-    private Token : TokenService
+    private token : TokenService
   ) { }
 }

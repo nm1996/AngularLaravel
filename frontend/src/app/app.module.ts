@@ -19,6 +19,7 @@ import { WomenProductComponent } from './components/products/women-product/women
 import { KidsProductComponent } from './components/products/kids-product/kids-product.component';
 import { SportsProductComponent } from './components/products/sports-product/sports-product.component';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProductDetailsComponent } from './components/products/product-details/p
     WomenProductComponent,
     KidsProductComponent,
     SportsProductComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
