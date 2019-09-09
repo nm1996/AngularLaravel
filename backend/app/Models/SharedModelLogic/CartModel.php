@@ -42,14 +42,17 @@ class CartModel
         ->get();
     }
 
-    # method to find one item from cart
+    # method to delete item from cart
 
-    public function deleteUserItem ($productId) {
+    public function deleteUserItem ($id) {
         return DB::table($this->table)
-        ->delete($productId);
+        ->delete($id);
     }
 
     # method to update item in cart
 
+
+
+    
 
 }

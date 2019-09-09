@@ -34,7 +34,12 @@ class CartController
         $cartItems = $cartModel->addToCart();
 
         return response()->json($cartItems, 200);
-    
+    }
 
+    public function deleteUserItem($id)
+    {
+        $cartModel = new CartModel();
+        $cartModel->deleteUserItem($id);
+        return response()->json(200);
     }
 }

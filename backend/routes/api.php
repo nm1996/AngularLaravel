@@ -18,4 +18,5 @@ Route::group([
     # cart routes
     Route::post('addToCart/{id}', 'SharedControllers\CartController@addToCart');
     Route::get('showUserCart/{id}', 'SharedControllers\CartController@showUserCart');
+    Route::get('deleteUserItem/{id}', 'SharedControllers\CartController@deleteUserItem');
 });

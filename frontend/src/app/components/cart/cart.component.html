@@ -32,10 +32,10 @@
           <td><a href="#" class="btn btn-info waves-effect btn-xs">Edit</a></td>
 
           <td>
-            <a href="#" class="btn btn-danger waves-effect btn-xs">Delete</a>
+            <a href="#" (click)="delete($event)" class="btn btn-danger waves-effect btn-xs">Delete</a>
           </td>
         </tr>
-        <tr >
+        <tr>
           <td></td>
           <td></td>
           <td></td>
@@ -44,7 +44,6 @@
             Total price:
           </td>
           <td>
-              {{totalPrice}}
           </td>
           <td>
             <a href="#" class="btn btn-success waves-effect btn-xs">Cash In</a>
