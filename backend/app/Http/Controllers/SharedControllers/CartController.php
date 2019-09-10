@@ -36,10 +36,11 @@ class CartController
         return response()->json($cartItems, 200);
     }
 
-    public function deleteUserItem($id)
+    public function deleteUserItem(Request $request)
     {
+        $body = $request->getContent();
         $cartModel = new CartModel();
-        $cartModel->deleteUserItem($id);
+        $cartModel->deleteUserItem($body);
         return response()->json(200);
     }
 }

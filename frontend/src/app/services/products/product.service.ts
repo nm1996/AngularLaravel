@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Product } from 'src/app/components/models/product.model';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProductService {
@@ -9,35 +12,31 @@ export class ProductService {
     private http : HttpClient
   ) { }
 
-  getManProducts() {
-    var products = this.http.get(`${this.path}/showMenProducts`)
-    return products;
+  getManProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.path}/showMenProducts`).pipe(map(
+      (response: Product[]) => {
+        console.log(response);
+        return response;
+      }
+    ));
   }
 
-  getWomenProducts() {
-    var products = this.http.get(`${this.path}/showWomenProducts`)
-    return products;
+  getWomenProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.path}/showWomenProducts`);
   }
 
-  getKidsProducts() {
-    var products = this.http.get(`${this.path}/showKidsProducts`)
-    return products;
+  getKidsProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.path}/showKidsProducts`);
   }
 
-  getSportsProducts() {
-    var products = this.http.get(`${this.path}/showSportProducts`)
-    return products;
+  getSportsProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.path}/showSportProducts`);
   }
 
-  getProductDetails(id) {
-    var product = this.http.get(`${this.path}/showProductDetails/${id}`)
-    return product;
+  getProductDetails(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.path}/showProductDetails/${id}`);
   }
 
 
 
 }
-
-
-
-
