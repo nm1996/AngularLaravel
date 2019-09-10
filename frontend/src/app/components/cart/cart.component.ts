@@ -31,12 +31,6 @@ export class CartComponent implements OnInit {
     );
   }
 
-  logout(event: MouseEvent, id) {
-    event.preventDefault();
-    id = this.cartItems.id;
-    this.http.get(`http://localhost:8000/api/deleteUserItem/${id}`);
-
-  }
 
   
   

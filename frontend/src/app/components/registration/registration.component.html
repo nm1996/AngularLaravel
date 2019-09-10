@@ -1,64 +1,136 @@
-<div class="content login-box">
-        <div class="login-main">
-            <div class="wrap">
-                <h1>CREATE AN ACCOUNT</h1>
-                <div class="login-left">
-                    <h3>NEW CUSTOMERS</h3>
-                    <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-                </div>
-                <div class="login-right">
-                        <form #signupForm=ngForm (ngSubmit)="onSubmit()">
-                                <div>
-                                    <span>Name<label>*</label></span>
-                                    <input type="text" name="name" [(ngModel)]="form.name" required/>
-                                    <div class="alert alert-danger" [hidden]="!error.name">
-                                        {{error.name}}
-                                      </div>
-                                </div>
-                                
-                                <div>
-                                    <span>Email Address<label>*</label></span>
-                                    <input type="text" name="email" [(ngModel)]="form.email" required /> 
-                                    <div class="alert alert-danger" [hidden]="!error.email">
-                                        {{error.email}}
-                                      </div>
-                                    <div>
-                                </div>
-                                    <span>Password<label>*</label></span>
-                                    <input type="password" name="password" [(ngModel)]="form.password" required/> 
-                                    
-                                <div class="alert alert-danger" [hidden]="!error.password">
-                                    {{error.password}}
-                                </div>
-                                </div>
-                                <div>
-                                    <span>Re-Password<label>*</label></span>
-                                    <input type="password" name="password_confirmation" [(ngModel)]="form.password_confirmation" required/> 
-                                    
-                                <div class="alert alert-danger" [hidden]="!error.password_confirmation">
-                                    {{error.password_confirmation}}
-                                </div>
-                                </div>
-                                <div>
-                                    <span>City<label>*</label></span>
-                                    <input type="text" name="city" [(ngModel)]="form.city" required/>
-                                    
-                                <div class="alert alert-danger" [hidden]="!error.city">
-                                    {{error.city}}
-                                  </div>
-                                </div>
-                                <div>
-                                    <span>Address<label>*</label></span>
-                                    <input type="text" name="address" [(ngModel)]="form.address" required/>
-                                    
-                                <div class="alert alert-danger" [hidden]="!error.address">
-                                    {{error.address}}
-                                  </div>
-                                </div>
-                                <button type="submit" [disabled]="!signupForm.valid">Sign up</button>
-                            </form>
-                </div>
-                <div class="clear"> </div>
-            </div>
-        </div>
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+  <div class="container">
+    <div
+      class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end"
+    >
+      <div class="col-first">
+        <h1>Login/Register</h1>
+        <nav class="d-flex align-items-center">
+          <a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
+          <a routerLink="/login">Login/</a><a routerLink="/registration">Register</a>
+        </nav>
+      </div>
     </div>
+  </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Login Box Area =================-->
+<section class="login_box_area section_gap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="login_box_img">
+          <img class="img-fluid" src="assets/images/login.jpg" alt="" />
+          <div class="hover">
+            <h4>Have account already?</h4>
+            <p>Click here to log in</p>
+            <a class="primary-btn" routerLink="/login">Login</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="login_form_inner">
+          <h3>Log in to enter</h3>
+          <form
+            class="row login_form"
+            id="contactForm"
+            #signUp="ngForm"
+            (ngSubmit)="onSubmit()"
+          >
+            <div class="col-md-12 form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Name"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Name'"
+                [(ngModel)]="form.name"
+                required
+              />
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="city"
+                name="city"
+                placeholder="City"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'City'"
+                [(ngModel)]="form.city"
+                required
+              />
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                name="address"
+                placeholder="Address"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Address'"
+                [(ngModel)]="form.address"
+                required
+              />
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Email"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Email'"
+                [(ngModel)]="form.email"
+                required
+              />
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="Password"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Password'"
+                [(ngModel)]="form.password"
+                required
+              />
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="password"
+                class="form-control"
+                id="password_confirmation"
+                name="password_confirmation"
+                placeholder="Re-Password"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Password'"
+                [(ngModel)]="form.password_confirmation"
+                required
+              />
+            </div>
+            <div class="col-md-12 form-group">
+              <button
+                type="submit"
+                value="submit"
+                class="primary-btn"
+                [disabled]="!signUp.valid"
+              >
+                Log In
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================End Login Box Area =================-->
