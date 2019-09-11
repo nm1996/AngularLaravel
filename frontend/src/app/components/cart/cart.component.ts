@@ -16,10 +16,12 @@ export class CartComponent implements OnInit {
   fullPrice: number;
   deleted: Object;
   user_id;
+  checkoutItem: Object;
 
   constructor(
     private cart: CartService,
     private route: ActivatedRoute,
+    private router: Router
      ) {}
 
   ngOnInit() {
@@ -56,6 +58,17 @@ export class CartComponent implements OnInit {
       }
     );
     
+  }
+
+  checkout(id: number) {
+    console.log(id, 'id method');
+    this.cart.checkout(id).subscribe(
+      (response: Object) => {
+        console.log(response);
+        this.checkoutItem = response;
+        this.router.navigateByUrl('checkout');
+      }
+    );
   }
   
   

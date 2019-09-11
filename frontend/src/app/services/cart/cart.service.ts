@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cart } from 'src/app/components/models/cart.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,16 @@ export class CartService {
 
   deleteFromCart(id: number): Observable<Object> {
     return this.http.post<Object>(`${this.path}/deleteUserItem`, id);
+  }
+
+  checkout(id: number): Observable<Object> {
+    return this.http.post<Object>(`${this.path}/checkout`, id).pipe(map(
+      (reponse: Object) => {
+        console.log(id, 'ID USER');
+        console.log(reponse, 'CHECKOUT');
+        return reponse;
+      }
+    ));
   }
 
 

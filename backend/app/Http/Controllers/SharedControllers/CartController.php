@@ -58,11 +58,11 @@ class CartController
         return $items;
     }
 
-    public function checkout($id)
+    public function checkout(Request $request)
     {
         $cartModel = new CartModel();
         $checkoutModel = new CheckoutModel();
-
+        $id = $request->getContent();
         $items = $this->checkoutSelect($id);
         
         foreach($items as $item){

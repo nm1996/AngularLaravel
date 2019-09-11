@@ -22,7 +22,7 @@
 									<li class="nav-item"><a class="nav-link" routerLink="/women-products">Woman</a></li>
 									<li class="nav-item"><a class="nav-link" routerLink="/kids-products">Kids</a></li>
 									<li class="nav-item"><a class="nav-link" routerLink="/sports-products">Sports</a></li>
-									<li class="nav-item"><a class="nav-link" routerLink="/cart/{{user_id}}">Shopping cart</a></li>
+									<li class="nav-item"><a class="nav-link" [routerLink]="['cart',user_id]">Shopping cart</a></li>
 								</ul>
 							</li>
 							<li class="nav-item submenu dropdown">
