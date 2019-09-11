@@ -20,6 +20,7 @@ import { KidsProductComponent } from './components/products/kids-product/kids-pr
 import { SportsProductComponent } from './components/products/sports-product/sports-product.component';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CartComponent } from './components/cart/cart.component';
     KidsProductComponent,
     SportsProductComponent,
     ProductDetailsComponent,
-    CartComponent
+    CartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

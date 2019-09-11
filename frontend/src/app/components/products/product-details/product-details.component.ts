@@ -79,7 +79,7 @@ export class ProductDetailsComponent implements OnInit {
   handleResponse(data) {
     this.details.id;
     this.user_id;
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl(`/cart/${this.user_id}`);
   }
 
   handleError(error) {

@@ -1,3 +1,4 @@
+import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { KidsProductComponent } from './components/products/kids-product/kids-product.component';
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: "kids-products", component: KidsProductComponent },
   { path: "sports-products", component: SportsProductComponent },
   { path: "product-details/:id", component: ProductDetailsComponent },
-  { path: "cart/:id", component: CartComponent }
+  { path: "cart/:id", component: CartComponent },
+  { path: "checkout", component: CheckoutComponent }
 ];
 
 @NgModule({

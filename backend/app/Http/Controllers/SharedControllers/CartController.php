@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SharedControllers;
 
 use App\Models\SharedModelLogic\CartModel;
+use App\Models\SharedModelLogic\CheckoutModel;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -36,11 +37,45 @@ class CartController
         return response()->json($cartItems, 200);
     }
 
+    # delete user item
+
     public function deleteUserItem(Request $request)
     {
         $body = $request->getContent();
         $cartModel = new CartModel();
         $cartModel->deleteUserItem($body);
         return response()->json(200);
+    }
+
+    # test
+
+    public function checkoutSelect($id)
+    {
+        $model = new CartModel();
+
+        $items = $model->checkoutSelect($id);
+
+        return $items;
+    }
+
+    public function checkout($id)
+    {
+        $cartModel = new CartModel();
+        $checkoutModel = new CheckoutModel();
+
+        $items = $this->checkoutSelect($id);
+        
+        foreach($items as $item){
+
+            $checkoutModel->user_id = $item->user_id;
+            $checkoutModel->cart_id = $item->cart_id;
+            $checkoutModel->product_id = $item->product_id;
+
+            $checkoutItems = $checkoutModel->store();
+        }
+
+        $cartModel->checkoutDelete($id);
+
+        return response()->json($checkoutItems, 200);
     }
 }

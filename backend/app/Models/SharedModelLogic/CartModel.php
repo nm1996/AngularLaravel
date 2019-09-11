@@ -52,6 +52,24 @@ class CartModel
     # method to update item in cart
 
 
+    # checkout methods
+
+    public function checkoutSelect($id)
+    {
+        return DB::table($this->table)
+        ->where('user_id', $id)
+        ->select('cart.id as cart_id', 'cart.user_id as user_id', 'cart.product_id as product_id')
+        ->get();
+    }
+
+    public function checkoutDelete($id)
+    {
+        return DB::table($this->table)
+        ->where('user_id', $id)
+        ->delete();
+    }
+
+
 
     
 

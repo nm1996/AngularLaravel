@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SharedControllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SignUpRequest;
+use App\Models\SharedModelLogic\UserModel;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -38,7 +39,15 @@ class AuthController extends Controller
 
     public function signup(SignUpRequest $request)
     {
-        User::create($request->all());
+        $model = new UserModel();
+        $model->name = $request->name;
+        $model->email = $request->email;
+        $model->password = $request->password;
+        $model->city = $request->city;
+        $model->address = $request->address;
+
+        $model->create();
+
         return $this->login($request);
     }
 
