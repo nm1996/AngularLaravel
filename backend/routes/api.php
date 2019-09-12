@@ -19,5 +19,8 @@ Route::group([
     Route::post('addToCart/{id}', 'SharedControllers\CartController@addToCart');
     Route::get('showUserCart/{id}', 'SharedControllers\CartController@showUserCart');
     Route::post('deleteUserItem', 'SharedControllers\CartController@deleteUserItem');
+
+    # checkout routes
     Route::post('checkout', 'SharedControllers\CartController@checkout');
+    Route::get('userCurrentCheckoutList/{id}', 'SharedControllers\CartController@userCurrentCheckoutList');
 });

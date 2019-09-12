@@ -14,7 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TokenService } from './services/token/token.service';
-import { ManProductComponent } from './components/products/man-product/man-product.component';
+import { MenProductComponent } from './components/products/men-product/men-product.component';
 import { WomenProductComponent } from './components/products/women-product/women-product.component';
 import { KidsProductComponent } from './components/products/kids-product/kids-product.component';
 import { SportsProductComponent } from './components/products/sports-product/sports-product.component';
@@ -30,7 +30,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     LoginComponent,
     RegistrationComponent,
     FooterComponent,
-    ManProductComponent,
+    MenProductComponent,
     WomenProductComponent,
     KidsProductComponent,
     SportsProductComponent,

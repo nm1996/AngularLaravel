@@ -3,7 +3,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { KidsProductComponent } from './components/products/kids-product/kids-product.component';
 import { WomenProductComponent } from './components/products/women-product/women-product.component';
-import { ManProductComponent } from './components/products/man-product/man-product.component';
+import { MenProductComponent } from './components/products/men-product/men-product.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "registration", component: RegistrationComponent },
   { path: "login", component: LoginComponent },
-  { path: "man-products", component: ManProductComponent },
+  { path: "men-products", component: MenProductComponent },
   { path: "women-products", component: WomenProductComponent },
   { path: "kids-products", component: KidsProductComponent },
   { path: "sports-products", component: SportsProductComponent },

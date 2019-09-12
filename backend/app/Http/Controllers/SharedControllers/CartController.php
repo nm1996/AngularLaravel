@@ -47,7 +47,7 @@ class CartController
         return response()->json(200);
     }
 
-    # test
+    # checkout Operations
 
     public function checkoutSelect($id)
     {
@@ -70,6 +70,7 @@ class CartController
             $checkoutModel->user_id = $item->user_id;
             $checkoutModel->cart_id = $item->cart_id;
             $checkoutModel->product_id = $item->product_id;
+            $checkoutModel->quantity = $item->quantity;
 
             $checkoutItems = $checkoutModel->store();
         }
@@ -77,5 +78,13 @@ class CartController
         $cartModel->checkoutDelete($id);
 
         return response()->json($checkoutItems, 200);
+    }
+
+    public function userCurrentCheckoutList($id)
+    {
+        $model = new CheckoutModel();
+        $items = $model->userCurrentCheckout($id);
+
+        return response()->json($items, 200);
     }
 }

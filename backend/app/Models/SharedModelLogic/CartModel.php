@@ -58,7 +58,7 @@ class CartModel
     {
         return DB::table($this->table)
         ->where('user_id', $id)
-        ->select('cart.id as cart_id', 'cart.user_id as user_id', 'cart.product_id as product_id')
+        ->select('cart.id as cart_id', 'cart.user_id as user_id', 'cart.product_id as product_id', 'cart.quantity as quantity')
         ->get();
     }
 

@@ -12,7 +12,7 @@ export class ProductService {
     private http : HttpClient
   ) { }
 
-  getManProducts(): Observable<Product[]> {
+  getMenProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.path}/showMenProducts`).pipe(map(
       (response: Product[]) => {
         console.log(response);
