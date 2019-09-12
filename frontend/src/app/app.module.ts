@@ -1,3 +1,4 @@
+import { AuthorService } from './services/author/author.service';
 import { ProductService } from './services/products/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth/auth.service';
@@ -21,6 +22,7 @@ import { SportsProductComponent } from './components/products/sports-product/spo
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { AuthorComponent } from './components/author/author.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     SportsProductComponent,
     ProductDetailsComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    AuthorComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     TokenService,
     JarService,
     AuthService,
-    ProductService
+    ProductService,
+    AuthorService
   ],
   bootstrap: [AppComponent]
 })

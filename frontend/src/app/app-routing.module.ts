@@ -1,3 +1,4 @@
+import { AuthorComponent } from './components/author/author.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: "sports-products", component: SportsProductComponent },
   { path: "product-details/:id", component: ProductDetailsComponent },
   { path: "cart/:id", component: CartComponent },
-  { path: "checkout", component: CheckoutComponent }
+  { path: "checkout", component: CheckoutComponent },
+  { path: "author", component: AuthorComponent }
 ];
 
 @NgModule({

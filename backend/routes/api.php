@@ -23,4 +23,15 @@ Route::group([
     # checkout routes
     Route::post('checkout', 'SharedControllers\CartController@checkout');
     Route::get('userCurrentCheckoutList/{id}', 'SharedControllers\CartController@userCurrentCheckoutList');
+
+
+
+
+
+
+
+
+    # author route
+
+    Route::get('author', 'SharedControllers\AuthorController@author');
 });
