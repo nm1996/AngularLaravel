@@ -47,6 +47,34 @@ class CartController
         return response()->json(200);
     }
 
+
+    # select one Item
+
+    public function showItem($id)
+    {
+        $cartModel = new CartModel();
+        $item = $cartModel->getOneItem($id);
+
+        if(!$item){
+            abort(404);
+        }
+        else{
+            return response()->json($item, 200);
+        }
+
+    }
+
+    # update Items
+
+    public function updateItem(Request $request, $id)
+    {
+        $cartModel = new CartModel();
+        $cartModel->quantity = $request->quantity;
+        $cartModel->number = $request->number;
+        $item = $cartModel->updateUserItem($id);
+        return response()->json($item, 200);
+    }
+
     # checkout Operations
 
     public function checkoutSelect($id)

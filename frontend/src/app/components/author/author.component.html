@@ -1,7 +1,40 @@
-<div *ngIf="items">
-    {{items.name}}
-    {{items.picture}}
-    {{items.address}}
-    {{items.school}}
-    {{items.description}}
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+  <div class="container">
+    <div
+      class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end"
+    >
+      <div class="col-first">
+        <h1>Author</h1>
+        <nav class="d-flex align-items-center">
+          <a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
+          <a routerLink="/author">Author</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Banner Area -->
+<div class="product_image_area" *ngIf="items">
+  <div class="container">
+    <div class="row s_product_inner">
+      <div class="col-lg-6" *ngIf="items.image">
+        <img class="img-fluid w-100" src="assets/{{ items?.image }}" alt="" />
+      </div>
+      <div class="col-lg-5 offset-lg-1">
+        <div class="s_product_text">
+          <h3>{{ items.name }}</h3>
+          <h2>{{ items.address }}</h2>
+          <ul class="list">
+            <li>
+              <a class="active" href="#"
+                ><span>School</span> : {{ items.school }}</a
+              >
+            </li>
+          </ul>
+          <p>{{ items.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

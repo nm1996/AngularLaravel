@@ -8,14 +8,14 @@ import { AuthorService } from 'src/app/services/author/author.service';
   styleUrls: ['./author.component.scss']
 })
 export class AuthorComponent implements OnInit {
-  items: Author[];
+  items: Author;
   constructor(
     private author : AuthorService
   ) { }
 
   ngOnInit() {
     this.author.getAuthor().subscribe(
-      (response: Author[]) => {
+      (response: Author) => {
         console.log(response),
         this.items = response
       },

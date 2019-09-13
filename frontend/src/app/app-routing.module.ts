@@ -1,3 +1,4 @@
+import { EditComponent } from './components/cart/edit/edit.component';
 import { AuthorComponent } from './components/author/author.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: "product-details/:id", component: ProductDetailsComponent },
   { path: "cart/:id", component: CartComponent },
   { path: "checkout", component: CheckoutComponent },
-  { path: "author", component: AuthorComponent }
+  { path: "author", component: AuthorComponent },
+  { path: "cart/edit/:id", component: EditComponent }
 ];
 
 @NgModule({

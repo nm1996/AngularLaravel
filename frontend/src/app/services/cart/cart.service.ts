@@ -34,5 +34,11 @@ export class CartService {
     ));
   }
 
+  showItem(id: number): Observable<Cart> {
+    return this.http.get<Cart>(`${this.path}/showItem/${id}`);
+  }
 
+  // updateItem(id: number, quantity, number): Observable<Cart> {
+  //   return this.http.post<Cart>(`${this.path}/updateItem/${id}`);
+  // }
 }

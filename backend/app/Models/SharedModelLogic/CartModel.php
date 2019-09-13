@@ -42,6 +42,19 @@ class CartModel
         ->get();
     }
 
+    # method to see one item
+
+    public function getOneItem($id)
+    {
+        return DB::table($this->table)
+        ->join('products', 'cart.product_id', '=', 'products.id')
+        ->join('product_images', 'products.id_image', '=', 'product_images.id')
+        ->where('cart.id', $id)
+        ->select('cart.*', 'products.name as name', 'products.price as price', 'product_images.path as picture')
+        ->get()
+        ->first();
+    }
+
     # method to delete item from cart
 
     public function deleteUserItem ($id) {
@@ -50,6 +63,15 @@ class CartModel
     }
 
     # method to update item in cart
+
+    public function updateUserItem($id) {
+        return DB::table ($this->table)
+        ->where('id', $id)
+        ->update([
+            'quantity' => $this->quantity,
+            'number' => $this->number
+        ]);
+    }
 
 
     # checkout methods

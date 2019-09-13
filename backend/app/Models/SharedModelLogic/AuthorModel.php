@@ -16,6 +16,7 @@ class AuthorModel
     public function author() {
         return DB::table($this->table)
         ->select('*')
-        ->get();
+        ->get()
+        ->first();
     }
 }

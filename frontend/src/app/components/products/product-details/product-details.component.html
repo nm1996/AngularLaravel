@@ -42,8 +42,8 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<div class="product_count">
 								<label for="number">Number:</label>
-								<select class="form-control" name="number" id="number">
-									<option *ngFor="let number of numbers" value="{{number}}">{{number}}</option>
+								<select class="form-control" name="number" id="number" [(ngModel)]="form.number">
+									<option *ngFor="let number of numbers" value="{{number}}" >{{number}}</option>
 								</select>
 							</div>
 						<div class="card_area d-flex align-items-center">

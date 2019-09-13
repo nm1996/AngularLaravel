@@ -12,7 +12,7 @@ export class AuthorService {
     private http: HttpClient
   ) { }
 
-  getAuthor(): Observable<Author[]> {
-    return this.http.get<Author[]>('http://localhost:8000/api/author');
+  getAuthor(): Observable<Author> {
+    return this.http.get<Author>('http://localhost:8000/api/author');
   }
 }

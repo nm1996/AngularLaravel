@@ -23,6 +23,7 @@ import { ProductDetailsComponent } from './components/products/product-details/p
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AuthorComponent } from './components/author/author.component';
+import { EditComponent } from './components/cart/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AuthorComponent } from './components/author/author.component';
     ProductDetailsComponent,
     CartComponent,
     CheckoutComponent,
-    AuthorComponent
+    AuthorComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
