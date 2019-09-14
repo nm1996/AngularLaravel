@@ -10,12 +10,10 @@ import { TokenService } from 'src/app/services/token/token.service';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private token : TokenService
   ) {}
 
 
   ngOnInit() {
-    console.log(this.token.getUser());
   }
 
 

@@ -18,9 +18,10 @@ export class NavigationComponent implements OnInit {
     private token: TokenService
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { 
     this.auth.authStatus.subscribe(value => this.loggedIn = value);
     this.user_id = this.token.getUser();
+    
   }
 
   logout(event: MouseEvent) {
@@ -28,6 +29,8 @@ export class NavigationComponent implements OnInit {
     this.token.remove();
     this.auth.changeAuthStatus(false);
     this.router.navigateByUrl('/login');
+    this.token.removeUser();
+
   }
 
 }
