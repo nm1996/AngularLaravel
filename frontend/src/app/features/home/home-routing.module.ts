@@ -1,9 +1,10 @@
-import { AuthorComponent } from './../author/author.component';
-import { ContactComponent } from './../contact/contact.component';
+import { AuthorComponent } from './author/author.component';
+import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './../home/home.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IndexComponent } from './index/index.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
                 path: '', redirectTo: 'home', pathMatch: 'full'
             },
             {
-                path: '', component: HomeComponent
+                path: '', component: IndexComponent
             },
             {
                 path: 'contact', component: ContactComponent

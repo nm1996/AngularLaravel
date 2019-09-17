@@ -1,4 +1,4 @@
-import { Author } from '../../shared/models/author.model';
+import { Author } from '../../../shared/models/author.model';
 import { Component, OnInit } from '@angular/core';
 import { AuthorService } from 'src/app/shared/services/author/author.service';
 
