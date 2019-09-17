@@ -23,12 +23,12 @@ import { AdminComponent } from './features/admin/admin.component';
 import { AuthorizationComponent } from './features/authorization/authorization.component';
 import { CartCheckoutComponent } from './features/cart-checkout/cart-checkout.component';
 import { ProductsModule } from './features/products/products.module';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent,
-    FooterComponent,
     LoginComponent,
     RegistrationComponent,
     AdminComponent,
@@ -39,12 +39,14 @@ import { ProductsModule } from './features/products/products.module';
     EditComponent
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     HomeModule,
-    ProductsModule
+    ProductsModule,
+    RouterModule
   ],
   providers: [
     TokenService,
