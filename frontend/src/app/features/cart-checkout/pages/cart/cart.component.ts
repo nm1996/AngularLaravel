@@ -64,7 +64,7 @@ export class CartComponent implements OnInit {
       (response: Object) => {
         console.log(response);
         this.checkoutItem = response;
-        this.router.navigateByUrl('checkout');
+        this.router.navigateByUrl('buy/checkout');
       }
     );
   }

@@ -50,7 +50,7 @@ export class EditComponent implements OnInit {
   handleResponse(data) {
     this.cart_id;
     this.user_id;
-    this.router.navigateByUrl(`/cart/${this.user_id}`);
+    this.router.navigateByUrl(`buy/cart/${this.user_id}`);
   }
 
   handleError(error) {
