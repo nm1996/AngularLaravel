@@ -1,4 +1,4 @@
-import { AppRoutingModule } from './../../app-routing.module';
+
 import { FormsModule } from '@angular/forms';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
@@ -24,7 +24,6 @@ import { ProductService } from './services/products/product.service';
         CommonModule,
         ProductsRoutingModule,
         FormsModule,
-        AppRoutingModule
     ],
     providers: [
         ProductService

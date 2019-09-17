@@ -18,19 +18,19 @@
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Shop</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" routerLink="/men-products">Men</a></li>
-									<li class="nav-item"><a class="nav-link" routerLink="/women-products">Woman</a></li>
-									<li class="nav-item"><a class="nav-link" routerLink="/kids-products">Kids</a></li>
-									<li class="nav-item"><a class="nav-link" routerLink="/sports-products">Sports</a></li>
-									<li class="nav-item"><a class="nav-link" [routerLink]="['cart',user_id]">Shopping cart</a></li>
+									<li class="nav-item"><a class="nav-link" routerLink="products/men-products">Men</a></li>
+									<li class="nav-item"><a class="nav-link" routerLink="products/women-products">Woman</a></li>
+									<li class="nav-item"><a class="nav-link" routerLink="products/kids-products">Kids</a></li>
+									<li class="nav-item"><a class="nav-link" routerLink="products/sports-products">Sports</a></li>
+									<li class="nav-item"><a class="nav-link" [routerLink]="['buy','cart',user_id]">Shopping cart</a></li>
 								</ul>
 							</li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Account</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" routerLink="/login" *ngIf="!loggedIn">Login</a></li>
-									<li class="nav-item"><a class="nav-link" routerLink="/registration" *ngIf="!loggedIn">Sign up</a></li>
+									<li class="nav-item"><a class="nav-link" routerLink="authorization/login" *ngIf="!loggedIn">Login</a></li>
+									<li class="nav-item"><a class="nav-link" routerLink="authorization/registration" *ngIf="!loggedIn">Sign up</a></li>
 									<li class="nav-item"><a class="nav-link" href="#" (click)="logout($event)" *ngIf="loggedIn">Log out</a></li>
 								</ul>
 							</li>
@@ -38,7 +38,7 @@
 							<li class="nav-item"><a class="nav-link" routerLink="/author">Author</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a routerLink="/cart/{{user_id}}" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item"><a routerLink="buy/cart/{{user_id}}" class="cart"><span class="ti-bag"></span></a></li>
 							<li class="nav-item">
 								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 							</li>

@@ -1,3 +1,4 @@
+import { AuthorizationModule } from './features/authorization/authorization.module';
 import { HomeModule } from './features/home/home.module';
 import { EditComponent } from './features/cart-checkout/pages/cart/edit/edit.component';
 import { CartComponent } from './features/cart-checkout/pages/cart/cart.component';
@@ -13,14 +14,9 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavigationComponent } from './shared/components/navigation/navigation.component';
-import { LoginComponent } from './features/authorization/login/login.component';
-import { RegistrationComponent } from './features/authorization/registration/registration.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
 import { TokenService } from './shared/services/token/token.service';
 import { CheckoutComponent } from './features/cart-checkout/pages/checkout/checkout.component';
 import { AdminComponent } from './features/admin/admin.component';
-import { AuthorizationComponent } from './features/authorization/authorization.component';
 import { CartCheckoutComponent } from './features/cart-checkout/cart-checkout.component';
 import { ProductsModule } from './features/products/products.module';
 import { RouterModule } from '@angular/router';
@@ -29,14 +25,7 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegistrationComponent,
     AdminComponent,
-    AuthorizationComponent,
-    CartComponent,
-    CheckoutComponent,
-    CartCheckoutComponent,
-    EditComponent
   ],
   imports: [
     SharedModule,
