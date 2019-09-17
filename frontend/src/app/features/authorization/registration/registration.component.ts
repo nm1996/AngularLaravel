@@ -1,6 +1,6 @@
-import { AuthService } from './../../../shared/services/auth/auth.service';
-import { TokenService } from './../../../shared/services/token/token.service';
-import { JarService } from './../../../shared/services/jar/jar.service';
+import { AuthService } from '../../../shared/services/auth/auth.service';
+import { TokenService } from '../../../shared/services/token/token.service';
+import { JarService } from '../../../shared/services/jar/jar.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 

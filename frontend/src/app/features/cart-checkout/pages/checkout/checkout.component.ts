@@ -1,8 +1,8 @@
-import { Checkout } from './../../../../shared/models/checkout.model';
-import { AuthService } from './../../../../shared/services/auth/auth.service';
+import { Checkout } from '../../../../shared/models/checkout.model';
+import { AuthService } from '../../../../shared/services/auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { TokenService } from './../../../../shared/services/token/token.service';
+import { TokenService } from '../../../../shared/services/token/token.service';
 
 @Component({
   selector: 'app-checkout',
