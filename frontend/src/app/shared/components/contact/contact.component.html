@@ -1,0 +1,116 @@
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Contact Us</h1>
+                <nav class="d-flex align-items-center">
+                    <a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a routerLink="/contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Contact Area =================-->
+<section class="contact_area section_gap_bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="contact_info">
+                    <div class="info_item">
+                        <i class="lnr lnr-home"></i>
+                        <h6>Obrenovac, Serbia</h6>
+                        <p>Milosa Obrenovica 3</p>
+                    </div>
+                    <div class="info_item">
+                        <i class="lnr lnr-phone-handset"></i>
+                        <h6><a>+381/68 1234 567</a></h6>
+                        <p>Mon to Fri 9am to 6 pm</p>
+                    </div>
+                    <div class="info_item">
+                        <i class="lnr lnr-envelope"></i>
+                        <h6><a>support@shopn.com</a></h6>
+                        <p>Send us your query anytime!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                    <div class="login_form_inner">
+                            <h3>Contact us</h3>
+                            <form
+                              class="row login_form"
+                              id="contactForm"
+                              #contactForm="ngForm"
+                              (ngSubmit)="onSubmit()"
+                            >
+                              <div class="col-md-12 form-group">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="name"
+                                  name="name"
+                                  placeholder="Name"
+                                  onfocus="this.placeholder = ''"
+                                  onblur="this.placeholder = 'Name'"
+                                  [(ngModel)]="form.name"
+                                  required
+                                />
+                              </div>
+                              <div class="col-md-12 form-group">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="email"
+                                  name="email"
+                                  placeholder="Email"
+                                  onfocus="this.placeholder = ''"
+                                  onblur="this.placeholder = 'Email'"
+                                  [(ngModel)]="form.email"
+                                  required
+                                />
+                              </div>
+                              <div class="col-md-12 form-group">
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="subject"
+                                      name="subject"
+                                      placeholder="Subject"
+                                      onfocus="this.placeholder = ''"
+                                      onblur="this.placeholder = 'Subject'"
+                                      [(ngModel)]="form.subject"
+                                      required
+                                    />
+                                  </div>
+                                  <div class="col-md-12 form-group">
+                                        <textarea
+                                          class="form-control"
+                                          id="message"
+                                          name="message"
+                                          placeholder="Message"
+                                          onfocus="this.placeholder = ''"
+                                          onblur="this.placeholder = 'Message'"
+                                          [(ngModel)]="form.message"
+                                          required
+                                        ></textarea>
+                                      </div>
+                              <div class="col-md-12 form-group">
+                                <button
+                                  type="submit"
+                                  value="submit"
+                                  class="primary-btn"
+                                  [disabled]="!contactForm.valid"
+                                >
+                                  Contact Us
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Contact Area =================-->

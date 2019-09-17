@@ -1,29 +1,31 @@
-import { AuthorService } from './services/author/author.service';
-import { ProductService } from './services/products/product.service';
+import { EditComponent } from './features/cart-checkout/pages/cart/edit/edit.component';
+import { CartComponent } from './features/cart-checkout/pages/cart/cart.component';
+import { AuthService } from './shared/services/auth/auth.service';
+import { AuthorService } from './shared/services/author/author.service';
+import { ProductService } from './features/products/services/products/product.service';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from './services/auth/auth.service';
-import { JarService } from './services/jar/jar.service';
+
+import { JarService } from './shared/services/jar/jar.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegistrationComponent } from './components/registration/registration.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { TokenService } from './services/token/token.service';
-import { MenProductComponent } from './components/products/men-product/men-product.component';
-import { WomenProductComponent } from './components/products/women-product/women-product.component';
-import { KidsProductComponent } from './components/products/kids-product/kids-product.component';
-import { SportsProductComponent } from './components/products/sports-product/sports-product.component';
-import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
-import { CartComponent } from './components/cart/cart.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
-import { AuthorComponent } from './components/author/author.component';
-import { EditComponent } from './components/cart/edit/edit.component';
+import { HomeComponent } from './shared/components/home/home.component';
+import { NavigationComponent } from './shared/components/navigation/navigation.component';
+import { LoginComponent } from './features/authorization/login/login.component';
+import { RegistrationComponent } from './features/authorization/registration/registration.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { TokenService } from './shared/services/token/token.service';
+import { WomenProductComponent } from './features/products/pages/women-product/women-product.component';
+import { KidsProductComponent } from './features/products/pages/kids-product/kids-product.component';
+import { SportsProductComponent } from './features/products/pages/sports-product/sports-product.component';
+import { ProductDetailsComponent } from './features/products/pages/product-details/product-details.component';
+import { CheckoutComponent } from './features/cart-checkout/pages/checkout/checkout.component';
+import { AuthorComponent } from './shared/components/author/author.component';
+import { ContactComponent } from './shared/components/contact/contact.component';
+import { MenProductComponent } from './features/products/pages/men-product/men-product.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { EditComponent } from './components/cart/edit/edit.component';
     CartComponent,
     CheckoutComponent,
     AuthorComponent,
-    EditComponent
+    EditComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

@@ -36,4 +36,8 @@ Route::group([
     # author route
 
     Route::get('author', 'SharedControllers\AuthorController@author');
+
+    # contact route
+
+    Route::post('insert', 'SharedControllers\ContactController@insert');
 });
