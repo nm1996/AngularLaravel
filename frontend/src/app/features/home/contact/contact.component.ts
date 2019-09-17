@@ -1,4 +1,7 @@
+import { ContactService } from './../../../shared/services/contact/contact.service';
 import { Component, OnInit } from '@angular/core';
+import { Contact } from 'src/app/shared/models/contact.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -7,14 +10,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  public form = {
-    
+  public form: Contact  = {
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
   }
-  constructor() { }
 
-  ngOnInit() {
+  items;
+  constructor(
+    private contact: ContactService,
+    private router: Router
+  ) { }
+
+  ngOnInit(
+  ) {
+    this.contact.getInfos().subscribe(
+      response =>{
+        console.log(response),
+        this.items = response;
+      },
+      error => {}
+    )
   }
 
-  onSubmit(){}
+  onSubmit(){
+    this.contact.insertContact(this.form).subscribe(
+      (response: Contact) => {
+        console.log(response);
+        this.handleResponse();
+      },
+      error => {error}
+    )
+  }
+
+  handleResponse(){
+    this.router.navigateByUrl('');
+  }
+
 
 }

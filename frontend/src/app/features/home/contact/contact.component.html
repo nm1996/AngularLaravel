@@ -16,23 +16,23 @@
 
 <!--================Contact Area =================-->
 <section class="contact_area section_gap_bottom">
-    <div class="container">
+    <div class="container" *ngIf="items">
         <div class="row">
             <div class="col-lg-3">
                 <div class="contact_info">
                     <div class="info_item">
                         <i class="lnr lnr-home"></i>
-                        <h6>Obrenovac, Serbia</h6>
-                        <p>Milosa Obrenovica 3</p>
+                        <h6>{{items.city}}</h6>
+                        <p>{{items.street}}</p>
                     </div>
                     <div class="info_item">
                         <i class="lnr lnr-phone-handset"></i>
-                        <h6><a>+381/68 1234 567</a></h6>
-                        <p>Mon to Fri 9am to 6 pm</p>
+                      <h6><a>{{items.phone}}</a></h6>
+                        <p>{{items.work_time}}</p>
                     </div>
                     <div class="info_item">
                         <i class="lnr lnr-envelope"></i>
-                        <h6><a>support@shopn.com</a></h6>
+                        <h6><a>{{items.email}}</a></h6>
                         <p>Send us your query anytime!</p>
                     </div>
                 </div>

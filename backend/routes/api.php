@@ -39,5 +39,6 @@ Route::group([
 
     # contact route
 
-    Route::post('insert', 'SharedControllers\ContactController@insert');
+    Route::get('infos', 'SharedControllers\ContactController@infos');
+    Route::post('insertContact', 'SharedControllers\ContactController@insert');
 });
