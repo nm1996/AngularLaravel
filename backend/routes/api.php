@@ -2,7 +2,7 @@
 Route::group([
     'middleware' => 'api',
 ], function () {
-    # log and reg routes 
+    # log and reg routes
     Route::post('login', 'SharedControllers\AuthController@login');
     Route::post('signup', 'SharedControllers\AuthController@signup');
 
@@ -14,7 +14,7 @@ Route::group([
     Route::get('showSportProducts', 'SharedControllers\ProductsController@showSportProducts');
 
     Route::get('showProductDetails/{id}', 'SharedControllers\ProductsController@showProductDetails');
-    
+
     # cart routes
     Route::post('addToCart/{id}', 'SharedControllers\CartController@addToCart');
     Route::get('showUserCart/{id}', 'SharedControllers\CartController@showUserCart');
@@ -41,4 +41,7 @@ Route::group([
 
     Route::get('infos', 'SharedControllers\ContactController@infos');
     Route::post('insertContact', 'SharedControllers\ContactController@insert');
+
+
+    Route::post('adminProductInsert', 'ProtectedControllers\AdminProductController@productStore');
 });

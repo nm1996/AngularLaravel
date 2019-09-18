@@ -13,7 +13,7 @@ class AdminPictureModel
     public function store()
     {
         return DB::table($this->table)
-        ->insert([
+        ->insertGetId([
             'name' => $this->name,
             'path' => $this->path
         ]);

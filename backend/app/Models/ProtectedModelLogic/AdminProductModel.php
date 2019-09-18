@@ -13,6 +13,8 @@ class AdminProductModel
     public $date_arrive;
     public $popular_rating;
 
+    private $table='products';
+
     public function store()
     {
         return DB::table($this->table)
@@ -22,7 +24,7 @@ class AdminProductModel
             'price' => $this->price,
             'color' => $this->color,
             'id_image' => $this->id_image,
-            'date_arrive' => $this->date_arrive,
+            'date_arrive' => date('Y-m-d'),
             'popular_rating' => $this->popular_rating,
         ]);
     }
