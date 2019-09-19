@@ -16,9 +16,9 @@ class AdminProductController
         $modelPicture = new AdminPictureModel();
 
         #picture
-        $pictureDirectory = 'http://localhost:4200/assets/images/products/';
+        $pictureDirectory = 'C:/xampp/htdocs/xampp/AngularLaravel/frontend/src/assets/images/products/';
         $picturePath = $request->file('picture');
-        $pictureName = time() . "_" . $picturePath->getClientOriginalName();
+        $pictureName = "product_" . time(). ".jpg";
         $picturePath->move($pictureDirectory, $pictureName);
 
         $modelPicture->path = "images/products/" . $pictureName;
