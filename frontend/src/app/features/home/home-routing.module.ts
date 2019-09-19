@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IndexComponent } from './index/index.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,9 @@ const routes: Routes = [
             },
             {
                 path: 'author', component: AuthorComponent
+            },
+            {
+                path: 'profile', component: ProfileComponent
             },
             {
                 path: '**', redirectTo: 'home'

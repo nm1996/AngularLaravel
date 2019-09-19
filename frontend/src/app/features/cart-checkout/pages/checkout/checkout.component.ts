@@ -3,6 +3,7 @@ import { AuthService } from '../../../../shared/services/auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../../../../shared/services/token/token.service';
+import { Cart } from 'src/app/shared/models/cart.model';
 
 @Component({
   selector: 'app-checkout',
@@ -17,6 +18,7 @@ export class CheckoutComponent implements OnInit {
   checkoutItems : Checkout[];
   priceArray: number[];
   fullPrice: number;
+  data: Cart[];
 
   constructor(
     private http: HttpClient,
@@ -28,20 +30,23 @@ export class CheckoutComponent implements OnInit {
   ngOnInit() {
     this.user_id = this.token.getUser();
     console.log(this.user_id);
+    this.data = history.state.data;
 
-    this.http.get(`${this.path}/userCurrentCheckoutList/${this.user_id}`).subscribe(
-      (response : Checkout[] )=> {
-        console.log(response, 'CHECKOUT ITEMS');
-        this.checkoutItems = response;
-        this.priceArray = response.map(item=>+item.price * item.quantity);
+    // this.http.get(`${this.path}/userCurrentCheckoutList/${this.user_id}`).subscribe(
+    //   (response : Checkout[] )=> {
+    //     console.log(response, 'CHECKOUT ITEMS');
+    //     this.checkoutItems = response;
+    //     this.priceArray = response.map(item=>+item.price * item.quantity);
 
-        this.fullPrice = this.priceArray.reduce((previous, current) => {
-          return previous + current
-        }, 0);
-        console.log(this.fullPrice, 'FULL PRICE');
-      },
-      error => error
-    );
+    //     this.fullPrice = this.priceArray.reduce((previous, current) => {
+    //       return previous + current
+    //     }, 0);
+    //     console.log(this.fullPrice, 'FULL PRICE');
+    //   },
+    //   error => error
+    // );
+
+
   }
 
 }

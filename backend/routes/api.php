@@ -24,7 +24,6 @@ Route::group([
 
     # checkout routes
     Route::post('checkout', 'SharedControllers\CartController@checkout');
-    Route::get('userCurrentCheckoutList/{id}', 'SharedControllers\CartController@userCurrentCheckoutList');
 
 
 
@@ -44,4 +43,8 @@ Route::group([
 
 
     Route::post('adminProductInsert', 'ProtectedControllers\AdminProductController@productStore');
+
+
+    # profile route
+    Route::get('profile/{id}', 'SharedControllers\UserController@getUser');
 });

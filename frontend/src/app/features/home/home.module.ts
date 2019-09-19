@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { IndexComponent } from './index/index.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -16,7 +17,8 @@ import { IndexComponent } from './index/index.component';
     AuthorComponent,
     ContactComponent,
     HomeComponent,
-    IndexComponent
+    IndexComponent,
+    ProfileComponent
   ],
   imports: [
     SharedModule,

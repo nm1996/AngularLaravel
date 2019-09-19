@@ -79,8 +79,10 @@ class CartModel
     public function checkoutSelect($id)
     {
         return DB::table($this->table)
+        ->join('products', 'cart.product_id', '=', 'products.id')
+        ->join('product_images', 'products.id_image', '=', 'product_images.id')
         ->where('user_id', $id)
-        ->select('cart.id as cart_id', 'cart.user_id as user_id', 'cart.product_id as product_id', 'cart.quantity as quantity')
+        ->select('cart.id as cart_id', 'cart.user_id as user_id', 'cart.product_id as product_id', 'cart.quantity as quantity', 'products.price as price', 'product_images.path as picture', 'products.name as name')
         ->get();
     }
 
@@ -93,6 +95,6 @@ class CartModel
 
 
 
-    
+
 
 }

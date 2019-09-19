@@ -27,4 +27,11 @@ class UserModel
             'role_id' => 1
         ]);
     }
+
+    public function getUser($id) {
+        return DB::table($this->table)
+        ->where('id', $id)
+        ->select()
+        ->first();
+    }
 }

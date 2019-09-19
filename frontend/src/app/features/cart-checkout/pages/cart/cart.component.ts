@@ -55,7 +55,7 @@ export class CartComponent implements OnInit {
         )
       }
     );
-    
+
   }
 
   checkout(id: number) {
@@ -64,10 +64,10 @@ export class CartComponent implements OnInit {
       (response: Object) => {
         console.log(response);
         this.checkoutItem = response;
-        this.router.navigateByUrl('buy/checkout');
+        this.router.navigate(['/buy', 'checkout'], {state: {data : response}});
       }
     );
   }
-  
-  
+
+
 }

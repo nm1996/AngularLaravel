@@ -1,71 +1,71 @@
 !-- Start Banner Area -->
-	<section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<h1>Confirmation</h1>
-					<nav class="d-flex align-items-center">
-						<a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a>Confirmation</a>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Confirmation</h1>
+                <nav class="d-flex align-items-center">
+                    <a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a>Confirmation</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
 
-	<!--================Order Details Area =================-->
-	<section class="order_details section_gap">
-		<div class="container">
-			<h3 class="title_confirmation">Thank you. Your order has been received.</h3>
-			<div class="order_details_table">
-				<h2>Order Details</h2>
-				<div class="table-responsive">
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Product</th>
-								<th scope="col">Quantity</th>
-								<th scope="col">Price</th>
-								<th scope="col">Total</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr *ngFor="let item of checkoutItems">
-								<td>
-									<h5>{{item.name}}</h5>
-								</td>
-								<td>
-									<h5>{{item.quantity}}</h5>
-								</td>
-								<td>
-									<h5>${{item.price}}</h5>
-								</td>
-								<td>
-									<h5>${{item.quantity * item.price}}</h5>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<h4>Total</h4>
-								</td>
-								<td>
-									<h5></h5>
-								</td>
-								<td>
-									<p></p>
-								</td>
-								<td>
-									<h5>
-										${{fullPrice}}
-									</h5>
-									
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--================End Order Details Area =================-->
+<!--================Order Details Area =================-->
+<section class="order_details section_gap">
+    <div class="container">
+        <h3 class="title_confirmation">Thank you. Your order has been received.</h3>
+        <div class="order_details_table">
+            <h2>Order Details</h2>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data">
+                            <td>
+                                <h5>{{item.name}}</h5>
+                            </td>
+                            <td>
+                                <h5>{{item.quantity}}</h5>
+                            </td>
+                            <td>
+                                <h5>${{item.price}}</h5>
+                            </td>
+                            <td>
+                                <h5>${{item.quantity * item.price}}</h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4>Total</h4>
+                            </td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                            <td>
+                                <p></p>
+                            </td>
+                            <td>
+                                <h5>
+                                    ${{fullPrice}}
+                                </h5>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Order Details Area =================-->

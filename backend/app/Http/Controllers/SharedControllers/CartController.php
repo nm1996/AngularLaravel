@@ -8,7 +8,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class CartController 
+class CartController
 {
 
     # show user cart
@@ -92,7 +92,7 @@ class CartController
         $checkoutModel = new CheckoutModel();
         $id = $request->getContent();
         $items = $this->checkoutSelect($id);
-        
+
         foreach($items as $item){
 
             $checkoutModel->user_id = $item->user_id;
@@ -104,14 +104,6 @@ class CartController
         }
 
         $cartModel->checkoutDelete($id);
-
-        return response()->json($checkoutItems, 200);
-    }
-
-    public function userCurrentCheckoutList($id)
-    {
-        $model = new CheckoutModel();
-        $items = $model->userCurrentCheckout($id);
 
         return response()->json($items, 200);
     }
