@@ -5,6 +5,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, ParamMap } from "@angular/router";
 import { Product } from '../../../../shared/models/product.model';
 import { TokenService } from 'src/app/shared/services/token/token.service';
+import { LikeService } from '../../services/like/like.service';
 
 @Component({
   selector: "app-product-details",
@@ -30,7 +31,8 @@ export class ProductDetailsComponent implements OnInit {
     private router: Router,
     private auth: AuthService,
     private token: TokenService,
-    private http: HttpClient
+    private http: HttpClient,
+    private like: LikeService
   ) {
     this.numbers = [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46];
   }
@@ -43,7 +45,7 @@ export class ProductDetailsComponent implements OnInit {
     this.product_id = +this.route.snapshot.paramMap.get("id");
     this.auth.authStatus.subscribe(value => (this.loggedIn = value));
 
-    this.user_id = this.token.getUser();
+    this.user_id = +this.token.getUser();
     console.log(this.user_id);
 
     this.product.getProductDetails(this.product_id).subscribe(
@@ -90,5 +92,19 @@ export class ProductDetailsComponent implements OnInit {
       data => {this.handleResponse(data), console.log(data)},
       error => this.handleError(error)
     );
+  }
+
+
+  onLike(product_id){
+    return this.like.like(+product_id, this.user_id).subscribe(response =>
+      this.product.getProductDetails(this.product_id).subscribe(
+        (response: Product) => {
+          console.log(response);
+          this.details = response;
+        },
+        error => {
+          console.log(error);
+        }
+      ));
   }
 }

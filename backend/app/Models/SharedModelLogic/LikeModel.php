@@ -15,26 +15,18 @@ class LikeModel
     public function store()
     {
         return DB::table($this->table)
-            ->insertGetId([
+            ->insert([
                 'user_id' => $this->user_id,
                 'product_id' => $this->product_id
             ]);
     }
 
-    public function voted($userId, $productId)
-    {
-        return DB::table($this->table)
-            ->where('likes.user_id', $userId)
-            ->where('likes.product_id', $productId)
-            ->get()
-            ->first();
-    }
 
-    public function delete($userId, $productId)
+    public function delete($user_id, $product_id)
     {
         return DB::table($this->table)
-            ->where('likes.user_id', $userId)
-            ->where('likes.product_id', $productId)
+            ->where('likes.user_id', $user_id)
+            ->where('likes.product_id', $product_id)
             ->delete();
     }
 }

@@ -30,8 +30,10 @@
                     <ul class="list">
                         <li><a class="active" href="#"><span>Category</span> : {{details.category_name|titlecase}}</a></li>
                         <li><a href="#"><span>Availibility</span> : In Stock</a></li>
+                        <li><span class="lnr lnr-heart">{{details.likes}}</span></li>
+                        <li><span class="lnr lnr-calendar-full">{{details.date_arrive}}</span></li>
                     </ul>
-                    <p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for something that can make your interior look awesome, and at the same time give you the pleasant warm feeling during the winter.</p>
+                    <p>We are giving two year warranty from the day you bought it. Be free to contact us anytime, we will respone as soon as we can. Visit <a routerLink="/contact">Contact</a> to send us message. Hope you likes our products.</p>
                     <form #addToCart="ngForm" (ngSubmit)="onSubmit()">
                         <div class="product_count">
                             <label for="qty">Quantity:</label>
@@ -46,8 +48,7 @@
                         </div>
                         <div class="card_area d-flex align-items-center">
                             <button class="primary-btn" type="submit" value="submit">Add to cart</button>
-                            <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-                            <a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+                            <a (click)="onLike(details.id)" class="icon_btn"><i class="lnr lnr lnr-heart"></i></a>
                         </div>
                     </form>
                 </div>

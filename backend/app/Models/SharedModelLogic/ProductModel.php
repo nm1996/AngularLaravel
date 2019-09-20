@@ -18,7 +18,7 @@ class ProductModel
 
     private $table = 'products';
 
-    # get methods 
+    # get methods
 
     public function getMenProducts()
     {
@@ -26,7 +26,8 @@ class ProductModel
             ->join('product_images', 'products.id_image', '=', 'product_images.id')
             ->join('category', 'products.id_category', '=', 'category.id')
             ->where('products.id_category', '=', '1')
-            ->select('products.*', 'product_images.path as image_path', 'category.name as category_name')
+            ->select('products.*', 'product_images.path as image_path', 'category.name as category_name', DB::raw("(SELECT count(*) FROM likes WHERE product_id = products.id) as likes"))
+            ->orderBy('date_arrive', 'desc')
             ->get();
     }
 
@@ -36,7 +37,8 @@ class ProductModel
             ->join('product_images', 'products.id_image', '=', 'product_images.id')
             ->join('category', 'products.id_category', '=', 'category.id')
             ->where('products.id_category', '=', '3')
-            ->select('products.*', 'product_images.path as image_path', 'category.name as category_name')
+            ->select('products.*', 'product_images.path as image_path', 'category.name as category_name', DB::raw("(SELECT count(*) FROM likes WHERE product_id = products.id) as likes"))
+            ->orderBy('date_arrive', 'desc')
             ->get();
     }
 
@@ -46,7 +48,8 @@ class ProductModel
             ->join('product_images', 'products.id_image', '=', 'product_images.id')
             ->join('category', 'products.id_category', '=', 'category.id')
             ->where('products.id_category', '=', '4')
-            ->select('products.*', 'product_images.path as image_path', 'category.name as category_name')
+            ->select('products.*', 'product_images.path as image_path', 'category.name as category_name', DB::raw("(SELECT count(*) FROM likes WHERE product_id = products.id) as likes"))
+            ->orderBy('date_arrive', 'desc')
             ->get();
     }
 
@@ -56,7 +59,8 @@ class ProductModel
             ->join('product_images', 'products.id_image', '=', 'product_images.id')
             ->join('category', 'products.id_category', '=', 'category.id')
             ->where('products.id_category', '=', '2')
-            ->select('products.*', 'product_images.path as image_path', 'category.name as category_name')
+            ->select('products.*', 'product_images.path as image_path', 'category.name as category_name', DB::raw("(SELECT count(*) FROM likes WHERE product_id = products.id) as likes"))
+            ->orderBy('date_arrive', 'desc')
             ->get();
     }
 
@@ -66,11 +70,11 @@ class ProductModel
             ->join('product_images', 'products.id_image', '=', 'product_images.id')
             ->join('category', 'products.id_category', '=', 'category.id')
             ->where('products.id', $id)
-            ->select('products.*', 'product_images.path as image_path', 'category.name as category_name')
+            ->select('products.*', 'product_images.path as image_path', 'category.name as category_name', DB::raw("(SELECT count(*) FROM likes WHERE product_id = products.id) as likes"))
             ->get()
             ->first();
     }
 
-    
-    
+
+
 }

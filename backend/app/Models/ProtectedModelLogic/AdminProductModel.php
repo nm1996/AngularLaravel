@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 
 class AdminProductModel
 {
+    #props
+
     public $name;
     public $id_category;
     public $price;
@@ -13,10 +15,30 @@ class AdminProductModel
     public $date_arrive;
     public $popular_rating;
 
-    private $table='products';
+    private $table ="products";
 
-    public function store()
-    {
+    #logic
+
+    public function getAll() {
+        return DB::table($this->table)
+            ->join('product_images', 'products.id_image', '=', 'product_images.id')
+            ->join('category', 'products.id_category', '=', 'category.id')
+            ->select('products.*', 'product_images.path as image_path', 'category.name as category_name', DB::raw("(SELECT count(*) FROM likes WHERE product_id = products.id) as likes"))
+            ->orderBy('date_arrive', 'desc')
+            ->get();
+    }
+
+    public function getOne($id) {
+        return DB::table($this->table)
+            ->join('product_images', 'products.id_image', '=', 'product_images.id')
+            ->join('category', 'products.id_category', '=', 'category.id')
+            ->where('products.id', $id)
+            ->select('products.*', 'product_images.id as picture_id', 'product_images.path as image_path', 'category.name as category_name')
+            ->get()
+            ->first();
+    }
+
+    public function store() {
         return DB::table($this->table)
         ->insert([
             'name' => $this->name,
@@ -25,8 +47,34 @@ class AdminProductModel
             'color' => $this->color,
             'id_image' => $this->id_image,
             'date_arrive' => date('Y-m-d'),
-            'popular_rating' => $this->popular_rating,
+            'popular_rating' => $this->popular_rating
         ]);
     }
 
+    public function delete($id) {
+        return DB::table($this->table)
+            ->where('id', $id)
+            ->delete();
+    }
+
+    public function update($id)
+    {
+        $updated = [
+            'name' => $this->name,
+            'id_category' => $this->id_category,
+            'price' => $this->price,
+            'color' => $this->color,
+            'popular_rating' => $this->popular_rating
+        ];
+
+        if($this->id_image != null) {
+            $updated[
+                'id_image'
+            ] = $this->id_image;
+        }
+
+        return DB::table($this->table)
+        ->where('id', $id)
+        ->update($updated);
+    }
 }

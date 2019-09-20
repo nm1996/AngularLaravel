@@ -11,7 +11,7 @@ import { Product } from "../../../../shared/models/product.model";
 })
 export class MenProductComponent implements OnInit {
   products: Product[];
-  user_id;
+  user_id: number;
   productsPagionation: Product[];
   pageOfItems: Array<any>;
   show: number = 9;
@@ -31,6 +31,7 @@ export class MenProductComponent implements OnInit {
         console.log(error);
       }
     );
+    this.user_id = +this.token.getUser();
   }
 
   onChangePage(pageOfItems: Array<any>) {
@@ -42,11 +43,18 @@ export class MenProductComponent implements OnInit {
     this.show = +event;
   }
 
-  likeData(data) {
-    this.user_id = this.token.getUser();
-  }
 
-  onLike() {
-    this.like.like(this.likeData).subscribe(response => console.log(response));
+
+  onLike(product_id) {
+    console.log(this.user_id)
+    return this.like.like(+product_id, this.user_id).subscribe(response => this.menProducts.getMenProducts().subscribe(
+      (response: Product[]) => {
+        console.log(response),
+        this.products = response;
+      },
+      error => {
+        console.log(error)
+      }
+    ));
   }
 }

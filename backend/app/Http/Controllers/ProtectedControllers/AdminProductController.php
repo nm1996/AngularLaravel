@@ -10,6 +10,20 @@ use App\Models\ProtectedModelLogic\AdminProductModel;
 class AdminProductController
 
 {
+    public function productsIndex()
+    {
+        $model = new AdminProductModel();
+        $items = $model->getAll();
+
+        if(empty($items)) {
+            abort (404);
+        }
+
+        else {
+            return response()->json($items, 200);
+        }
+    }
+
     public function productStore(Request $request)
     {
         $modelProduct = new AdminProductModel();
@@ -34,4 +48,22 @@ class AdminProductController
         $items = $modelProduct->store();
         return response()->json($items, 200);
     }
+
+
+    public function delete($id) {
+        $productModel = new AdminProductModel();
+        $pictureModel = new AdminPictureModel();
+
+        $items = $productModel->getOne($id);
+            $oldPic = $items->picture_id;
+            $directory = 'C:/xampp/htdocs/xampp/AngularLaravel/frontend/src/assets/';
+            $picturePath = $items->image_path;
+            $pic = $pictureModel->getOne($oldPic);
+            unlink($directory . $picturePath);
+            $pictureModel->delete($oldPic);
+
+        $item = $items->delete($id);
+        return response()->json($item, 200);
+    }
 }
+

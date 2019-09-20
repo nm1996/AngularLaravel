@@ -37,9 +37,13 @@ Route::group([
     Route::post('insertContact', 'SharedControllers\ContactController@insert');
 
 
-    Route::post('adminProductInsert', 'ProtectedControllers\AdminProductController@productStore');
 
 
     # profile route
     Route::get('profile/{id}', 'SharedControllers\UserController@getUser');
+
+    # admin routes
+    Route::post('adminProductInsert', 'ProtectedControllers\AdminProductController@productStore');
+    Route::get('adminProductsIndex', 'ProtectedControllers\AdminProductController@productsIndex');
+    Route::post('adminProductDelete/{id}', 'ProtectedCOntrollers\AdminProductController@delete');
 });
