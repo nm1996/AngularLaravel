@@ -25,9 +25,9 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'role_id'
+        'password', 'remember_token'
     ];
-    # jwtMethods 
+    # jwtMethods
     public function getJWTIdentifier(){
         return $this->getKey();
     }

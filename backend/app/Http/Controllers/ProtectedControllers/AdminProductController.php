@@ -10,6 +10,7 @@ use App\Models\ProtectedModelLogic\AdminProductModel;
 class AdminProductController
 
 {
+
     public function productsIndex()
     {
         $model = new AdminProductModel();
@@ -30,7 +31,7 @@ class AdminProductController
         $modelPicture = new AdminPictureModel();
 
         #picture
-        $pictureDirectory = 'C:/xampp/htdocs/xampp/AngularLaravel/frontend/src/assets/images/products/';
+        $pictureDirectory = public_path('images/products/');
         $picturePath = $request->file('picture');
         $pictureName = "product_" . time(). ".jpg";
         $picturePath->move($pictureDirectory, $pictureName);
@@ -56,10 +57,10 @@ class AdminProductController
 
         $items = $productModel->getOne($id);
             $oldPic = $items->picture_id;
-            $directory = 'C:/xampp/htdocs/xampp/AngularLaravel/frontend/src/assets/';
+            $directory = public_path('images/products/');
             $picturePath = $items->image_path;
             $pic = $pictureModel->getOne($oldPic);
-            unlink($directory . $picturePath);
+            unlink($directory,$picturePath);
             $pictureModel->delete($oldPic);
 
         $item = $items->delete($id);

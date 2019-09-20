@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class ProductsController
 {
-    
-    # show products methods 
+
+    # show products methods
 
     public function showMenProducts()
     {
@@ -44,12 +44,12 @@ class ProductsController
     }
 
 
-    # show product details 
+    # show product details
 
     public function showProductDetails($id)
     {
         $model = new ProductModel();
-        $product = $model->getOneProduct($id);   
+        $product = $model->getOneProduct($id);
         return response()->json($product, 200);
     }
 
