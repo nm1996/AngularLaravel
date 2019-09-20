@@ -1,5 +1,5 @@
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
@@ -10,6 +10,7 @@ import { NgModule } from "@angular/core";
 import { SportsProductComponent } from './pages/sports-product/sports-product.component';
 import { CommonModule } from '@angular/common';
 import { ProductService } from './services/products/product.service';
+import { JwPaginationComponent } from 'jw-angular-pagination';
 
 @NgModule({
     declarations: [
@@ -18,12 +19,13 @@ import { ProductService } from './services/products/product.service';
         KidsProductComponent,
         SportsProductComponent,
         ProductDetailsComponent,
-        ProductsComponent
+        ProductsComponent,
+        JwPaginationComponent
     ],
     imports: [
         CommonModule,
         ProductsRoutingModule,
-        FormsModule,
+        FormsModule
     ],
     providers: [
         ProductService

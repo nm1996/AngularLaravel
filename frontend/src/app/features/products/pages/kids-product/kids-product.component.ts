@@ -11,6 +11,9 @@ export class KidsProductComponent implements OnInit {
 
   
   products: Product[];
+  productsPagionation: Product[];
+  pageOfItems: Array<any>;
+  show: number = 9;
 
   constructor(
     private kidsProducts : ProductService
@@ -21,11 +24,21 @@ export class KidsProductComponent implements OnInit {
       (response: Product[]) => {
         console.log(response),
         this.products = response;
+        this.productsPagionation = response;
       },
       error => {
         console.log(error)
       }
     );
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    this.pageOfItems = pageOfItems;
+  }
+
+  onChange(event) {
+    console.log(event);
+    this.show = +event;
   }
 
 }

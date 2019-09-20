@@ -1,5 +1,6 @@
 import { ProductService } from '../../services/products/product.service';
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/shared/models/product.model';
 
 @Component({
   selector: 'app-women-product',
@@ -13,11 +14,15 @@ export class WomenProductComponent implements OnInit {
   ) { }
 
     
-  products;
+  products: Product[];
+  
+  productsPagionation: Product[];
+  pageOfItems: Array<any>;
+  show: number = 9;
 
   ngOnInit() {
     this.womenProducts.getWomenProducts().subscribe(
-      response => {
+      (response: Product[]) => {
         console.log(response),
         this.products = response;
       },
@@ -27,4 +32,12 @@ export class WomenProductComponent implements OnInit {
     );
   }
 
+  onChangePage(pageOfItems: Array<any>) {
+    this.pageOfItems = pageOfItems;
+  }
+
+  onChange(event) {
+    console.log(event);
+    this.show 
+  }
 }

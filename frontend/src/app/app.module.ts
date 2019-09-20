@@ -15,9 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TokenService } from './shared/services/token/token.service';
-import { CheckoutComponent } from './features/cart-checkout/pages/checkout/checkout.component';
 import { AdminComponent } from './features/admin/admin.component';
-import { CartCheckoutComponent } from './features/cart-checkout/cart-checkout.component';
 import { ProductsModule } from './features/products/products.module';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
@@ -25,7 +23,7 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
+    AdminComponent
   ],
   imports: [
     SharedModule,

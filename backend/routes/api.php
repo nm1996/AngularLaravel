@@ -12,7 +12,6 @@ Route::group([
     Route::get('showWomenProducts', 'SharedControllers\ProductsController@showWomenProducts');
     Route::get('showKidsProducts', 'SharedControllers\ProductsController@showKidsProducts');
     Route::get('showSportProducts', 'SharedControllers\ProductsController@showSportProducts');
-
     Route::get('showProductDetails/{id}', 'SharedControllers\ProductsController@showProductDetails');
 
     # cart routes
@@ -25,12 +24,8 @@ Route::group([
     # checkout routes
     Route::post('checkout', 'SharedControllers\CartController@checkout');
 
-
-
-
-
-
-
+    #like route
+    Route::post('like', 'SharedControllers\LikeController@like');
 
     # author route
 

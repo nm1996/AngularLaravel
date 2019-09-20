@@ -1,46 +1,47 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { CommentStmt } from "@angular/compiler";
 
 @Injectable()
 export class TokenService {
   private iss = {
-    login: 'http://localhost:8000/api/login',
-    signup: 'http://localhost:8000/api/signup'
+    login: "http://localhost:8000/api/login",
+    signup: "http://localhost:8000/api/signup"
   };
 
-  constructor() { }
+  constructor() {}
 
   handle(token) {
     this.set(token);
   }
 
   handleUser(user) {
-    console.log(user, 'handle user');
+    console.log(user, "handle user");
     this.setUser(user);
   }
 
   set(token) {
-    localStorage.setItem('token', token);
+    localStorage.setItem("token", token);
   }
 
   setUser(user) {
     console.log(user);
-    localStorage.setItem('user', user);
+    localStorage.setItem("user", user);
   }
 
   get() {
-    return localStorage.getItem('token');
+    return localStorage.getItem("token");
   }
 
   getUser() {
-    return localStorage.getItem('user');
+    return localStorage.getItem("user");
   }
 
   removeUser() {
-    return localStorage.removeItem('user');
+    return localStorage.removeItem("user");
   }
 
   remove() {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
   }
 
   isValid() {
@@ -55,7 +56,7 @@ export class TokenService {
   }
 
   payload(token) {
-    const payload = token.split('.')[1];
+    const payload = token.split(".")[1];
     return this.decode(payload);
   }
 
@@ -67,12 +68,17 @@ export class TokenService {
     return this.isValid();
   }
 
-  
+  setRole(role_id) {
+    console.log("role_id");
+    localStorage.setItem("role_id", role_id);
+  }
 
-  
+  handleRole(role_id) {
+    console.log(role_id, "handle role");
+    this.setRole(role_id);
+  }
 
-  
-
+  getRole() {
+    return localStorage.getItem("role_id");
+  }
 }
-
-

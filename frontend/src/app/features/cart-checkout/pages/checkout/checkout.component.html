@@ -25,6 +25,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Product</th>
+                            <th scope="col">Name</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Price</th>
                             <th scope="col">Total</th>
@@ -33,7 +34,11 @@
                     <tbody>
                         <tr *ngFor="let item of data">
                             <td>
-                                <h5>{{item.name}}</h5>
+                                <h5><img src="../../../../../assets/{{item.picture}}" alt=""></h5>
+                                
+                            </td>
+                            <td>
+                                    <h5>{{item.name}}</h5>
                             </td>
                             <td>
                                 <h5>{{item.quantity}}</h5>
