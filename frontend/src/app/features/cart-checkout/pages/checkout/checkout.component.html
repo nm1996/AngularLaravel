@@ -35,11 +35,7 @@
                         <tr *ngFor="let item of data">
                             <td>
                                 <h5>
-                                    <img [src]="
-                      dom.bypassSecurityTrustUrl(
-                        'http://localhost:8000/' + item.picture
-                      )
-                    " alt="" />
+                                    <img class="cart-height" [src]="dom.bypassSecurityTrustUrl('http://localhost:8000/' + item.picture)" alt="" />
                                 </h5>
                             </td>
                             <td>

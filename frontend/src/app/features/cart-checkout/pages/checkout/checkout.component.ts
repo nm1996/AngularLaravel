@@ -19,12 +19,7 @@ export class CheckoutComponent implements OnInit {
   fullPrice: number;
   data: Cart[];
 
-  constructor(
-    private http: HttpClient,
-    private token: TokenService,
-    private auth: AuthService,
-    private dom: DomSanitizer
-  ) {}
+  constructor(private http: HttpClient, private token: TokenService, private auth: AuthService, public dom: DomSanitizer) {}
 
   ngOnInit() {
     this.user_id = this.token.getUser();

@@ -6,4 +6,5 @@ export class User {
   public city: string;
   public address: string;
   public role_id: number;
+  public role_name: string;
 }

@@ -67,7 +67,7 @@
                         <!-- single product -->
                         <div class="col-lg-4 col-md-6" *ngFor="let product of pageOfItems">
                             <div class="single-product">
-                                <img class="img-fluid" [src]="
+                                <img class="img-fluid image-height" [src]="
                     dom.bypassSecurityTrustUrl(
                       'http://localhost:8000/' + product.image_path
                     )

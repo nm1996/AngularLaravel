@@ -35,12 +35,8 @@
                         <tr *ngFor="let item of cartItems">
                             <td>
                                 <div class="media">
-                                    <div class="d-flex">
-                                        <img [src]="
-                        dom.bypassSecurityTrustUrl(
-                          'http://localhost:8000/' + item.picture
-                        )
-                      " alt="" />
+                                    <div class="d-flex ">
+                                        <img class="cart-height" [src]="dom.bypassSecurityTrustUrl('http://localhost:8000/' + item.picture)" alt="" />
                                     </div>
                                     <div class="media-body">
                                         <p>{{ item.name }}</p>
@@ -60,53 +56,46 @@
                                 <h5>${{ item.price * item.quantity }}</h5>
                             </td>
                             <td>
-                                <a routerLink="/buy/cart/edit/{{ item.id }}" class="btn btn-info waves-effect btn-xs">Edit</a
-                >
-              </td>
-              <td>
-                <button
-                  href="#"
-                  class="btn btn-danger waves-effect btn-xs"
-                  (click)="deleteItem(item.id)"
-                >
+                                <a routerLink="/buy/cart/edit/{{ item.id }}" class="btn btn-info waves-effect btn-xs">Edit</a>
+                            </td>
+                            <td>
+                                <button href="#" class="btn btn-danger waves-effect btn-xs" (click)="deleteItem(item.id)">
                   Delete
                 </button>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <h5>Subtotal</h5>
-              </td>
-              <td>
-                <h5>{{ fullPrice | currency }}</h5>
-              </td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr class="out_button_area">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <div class="checkout_btn_inner d-flex align-items-center">
-                  <a class="gray_btn" routerLink="/men-products"
-                    >Continue Shopping</a
-                  >
-                  <button class="primary-btn" (click)="checkout(user_id)">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <h5>Subtotal</h5>
+                            </td>
+                            <td>
+                                <h5>{{ fullPrice | currency }}</h5>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="out_button_area">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="checkout_btn_inner d-flex align-items-center">
+                                    <a class="gray_btn" routerLink="/products/men-products">Continue Shopping</a>
+                                    <button class="primary-btn" (click)="checkout(user_id)">
                     Proceed to checkout
                   </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 <!--================End Cart Area =================-->

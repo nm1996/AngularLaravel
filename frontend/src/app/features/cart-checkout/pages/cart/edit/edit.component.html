@@ -6,8 +6,7 @@
                 <h1>Edit Item</h1>
                 <nav class="d-flex align-items-center">
                     <a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
-                    <a routerLink="/cart/{{ user_id }}">Cart <span class="lnr lnr-arrow-right"></span>
-          </a>
+                    <a routerLink="/cart/{{ user_id }}">Cart <span class="lnr lnr-arrow-right"></span> </a>
                     <a routerLink="/cart/edit/{{ cart_id }}">Edit</a>
                 </nav>
             </div>
@@ -36,11 +35,7 @@
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
-                                            <img [src]="
-                          dom.bypassSecurityTrustUrl(
-                            'http://localhost:8000/' + product.picture
-                          )
-                        " alt="" />
+                                            <img class="cart-height" [src]="dom.bypassSecurityTrustUrl('http://localhost:8000/' + product.picture)" alt="" />
                                         </div>
                                         <div class="media-body">
                                             <p>{{ product.name }}</p>
@@ -58,11 +53,7 @@
                                 <td>
                                     <h5>
                                         <select class="form-control" name="number" id="number" [(ngModel)]="form.number">
-                      <option
-                        *ngFor="let number of numbers"
-                        value="{{ number }}"
-                        >{{ number }}</option
-                      >
+                      <option *ngFor="let number of numbers" value="{{ number }}">{{ number }}</option>
                     </select>
                                     </h5>
                                 </td>
@@ -80,16 +71,15 @@
                                 <td></td>
                                 <td>
                                     <div class="checkout_btn_inner d-flex align-items-center">
-                                        <a class="gray_btn" routerLink="/cart/{{ user_id }}">Back to cart</a
-                    >
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </form>
-      </div>
+                                        <a class="gray_btn" routerLink="/buy/cart/{{ user_id }}">Back to cart</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 <!--================End Cart Area =================-->

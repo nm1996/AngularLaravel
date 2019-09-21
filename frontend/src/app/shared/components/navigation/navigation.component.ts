@@ -2,6 +2,8 @@ import { TokenService } from "../../services/token/token.service";
 import { AuthService } from "../../services/auth/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { GuardAdminService } from "../../services/guard/admin/guard-admin.service";
+import { ProductService } from "src/app/features/products/services/products/product.service";
 
 @Component({
   selector: "app-navigation",
@@ -10,19 +12,27 @@ import { Router } from "@angular/router";
 })
 export class NavigationComponent implements OnInit {
   public loggedIn: boolean;
+  public isAdmin: boolean;
   user_id;
-  role;
+  role: number;
   constructor(
     private auth: AuthService,
     private router: Router,
-    private token: TokenService
+    private token: TokenService,
+    private admin: GuardAdminService,
+    private productService: ProductService
   ) {}
 
   ngOnInit() {
     this.auth.authStatus.subscribe(value => (this.loggedIn = value));
     this.user_id = this.token.getUser();
-    this.role = this.token.getRole();
+    this.role = +this.token.getRole();
     console.log(this.role);
+
+    this.productService.refreshRole$.subscribe((response: boolean) => {
+      console.log(response, "REFRESHED");
+      this.role = +this.token.getRole();
+    });
   }
 
   logout(event: MouseEvent) {
@@ -31,5 +41,6 @@ export class NavigationComponent implements OnInit {
     this.auth.changeAuthStatus(false);
     this.router.navigateByUrl("/authorization/login");
     this.token.removeUser();
+    this.token.removeRole();
   }
 }

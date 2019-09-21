@@ -28,7 +28,7 @@ export class EditComponent implements OnInit {
     private token: TokenService,
     private router: Router,
     private http: HttpClient,
-    private dom: DomSanitizer
+    public dom: DomSanitizer
   ) {
     this.numbers = [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46];
   }

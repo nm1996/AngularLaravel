@@ -3,6 +3,7 @@ import { JarService } from "../../../shared/services/jar/jar.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { TokenService } from "../../../shared/services/token/token.service";
+import { ProductService } from "../../products/services/products/product.service";
 
 @Component({
   selector: "app-login",
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private jar: JarService,
     private Token: TokenService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private productService: ProductService
   ) {}
 
   onSubmit() {
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
         this.handleUser(data["user"]);
         this.handleRole(data["role_id"]);
         console.log(data["user"], "user", "role_id");
+        this.productService.toRefreshNavigation();
       },
       error => this.handleError(error)
     );

@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { TokenService } from "../../token/token.service";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class GuardAdminService {
-
-  constructor() { }
+  constructor(private token: TokenService) {}
 }

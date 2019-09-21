@@ -1,0 +1,79 @@
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Shopping Cart</h1>
+                <nav class="d-flex align-items-center">
+                    <a routerLink="/admin/">Users <span class="lnr lnr-arrow-right"></span></a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Cart Area =================-->
+<section class="cart_area">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">City</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users">
+                            <td>
+                                <h5>{{ user.name }}</h5>
+                            </td>
+                            <td>
+                                <h5>{{ user.email }}</h5>
+                            </td>
+                            <td>
+                                <h5>{{ user.city }}</h5>
+                            </td>
+                            <td>
+                                <h5>{{ user.address }}</h5>
+                            </td>
+                            <td>
+                                <h5>{{ user.role_name }}</h5>
+                            </td>
+                            <td>
+                                <a routerLink="" class="btn btn-info waves-effect btn-xs">Edit</a>
+                            </td>
+                            <td>
+                                <button (click)="deleteUser(user.id)" class="btn btn-danger waves-effect btn-xs">
+                  Delete
+                </button>
+                            </td>
+                        </tr>
+                        <tr class="out_button_area">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="checkout_btn_inner d-flex align-items-center">
+                                    <button class="primary-btn">
+                    Insert new user
+                  </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Cart Area =================-->

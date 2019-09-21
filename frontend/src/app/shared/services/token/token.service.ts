@@ -68,6 +68,12 @@ export class TokenService {
     return this.isValid();
   }
 
+  // isAdmin() {
+  //   let role_id = +this.getRole();
+
+  //   return role_id == 2 ? true : false;
+  // }
+
   setRole(role_id) {
     console.log("role_id");
     localStorage.setItem("role_id", role_id);
@@ -80,5 +86,9 @@ export class TokenService {
 
   getRole() {
     return localStorage.getItem("role_id");
+  }
+
+  removeRole() {
+    return localStorage.removeItem("role_id");
   }
 }
