@@ -67,7 +67,11 @@
                         <!-- single product -->
                         <div class="col-lg-4 col-md-6" *ngFor="let product of pageOfItems">
                             <div class="single-product">
-                                <img class="img-fluid" src="../../../../../assets/{{ product.image_path }}" alt="" />
+                                <img class="img-fluid" [src]="
+                    dom.bypassSecurityTrustUrl(
+                      'http://localhost:8000/' + product.image_path
+                    )
+                  " alt="" />
                                 <div class="product-details">
                                     <h6>{{ product.name }}</h6>
                                     <div class="price">
@@ -75,10 +79,12 @@
                                         <h6 class="l-through">${{ product.price }}</h6>
                                     </div>
                                     <div class="price">
-                                        <span class="lnr lnr-heart">{{product.likes}}</span>
+                                        <span class="lnr lnr-heart">{{ product.likes }}</span>
                                     </div>
                                     <div class="price">
-                                        <span class="lnr lnr-calendar-full">{{product.date_arrive}}</span>
+                                        <span class="lnr lnr-calendar-full">{{
+                      product.date_arrive
+                    }}</span>
                                     </div>
                                     <div class="prd-bottom">
                                         <a routerLink="/products/product-details/{{ product.id }}" class="social-info">

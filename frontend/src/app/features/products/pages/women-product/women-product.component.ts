@@ -1,22 +1,22 @@
-import { ProductService } from '../../services/products/product.service';
-import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/shared/models/product.model';
-import { TokenService } from 'src/app/shared/services/token/token.service';
-import { LikeService } from '../../services/like/like.service';
+import { ProductService } from "../../services/products/product.service";
+import { Component, OnInit } from "@angular/core";
+import { Product } from "src/app/shared/models/product.model";
+import { TokenService } from "src/app/shared/services/token/token.service";
+import { LikeService } from "../../services/like/like.service";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-women-product',
-  templateUrl: './women-product.component.html',
-  styleUrls: ['./women-product.component.scss']
+  selector: "app-women-product",
+  templateUrl: "./women-product.component.html",
+  styleUrls: ["./women-product.component.scss"]
 })
 export class WomenProductComponent implements OnInit {
-
   constructor(
-    private womenProducts : ProductService,
+    private womenProducts: ProductService,
     private token: TokenService,
-    private like: LikeService
-  ) { }
-
+    private like: LikeService,
+    public dom: DomSanitizer
+  ) {}
 
   products: Product[];
 
@@ -28,8 +28,7 @@ export class WomenProductComponent implements OnInit {
   ngOnInit() {
     this.womenProducts.getWomenProducts().subscribe(
       (response: Product[]) => {
-        console.log(response),
-        this.products = response;
+        console.log(response), (this.products = response);
       },
       error => {
         console.log(error);
@@ -44,19 +43,19 @@ export class WomenProductComponent implements OnInit {
 
   onChange(event) {
     console.log(event);
-    this.show
+    this.show;
   }
   onLike(product_id) {
-    console.log(this.user_id)
+    console.log(this.user_id);
     return this.like.like(+product_id, this.user_id).subscribe(response =>
-    this.womenProducts.getWomenProducts().subscribe(
-      (response: Product[]) => {
-        console.log(response),
-        this.products = response;
-      },
-      error => {
-        console.log(error)
-      }
-    ))
-}
+      this.womenProducts.getWomenProducts().subscribe(
+        (response: Product[]) => {
+          console.log(response), (this.products = response);
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    );
+  }
 }

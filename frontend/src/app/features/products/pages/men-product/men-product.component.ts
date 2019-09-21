@@ -3,6 +3,7 @@ import { LikeService } from "./../../services/like/like.service";
 import { ProductService } from "./../../services/products/product.service";
 import { Component, OnInit } from "@angular/core";
 import { Product } from "../../../../shared/models/product.model";
+import { DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: "app-men-product",
@@ -19,7 +20,8 @@ export class MenProductComponent implements OnInit {
   constructor(
     private menProducts: ProductService,
     private like: LikeService,
-    private token: TokenService
+    private token: TokenService,
+    public dom: DomSanitizer
   ) {}
 
   ngOnInit() {

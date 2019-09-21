@@ -1,88 +1,93 @@
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
-  <div class="container">
-    <div
-      class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end"
-    >
-      <div class="col-first">
-        <h1>Edit Item</h1>
-        <nav class="d-flex align-items-center">
-          <a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
-          <a routerLink="/cart/{{ user_id }}"
-            >Cart <span class="lnr lnr-arrow-right"></span>
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Edit Item</h1>
+                <nav class="d-flex align-items-center">
+                    <a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a routerLink="/cart/{{ user_id }}">Cart <span class="lnr lnr-arrow-right"></span>
           </a>
-          <a routerLink="/cart/edit/{{ cart_id }}">Edit</a>
-        </nav>
-      </div>
+                    <a routerLink="/cart/edit/{{ cart_id }}">Edit</a>
+                </nav>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 <!-- End Banner Area -->
 
 <!--================Cart Area =================-->
 <section class="cart_area" *ngIf="product">
-  <div class="container">
-    <div class="cart_inner">
-      <div class="table-responsive">
-          <form #editForm="ngForm" (ngSubmit)="onSubmit()">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Product</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Number</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="../../assets/{{ product.picture }}" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>{{ product.name }}</p>
-                    </div>
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <form #editForm="ngForm" (ngSubmit)="onSubmit()">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img [src]="
+                          dom.bypassSecurityTrustUrl(
+                            'http://localhost:8000/' + product.picture
+                          )
+                        " alt="" />
+                                        </div>
+                                        <div class="media-body">
+                                            <p>{{ product.name }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>${{ product.price }}</h5>
+                                </td>
+                                <td>
+                                    <h5>
+                                        <input type="text" name="quantity" id="sst" maxlength="12" title="Quantity:" class="input-text qty" [(ngModel)]="form.quantity" required />
+                                    </h5>
+                                </td>
+                                <td>
+                                    <h5>
+                                        <select class="form-control" name="number" id="number" [(ngModel)]="form.number">
+                      <option
+                        *ngFor="let number of numbers"
+                        value="{{ number }}"
+                        >{{ number }}</option
+                      >
+                    </select>
+                                    </h5>
+                                </td>
+                                <td>
+                                    <button class="primary-btn" type="submit" [disabled]="!editForm.valid">
+                    Update
+                  </button>
+                                </td>
+                            </tr>
+                            <tr class="out_button_area">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <div class="checkout_btn_inner d-flex align-items-center">
+                                        <a class="gray_btn" routerLink="/cart/{{ user_id }}">Back to cart</a
+                    >
                   </div>
                 </td>
-                <td>
-                  <h5>${{ product.price }}</h5>
-                </td>
-                <td>
-                  <h5>
-                      <input type="text" name="quantity" id="sst" maxlength="12" title="Quantity:" 
-                      class="input-text qty" [(ngModel)]="form.quantity" required>	
-                  </h5>
-                </td>
-                <td>
-                  <h5>
-                        <select class="form-control" name="number" id="number" [(ngModel)]="form.number">
-                                <option *ngFor="let number of numbers" value="{{number}}">{{number}}</option>
-                        </select>
-                  </h5>
-                </td>
-                <td>
-                  <button class="primary-btn" type="submit" [disabled]="!editForm.valid">Update</button>
-                </td>
-            </tr>
-            <tr class="out_button_area">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <div class="checkout_btn_inner d-flex align-items-center">
-                  <a class="gray_btn" routerLink="/cart/{{ user_id }}"
-                    >Back to cart</a
-                  >
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-    </form>
+              </tr>
+            </tbody>
+          </table>
+        </form>
       </div>
     </div>
   </div>

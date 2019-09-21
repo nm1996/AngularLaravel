@@ -6,7 +6,7 @@
                 <h1>Shopping Cart</h1>
                 <nav class="d-flex align-items-center">
                     <a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
-                    <a routerLink="/cart/{{user_id}}">Cart</a>
+                    <a routerLink="/cart/{{ user_id }}">Cart</a>
                 </nav>
             </div>
         </div>
@@ -36,72 +36,77 @@
                             <td>
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img src="assets/{{item.picture}}" alt="">
+                                        <img [src]="
+                        dom.bypassSecurityTrustUrl(
+                          'http://localhost:8000/' + item.picture
+                        )
+                      " alt="" />
                                     </div>
                                     <div class="media-body">
-                                        <p>{{item.name}}</p>
+                                        <p>{{ item.name }}</p>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <h5>${{item.price}}</h5>
+                                <h5>${{ item.price }}</h5>
                             </td>
                             <td>
-                                <h5>{{item.quantity}}</h5>
+                                <h5>{{ item.quantity }}</h5>
                             </td>
                             <td>
-                                <h5>{{item.number}}</h5>
+                                <h5>{{ item.number }}</h5>
                             </td>
                             <td>
-                                <h5>${{item.price * item.quantity}}</h5>
+                                <h5>${{ item.price * item.quantity }}</h5>
                             </td>
                             <td>
-                                <a routerLink="/buy/cart/edit/{{item.id}}" class="btn btn-info waves-effect btn-xs">Edit</a>
-                            </td>
-                            <td>
-                                <button href="#" class="btn btn-danger waves-effect btn-xs" (click)="deleteItem(item.id)">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-
-                            </td>
-                            <td>
-
-                            </td>
-                            <td></td>
-                            <td>
-                                <h5>Subtotal</h5>
-                            </td>
-                            <td>
-                                <h5>{{fullPrice | currency}}</h5>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr class="out_button_area">
-                            <td>
-
-                            </td>
-                            <td>
-
-                            </td>
-                            <td>
-
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <div class="checkout_btn_inner d-flex align-items-center">
-                                    <a class="gray_btn" routerLink="/men-products">Continue Shopping</a>
-                                    <button class="primary-btn" (click)="checkout(user_id)">Proceed to checkout</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                                <a routerLink="/buy/cart/edit/{{ item.id }}" class="btn btn-info waves-effect btn-xs">Edit</a
+                >
+              </td>
+              <td>
+                <button
+                  href="#"
+                  class="btn btn-danger waves-effect btn-xs"
+                  (click)="deleteItem(item.id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <h5>Subtotal</h5>
+              </td>
+              <td>
+                <h5>{{ fullPrice | currency }}</h5>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr class="out_button_area">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <div class="checkout_btn_inner d-flex align-items-center">
+                  <a class="gray_btn" routerLink="/men-products"
+                    >Continue Shopping</a
+                  >
+                  <button class="primary-btn" (click)="checkout(user_id)">
+                    Proceed to checkout
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </section>
 <!--================End Cart Area =================-->

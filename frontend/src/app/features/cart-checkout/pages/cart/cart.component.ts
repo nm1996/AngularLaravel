@@ -1,7 +1,8 @@
 import { ActivatedRoute, Router } from "@angular/router";
 import { CartService } from "../../services/cart/cart.service";
 import { Component, OnInit } from "@angular/core";
-import { Cart } from '../../../../shared/models/cart.model';
+import { Cart } from "../../../../shared/models/cart.model";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: "app-cart",
@@ -9,7 +10,7 @@ import { Cart } from '../../../../shared/models/cart.model';
   styleUrls: ["./cart.component.scss"]
 })
 export class CartComponent implements OnInit {
-  cartItems : Cart[];
+  cartItems: Cart[];
   priceArray: number[];
   fullPrice: number;
   deleted: Object;
@@ -19,21 +20,22 @@ export class CartComponent implements OnInit {
   constructor(
     private cart: CartService,
     private route: ActivatedRoute,
-    private router: Router
-     ) {}
+    private router: Router,
+    public dom: DomSanitizer
+  ) {}
 
   ngOnInit() {
     this.user_id = this.route.snapshot.paramMap.get("id");
     this.cart.getUserItems(this.user_id).subscribe(
       (response: Cart[]) => {
-        console.log(response, 'CART ITEMS');
+        console.log(response, "CART ITEMS");
         this.cartItems = response;
-        this.priceArray = response.map(item=>+item.price * item.quantity);
+        this.priceArray = response.map(item => +item.price * item.quantity);
 
         this.fullPrice = this.priceArray.reduce((previous, current) => {
-          return previous + current
+          return previous + current;
         }, 0);
-        console.log(this.fullPrice, 'FULL PRICE');
+        console.log(this.fullPrice, "FULL PRICE");
       },
       error => {
         console.log(error);
@@ -42,32 +44,23 @@ export class CartComponent implements OnInit {
   }
 
   deleteItem(id: number) {
-    console.log(id, 'ITEM ID');
-    this.cart.deleteFromCart(id).subscribe(
-      (response: Object) => {
+    console.log(id, "ITEM ID");
+    this.cart.deleteFromCart(id).subscribe((response: Object) => {
+      console.log(response);
+      this.deleted = response;
+      this.cart.getUserItems(this.user_id).subscribe((response: Cart[]) => {
+        this.cartItems = response;
         console.log(response);
-        this.deleted = response;
-        this.cart.getUserItems(this.user_id).subscribe(
-          (response: Cart[]) => {
-            this.cartItems = response;
-            console.log(response);
-          }
-        )
-      }
-    );
-
+      });
+    });
   }
 
   checkout(id: number) {
-    console.log(id, 'id method');
-    this.cart.checkout(id).subscribe(
-      (response: Object) => {
-        console.log(response);
-        this.checkoutItem = response;
-        this.router.navigate(['/buy', 'checkout'], {state: {data : response}});
-      }
-    );
+    console.log(id, "id method");
+    this.cart.checkout(id).subscribe((response: Object) => {
+      console.log(response);
+      this.checkoutItem = response;
+      this.router.navigate(["/buy", "checkout"], { state: { data: response } });
+    });
   }
-
-
 }

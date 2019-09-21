@@ -1,38 +1,36 @@
-import { AuthService } from '../../../shared/services/auth/auth.service';
-import { JarService } from '../../../shared/services/jar/jar.service';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TokenService } from '../../../shared/services/token/token.service';
+import { AuthService } from "../../../shared/services/auth/auth.service";
+import { JarService } from "../../../shared/services/jar/jar.service";
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { TokenService } from "../../../shared/services/token/token.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
-
-
   public form = {
     email: null,
     password: null
-  }
+  };
 
   public error = [];
 
   constructor(
-    private jar : JarService,
-    private Token : TokenService,
-    private auth : AuthService,
-    private router : Router
-  ) { }
-
+    private jar: JarService,
+    private Token: TokenService,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   onSubmit() {
     this.jar.login(this.form).subscribe(
       data => {
         this.handleResponse(data);
-        this.handleUser(data['user']);
-        console.log(data['user'], 'user');
+        this.handleUser(data["user"]);
+        this.handleRole(data["role_id"]);
+        console.log(data["user"], "user", "role_id");
       },
       error => this.handleError(error)
     );
@@ -41,7 +39,11 @@ export class LoginComponent implements OnInit {
   handleResponse(data) {
     this.Token.handle(data.access_token);
     this.auth.changeAuthStatus(true);
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl("");
+  }
+
+  handleRole(role_id) {
+    this.Token.handleRole(role_id);
   }
 
   handleUser(user) {
@@ -50,10 +52,7 @@ export class LoginComponent implements OnInit {
 
   handleError(error) {
     this.error = error.error.error;
-    
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

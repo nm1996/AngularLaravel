@@ -1,11 +1,12 @@
-import { AuthService } from '../../../../shared/services/auth/auth.service';
+import { AuthService } from "../../../../shared/services/auth/auth.service";
 import { HttpClient } from "@angular/common/http";
 import { ProductService } from "../../services/products/product.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, ParamMap } from "@angular/router";
-import { Product } from '../../../../shared/models/product.model';
-import { TokenService } from 'src/app/shared/services/token/token.service';
-import { LikeService } from '../../services/like/like.service';
+import { Product } from "../../../../shared/models/product.model";
+import { TokenService } from "src/app/shared/services/token/token.service";
+import { LikeService } from "../../services/like/like.service";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: "app-product-details",
@@ -32,7 +33,8 @@ export class ProductDetailsComponent implements OnInit {
     private auth: AuthService,
     private token: TokenService,
     private http: HttpClient,
-    private like: LikeService
+    private like: LikeService,
+    public dom: DomSanitizer
   ) {
     this.numbers = [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46];
   }
@@ -58,9 +60,6 @@ export class ProductDetailsComponent implements OnInit {
       }
     );
   }
-
-
-
 
   /* Adding item to cart */
   getProductId() {
@@ -88,14 +87,20 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.addToCart({user_id: this.getUserId(), product_id: this.getProductId(), quantity: this.form.quantity, number: this.form.number}).subscribe(
-      data => {this.handleResponse(data), console.log(data)},
+    this.addToCart({
+      user_id: this.getUserId(),
+      product_id: this.getProductId(),
+      quantity: this.form.quantity,
+      number: this.form.number
+    }).subscribe(
+      data => {
+        this.handleResponse(data), console.log(data);
+      },
       error => this.handleError(error)
     );
   }
 
-
-  onLike(product_id){
+  onLike(product_id) {
     return this.like.like(+product_id, this.user_id).subscribe(response =>
       this.product.getProductDetails(this.product_id).subscribe(
         (response: Product) => {
@@ -105,6 +110,7 @@ export class ProductDetailsComponent implements OnInit {
         error => {
           console.log(error);
         }
-      ));
+      )
+    );
   }
 }

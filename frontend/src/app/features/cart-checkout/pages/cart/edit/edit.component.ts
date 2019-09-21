@@ -1,14 +1,15 @@
-import { Cart } from '../../../../../shared/models/cart.model';
-import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CartService } from '../../../services/cart/cart.service';
-import { Component, OnInit } from '@angular/core';
-import { TokenService } from 'src/app/shared/services/token/token.service';
+import { Cart } from "../../../../../shared/models/cart.model";
+import { HttpClient } from "@angular/common/http";
+import { ActivatedRoute, Router } from "@angular/router";
+import { CartService } from "../../../services/cart/cart.service";
+import { Component, OnInit } from "@angular/core";
+import { TokenService } from "src/app/shared/services/token/token.service";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+  selector: "app-edit",
+  templateUrl: "./edit.component.html",
+  styleUrls: ["./edit.component.scss"]
 })
 export class EditComponent implements OnInit {
   private path = "http://localhost:8000/api";
@@ -20,15 +21,16 @@ export class EditComponent implements OnInit {
   form = {
     quantity: null,
     number: null
-  }
+  };
   constructor(
     private cart: CartService,
     private route: ActivatedRoute,
     private token: TokenService,
     private router: Router,
-    private http: HttpClient
-  ) { 
-    this.numbers = [33, 34 ,35 ,36 ,37 ,38 ,39 ,40 ,41 ,42 ,43 ,44 ,45 ,46]
+    private http: HttpClient,
+    private dom: DomSanitizer
+  ) {
+    this.numbers = [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46];
   }
 
   ngOnInit() {
@@ -36,10 +38,9 @@ export class EditComponent implements OnInit {
     this.cart_id = this.route.snapshot.paramMap.get("id");
     this.cart.showItem(this.cart_id).subscribe(
       (response: Cart) => {
-        console.log(response, 'ITEM DETAILS'), 
-        this.product = response;
+        console.log(response, "ITEM DETAILS"), (this.product = response);
       },
-      error => (console.log(error))
+      error => console.log(error)
     );
   }
 
@@ -58,10 +59,9 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.updateItem({quantity: this.form.quantity, number: this.form.number}).subscribe(
-      data => this.handleResponse(data),
-      error => error
-    );
+    this.updateItem({
+      quantity: this.form.quantity,
+      number: this.form.number
+    }).subscribe(data => this.handleResponse(data), error => error);
   }
-
 }

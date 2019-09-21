@@ -43,7 +43,16 @@ Route::group([
     Route::get('profile/{id}', 'SharedControllers\UserController@getUser');
 
     # admin routes
+
+        /* Product routes */
     Route::post('adminProductInsert', 'ProtectedControllers\AdminProductController@productStore');
     Route::get('adminProductsIndex', 'ProtectedControllers\AdminProductController@productsIndex');
     Route::post('adminProductDelete/{id}', 'ProtectedCOntrollers\AdminProductController@delete');
+
+        /* User routes */
+
+    Route::get('adminUsersIndex', 'ProtectedControllers\AdminUserController@usersIndex');
+    Route::post('adminUserStore', 'ProtectedControllers\AdminUserController@userStore');
+    Route::post('adminUserDelete', 'ProtectedControllers\AdminUserController@delete');
+    Route::post('adminUserUpdate/{id}', 'ProtectedControllers\AdminUserController@userUpdate');
 });

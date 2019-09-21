@@ -34,20 +34,25 @@
                     <tbody>
                         <tr *ngFor="let item of data">
                             <td>
-                                <h5><img src="../../../../../assets/{{item.picture}}" alt=""></h5>
-                                
+                                <h5>
+                                    <img [src]="
+                      dom.bypassSecurityTrustUrl(
+                        'http://localhost:8000/' + item.picture
+                      )
+                    " alt="" />
+                                </h5>
                             </td>
                             <td>
-                                    <h5>{{item.name}}</h5>
+                                <h5>{{ item.name }}</h5>
                             </td>
                             <td>
-                                <h5>{{item.quantity}}</h5>
+                                <h5>{{ item.quantity }}</h5>
                             </td>
                             <td>
-                                <h5>${{item.price}}</h5>
+                                <h5>${{ item.price }}</h5>
                             </td>
                             <td>
-                                <h5>${{item.quantity * item.price}}</h5>
+                                <h5>${{ item.quantity * item.price }}</h5>
                             </td>
                         </tr>
                         <tr>
@@ -61,10 +66,7 @@
                                 <p></p>
                             </td>
                             <td>
-                                <h5>
-                                    ${{fullPrice}}
-                                </h5>
-
+                                <h5>${{ fullPrice }}</h5>
                             </td>
                         </tr>
                     </tbody>

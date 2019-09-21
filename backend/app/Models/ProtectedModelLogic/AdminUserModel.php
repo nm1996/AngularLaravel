@@ -24,4 +24,56 @@ class AdminUserModel
         ->select('users.*', 'roles.name as role_name')
         ->get();
     }
+
+    public function store()
+    {
+        return DB::table($this->table)
+        ->insertGetId([
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => bcrypt($this->password),
+            'created_at' => date('Y-m-d'),
+            'updated_at' => date('Y-m-d-'),
+            'city' => $this->city,
+            'address' => $this->address,
+            'role_id' => $this->role_id
+        ]);
+    }
+
+    public function delete($id)
+    {
+        return DB::table($this->table)
+        ->where('id',$id)
+        ->delete();
+    }
+
+    public function getOne($id)
+    {
+        return DB::table($this->table)
+        ->where('id', $id)
+        ->get()
+        ->first();
+    }
+
+    public function update($id)
+    {
+        $update = [
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => $this->password,
+            'city' => $this->city,
+            'address' => $this->address,
+            'updated_at' => date('Y-m-d')
+        ];
+
+        if($this->role_id != null) {
+            $updated = [
+                'role_id' => $this->role_id
+            ];
+        }
+
+        return DB::table($this->table)
+        ->where('id', $id)
+        ->update($update);
+    }
 }
