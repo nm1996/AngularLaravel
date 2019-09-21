@@ -9,6 +9,7 @@ import { User } from "src/app/shared/models/user.model";
 })
 export class UsersComponent implements OnInit {
   users: User[];
+  oneUser: User;
   constructor(private user: UserService) {}
 
   ngOnInit() {
@@ -26,5 +27,13 @@ export class UsersComponent implements OnInit {
           this.users = response;
         });
     });
+  }
+
+  getOneUser(id: number) {
+    this.user.getOneUser(id).subscribe(
+      (response: User) => {
+        this.oneUser = response;
+      }
+    )
   }
 }

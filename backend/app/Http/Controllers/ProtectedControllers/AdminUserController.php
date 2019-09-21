@@ -72,7 +72,7 @@ class AdminUserController
         $model = new AdminUserModel();
         $items = $model->getOne($id);
 
-        if(!empty($item)) {
+        if(!empty($items)) {
             return response()->json($items, 200);
         }
         else{

@@ -42,7 +42,12 @@ export class LoginComponent implements OnInit {
   handleResponse(data) {
     this.Token.handle(data.access_token);
     this.auth.changeAuthStatus(true);
-    this.router.navigateByUrl("");
+    let role = +this.Token.getRole();
+    if (role === 1) {
+      this.router.navigateByUrl("/");
+    } else if (role === 2) {
+      this.router.navigateByUrl("/admin/users");
+    }
   }
 
   handleRole(role_id) {

@@ -17,11 +17,9 @@ class AdminProductController
         $model = new AdminProductModel();
         $items = $model->getAll();
 
-        if(empty($items)) {
-            abort (404);
-        }
-
-        else {
+        if (empty($items)) {
+            abort(404);
+        } else {
             return response()->json($items, 200);
         }
     }
@@ -34,7 +32,7 @@ class AdminProductController
         #picture
         $pictureDirectory = public_path('images/products/');
         $picturePath = $request->file('picture');
-        $pictureName = "product_" . time(). ".jpg";
+        $pictureName = "product_" . time() . ".jpg";
         $picturePath->move($pictureDirectory, $pictureName);
 
         $modelPicture->path = "images/products/" . $pictureName;
@@ -52,20 +50,28 @@ class AdminProductController
     }
 
 
-    public function deleteProduct($id) {
-        $productModel = new AdminProductModel();
-        $pictureModel = new AdminPictureModel();
+    public function deleteProduct(Request $request)
+    {
+        $picId = null;
+        $id = $request->getContent();
+        $product = new AdminProductModel();
+        $picture = new AdminPictureModel();
 
-        $items = $productModel->getOne($id);
-            $oldPic = $items->picture_id;
-            $directory = public_path('images/products/');
-            $picturePath = $items->image_path;
-            $pic = $pictureModel->getOne($oldPic);
-            unlink($directory,$picturePath);
-            $pictureModel->delete($oldPic);
+        $productItem = $product->getOne($id);
 
-        $item = $items->delete($id);
-        return response()->json($item, 200);
+        $pictureId = $productItem->picture_id;
+
+        $pictureItem = $picture->getOne($pictureId);
+        // try {
+
+        //     $picture->delete($pictureId);
+        //     $product->delete($id);
+        // } catch (\Exception $e) {
+        //     \Log::error('message' . $e->getMessage());
+        // }
+
+
+        return response()->json([$productItem, $pictureItem], 200);
     }
 
 
@@ -82,19 +88,18 @@ class AdminProductController
         $product->popular_rating = $request->popular_rating;
 
 
-        if($request->hasFile('picture')) {
+        if ($request->hasFile('picture')) {
             $oldPic = $product->id_image($id);
-            try{ 
+            try {
                 $path = $request->file('picture');
                 $directory = public_path('images/products/');
                 $picName = "product" . "_" . time() . $path->getClientOriginalName();
                 $path->move($directory, $picName);
 
-                $picture->path = "images/products/" .$picName;
+                $picture->path = "images/products/" . $picName;
                 $picture->name = "product" . time();
                 $product->id_image = $picture->store();
-            }
-            catch(QueryException $e) {
+            } catch (QueryException $e) {
                 \Log::error($e->getMessage());
             }
         }
@@ -103,18 +108,15 @@ class AdminProductController
             $product->update($id);
 
             try {
-                if($oldPic) {
+                if ($oldPic) {
                     $picture = new AdminPictureModel();
                     $pic = $picture->getOne($oldPic);
                     unlink(public_path($picture->path));
                     $picture->delete($oldPic);
                 }
+            } catch (Exception $e) {
+                \Log::error("error" . $e->getMessage());
             }
-            catch(Exception $e) {
-                \Log::error("error". $e->getMessage());
-            }
-        }
-        catch(Exception $e){}
+        } catch (Exception $e) { }
     }
 }
-

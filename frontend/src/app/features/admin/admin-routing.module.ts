@@ -1,3 +1,4 @@
+import { ProductsComponent } from "./pages/products/products.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AdminComponent } from "./admin.component";
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: "users",
         component: UsersComponent
+      },
+      {
+        path: "products",
+        component: ProductsComponent
       },
       {
         path: "**",

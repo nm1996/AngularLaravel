@@ -1,0 +1,109 @@
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+  <div class="container">
+    <div
+      class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end"
+    >
+      <div class="col-first">
+        <h1>Products</h1>
+        <nav class="d-flex align-items-center">
+          <a routerLink="/admin/products"
+            >Products <span class="lnr lnr-arrow-right"></span
+          ></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Cart Area =================-->
+<section class="cart_area">
+  <div class="container">
+    <div class="cart_inner">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Price</th>
+              <th scope="col">Color</th>
+              <th scope="col">Popular rating</th>
+              <th scope="col">Likes</th>
+              <th scope="col">Date of arriving</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products">
+              <td>
+                <div class="media">
+                  <div class="d-flex ">
+                    <img
+                      class="cart-height"
+                      [src]="
+                        dom.bypassSecurityTrustUrl(
+                          'http://localhost:8000/' + product.image_path
+                        )
+                      "
+                      alt=""
+                    />
+                  </div>
+                  <div class="media-body">
+                    <p>{{ product.name }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <h5>{{ product.category_name | titlecase }}</h5>
+              </td>
+              <td>
+                <h5>{{ product.price | currency }}</h5>
+              </td>
+              <td>
+                <h5>{{ product.color | titlecase }}</h5>
+              </td>
+              <td>
+                <h5>{{ product.popular_rating }}</h5>
+              </td>
+              <td>
+                <h5>{{ product.likes }}</h5>
+              </td>
+              <td>
+                <h5>{{ product.date_arrive }}</h5>
+              </td>
+              <td>
+                <a class="btn btn-info waves-effect btn-xs">Edit</a>
+              </td>
+              <td>
+                <button
+                  (click)="deleteProduct(product.id)"
+                  class="btn btn-danger waves-effect btn-xs"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+            <tr class="out_button_area">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <div class="checkout_btn_inner d-flex align-items-center">
+                  <button class="primary-btn">
+                    Insert new product
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================End Cart Area =================-->

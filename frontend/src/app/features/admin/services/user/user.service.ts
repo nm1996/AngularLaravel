@@ -17,4 +17,8 @@ export class UserService {
   deleteUser(data: number): Observable<number> {
     return this.http.post<number>(`${this.path}/adminUserDelete`, data);
   }
+
+  getOneUser(id: number): Observable<User> {
+    return this.http.get<User>(`${this.path}/adminUserGetOne/${id}`);
+  }
 }

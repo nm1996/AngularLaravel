@@ -1,79 +1,155 @@
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
-    <div class="container">
-        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-            <div class="col-first">
-                <h1>Shopping Cart</h1>
-                <nav class="d-flex align-items-center">
-                    <a routerLink="/admin/">Users <span class="lnr lnr-arrow-right"></span></a>
-                </nav>
-            </div>
-        </div>
+  <div class="container">
+    <div
+      class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end"
+    >
+      <div class="col-first">
+        <h1>Users</h1>
+        <nav class="d-flex align-items-center">
+          <a routerLink="/admin/users"
+            >Users <span class="lnr lnr-arrow-right"></span
+          ></a>
+        </nav>
+      </div>
     </div>
+  </div>
 </section>
 <!-- End Banner Area -->
 
 <!--================Cart Area =================-->
 <section class="cart_area">
-    <div class="container">
-        <div class="cart_inner">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">City</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Edit</th>
-                            <th scope="col">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let user of users">
-                            <td>
-                                <h5>{{ user.name }}</h5>
-                            </td>
-                            <td>
-                                <h5>{{ user.email }}</h5>
-                            </td>
-                            <td>
-                                <h5>{{ user.city }}</h5>
-                            </td>
-                            <td>
-                                <h5>{{ user.address }}</h5>
-                            </td>
-                            <td>
-                                <h5>{{ user.role_name }}</h5>
-                            </td>
-                            <td>
-                                <a routerLink="" class="btn btn-info waves-effect btn-xs">Edit</a>
-                            </td>
-                            <td>
-                                <button (click)="deleteUser(user.id)" class="btn btn-danger waves-effect btn-xs">
+  <div class="container">
+    <div class="cart_inner">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">City</th>
+              <th scope="col">Address</th>
+              <th scope="col">Role</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>
+                <h5>{{ user.name }}</h5>
+              </td>
+              <td>
+                <h5>{{ user.email }}</h5>
+              </td>
+              <td>
+                <h5>{{ user.city }}</h5>
+              </td>
+              <td>
+                <h5>{{ user.address }}</h5>
+              </td>
+              <td>
+                <h5>{{ user.role_name }}</h5>
+              </td>
+              <td>
+                <a
+                  (click)="getOneUser(user.id)"
+                  data-toogle="modal"
+                  data-target="#exampleModal"
+                  class="btn btn-info waves-effect btn-xs"
+                  >Edit</a
+                >
+              </td>
+              <td>
+                <button
+                  (click)="deleteUser(user.id)"
+                  class="btn btn-danger waves-effect btn-xs"
+                >
                   Delete
                 </button>
-                            </td>
-                        </tr>
-                        <tr class="out_button_area">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <div class="checkout_btn_inner d-flex align-items-center">
-                                    <button class="primary-btn">
+              </td>
+            </tr>
+            <tr class="out_button_area">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <div class="checkout_btn_inner d-flex align-items-center">
+                  <button class="primary-btn">
                     Insert new user
                   </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </section>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit user:</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ng-container *ngIf="oneUser">
+          <input
+            type="text"
+            class="form-control my-1"
+            [(ngModel)]="oneUser.name"
+            placeholder="Enter name"
+          />
+          <input
+            type="password"
+            class="form-control my-1"
+            [(ngModel)]="oneUser.password"
+            placeholder="Enter password"
+          />
+          <input
+            type="email"
+            class="form-control my-1"
+            [(ngModel)]="oneUser.email"
+            placeholder="Enter email"
+          />
+          <input
+            type="number"
+            class="form-control my-1"
+            [(ngModel)]="oneUser.role_id"
+            placeholder="Enter role"
+          />
+        </ng-container>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $("#exampleModal").modal("show");
+</script>
 <!--================End Cart Area =================-->
