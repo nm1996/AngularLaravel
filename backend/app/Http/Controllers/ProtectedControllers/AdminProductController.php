@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use App\Models\ProtectedModelLogic\AdminPictureModel;
 use App\Models\ProtectedModelLogic\AdminProductModel;
+use Illuminate\Database\QueryException;
 
 class AdminProductController
 
@@ -51,7 +52,7 @@ class AdminProductController
     }
 
 
-    public function delete($id) {
+    public function deleteProduct($id) {
         $productModel = new AdminProductModel();
         $pictureModel = new AdminPictureModel();
 
@@ -65,6 +66,55 @@ class AdminProductController
 
         $item = $items->delete($id);
         return response()->json($item, 200);
+    }
+
+
+    public function updateProduct(Request $request, $id)
+    {
+        $oldPic = null;
+        $product = new AdminProductModel();
+        $picture = new AdminPictureModel();
+
+        $product->name = $request->name;
+        $product->id_category = $request->id_category;
+        $product->price = $request->price;
+        $product->color = $request->color;
+        $product->popular_rating = $request->popular_rating;
+
+
+        if($request->hasFile('picture')) {
+            $oldPic = $product->id_image($id);
+            try{ 
+                $path = $request->file('picture');
+                $directory = public_path('images/products/');
+                $picName = "product" . "_" . time() . $path->getClientOriginalName();
+                $path->move($directory, $picName);
+
+                $picture->path = "images/products/" .$picName;
+                $picture->name = "product" . time();
+                $product->id_image = $picture->store();
+            }
+            catch(QueryException $e) {
+                \Log::error($e->getMessage());
+            }
+        }
+
+        try {
+            $product->update($id);
+
+            try {
+                if($oldPic) {
+                    $picture = new AdminPictureModel();
+                    $pic = $picture->getOne($oldPic);
+                    unlink(public_path($picture->path));
+                    $picture->delete($oldPic);
+                }
+            }
+            catch(Exception $e) {
+                \Log::error("error". $e->getMessage());
+            }
+        }
+        catch(Exception $e){}
     }
 }
 

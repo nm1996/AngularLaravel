@@ -15,7 +15,6 @@ class ProductsController
     {
         $model = new ProductModel();
         $products = $model->getMenProducts();
-
         return response()->json($products, 200);
     }
 
@@ -23,7 +22,6 @@ class ProductsController
     {
         $model = new ProductModel();
         $products = $model->getWomenProducts();
-
         return response()->json($products, 200);
     }
 
