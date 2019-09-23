@@ -2,12 +2,12 @@ export class Product {
   id?: number;
   category_name: string;
   color: string;
-  date_arrive: Date;
+  date_arrive?: Date;
   id_category: number;
-  id_image: string;
+  id_image: number;
   image_path: string;
   name: string;
   popular_rating: number;
-  price: string;
+  price: number;
   likes: number;
 }

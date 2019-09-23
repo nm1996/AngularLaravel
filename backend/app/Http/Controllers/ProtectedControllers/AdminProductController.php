@@ -24,6 +24,19 @@ class AdminProductController
         }
     }
 
+    public function getOneProduct($id)
+    {
+        $model = new AdminProductModel();
+
+        $items = $model->getOneProduct($id);
+
+        if (!empty($items)) {
+            return response()->json($items, 200);
+        } else {
+            abort(404);
+        }
+    }
+
     public function productStore(Request $request)
     {
         $modelProduct = new AdminProductModel();

@@ -17,4 +17,26 @@ export class ProductAdminService {
   deleteProduct(id: number): Observable<number> {
     return this.http.post<number>(`${this.path}/adminProductDelete/`, id);
   }
+
+  getOneProduct(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.path}/getOneProduct/${id}`);
+  }
+
+  insertProduct(
+    name: string,
+    id_category: number,
+    price: number,
+    color: string,
+    popular_rating: number,
+    picture: FormData
+  ): Observable<number> {
+    return this.http.post<number>(`${this.path}/adminProductStore`, {
+      name,
+      id_category,
+      price,
+      color,
+      popular_rating,
+      picture
+    });
+  }
 }

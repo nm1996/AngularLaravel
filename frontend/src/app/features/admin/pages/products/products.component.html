@@ -92,7 +92,11 @@
               <td></td>
               <td>
                 <div class="checkout_btn_inner d-flex align-items-center">
-                  <button class="primary-btn">
+                  <button
+                    class="primary-btn"
+                    data-toggle="modal"
+                    data-target="#exampleModal2"
+                  >
                     Insert new product
                   </button>
                 </div>
@@ -104,4 +108,84 @@
     </div>
   </div>
 </section>
+<div
+  class="modal fade"
+  id="exampleModal2"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel2"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Insert product</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="form">
+        <div class="modal-body">
+          <ng-container>
+            Name:
+            <input
+              type="text"
+              class="form-control my-1"
+              placeholder="Enter name"
+              formControlName="name"
+            />
+            Category:
+            <input
+              type="number"
+              class="form-control my-1"
+              placeholder="Enter category"
+              formControlName="id_category"
+            />
+            Price:
+            <input
+              type="number"
+              class="form-control my-1"
+              placeholder="Enter price"
+              formControlName="price"
+            />
+            Color:
+            <input
+              type="email"
+              class="form-control my-1"
+              placeholder="Enter color"
+              formControlName="color"
+            />
+            Rating:
+            <input
+              type="email"
+              class="form-control my-1"
+              placeholder="Enter rating"
+              formControlName="popular_rating"
+            />
+            Picture:
+            <input
+              type="file"
+              class="form-control-file"
+              id="exampleFormControlFile1"
+              (change)="onFileSelect($event)"
+            />
+          </ng-container>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button (click)="insert()" type="button" class="btn btn-primary">
+            Insert
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 <!--================End Cart Area =================-->
