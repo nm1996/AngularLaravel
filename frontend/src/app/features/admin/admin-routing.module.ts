@@ -5,6 +5,8 @@ import { CommonModule } from "@angular/common";
 import { AdminComponent } from "./admin.component";
 import { UsersComponent } from "./pages/users/users.component";
 import { RouterModule, Routes } from "@angular/router";
+import { Tracking } from "src/app/shared/models/tracking.model";
+import { TrackingComponent } from "./pages/tracking/tracking.component";
 
 const routes: Routes = [
   {
@@ -27,6 +29,10 @@ const routes: Routes = [
       {
         path: "contact",
         component: ContactAnswerComponent
+      },
+      {
+        path: "tracking",
+        component: TrackingComponent
       },
       {
         path: "**",

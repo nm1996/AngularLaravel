@@ -65,4 +65,8 @@ Route::group([
     Route::post('deleteContact', 'ProtectedControllers\AdminContactController@deleteContact');
     Route::post('deleteAnswer', 'ProtectedControllers\AdminContactController@deleteAnswer');
 
+    /* Tracking routes */
+
+    Route::get('adminTrackingIndex', 'ProtectedControllers\AdminTrackingController@getAllCheckouts');
+
 });

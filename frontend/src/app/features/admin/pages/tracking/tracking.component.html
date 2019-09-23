@@ -1,0 +1,67 @@
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Tracking</h1>
+                <nav class="d-flex align-items-center">
+                    <a routerLink="/admin/tracking">Tracking<span class="lnr lnr-arrow-right"></span></a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Cart Area =================-->
+<section class="cart_area">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Number</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of tracks">
+                            <td>
+                                <div class="media">
+                                    <div class="d-flex ">
+                                        <img class="cart-height" [src]="dom.bypassSecurityTrustUrl('http://localhost:8000/' + item.picture)" alt="" />
+                                    </div>
+                                    <div class="media-body">
+                                        <p>{{ item.name }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <h5>${{ item.price }}</h5>
+                            </td>
+                            <td>
+                                <h5>{{ item.quantity }}</h5>
+                            </td>
+                            <td>
+                                <!-- <h5>{{ item.number }}</h5> -->
+                            </td>
+                            <td>
+                                <h5>${{ item.price * item.quantity }}</h5>
+                            </td>
+                            <td>
+                                <button href="#" class="btn btn-danger waves-effect btn-xs">
+                  Delete
+                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Cart Area =================-->
