@@ -52,13 +52,14 @@
                 <h5>{{ user.role_name }}</h5>
               </td>
               <td>
-                <a
+                <button
                   (click)="getOneUser(user.id)"
-                  data-toogle="modal"
+                  data-toggle="modal"
                   data-target="#exampleModal"
                   class="btn btn-info waves-effect btn-xs"
-                  >Edit</a
                 >
+                  Edit
+                </button>
               </td>
               <td>
                 <button
@@ -89,6 +90,7 @@
     </div>
   </div>
 </section>
+
 <div
   class="modal fade"
   id="exampleModal"
@@ -100,7 +102,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit user:</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
         <button
           type="button"
           class="close"
@@ -112,28 +114,39 @@
       </div>
       <div class="modal-body">
         <ng-container *ngIf="oneUser">
+          Name:
           <input
             type="text"
             class="form-control my-1"
-            [(ngModel)]="oneUser.name"
+            [value]="oneUser.name"
             placeholder="Enter name"
           />
-          <input
-            type="password"
-            class="form-control my-1"
-            [(ngModel)]="oneUser.password"
-            placeholder="Enter password"
-          />
+          Email:
           <input
             type="email"
             class="form-control my-1"
-            [(ngModel)]="oneUser.email"
+            [value]="oneUser.email"
             placeholder="Enter email"
           />
+          City:
+          <input
+            type="text"
+            class="form-control my-1"
+            [value]="oneUser.city"
+            placeholder="Enter city"
+          />
+          Address:
+          <input
+            type="text"
+            class="form-control my-1"
+            [value]="oneUser.address"
+            placeholder="Enter address"
+          />
+          Role:
           <input
             type="number"
             class="form-control my-1"
-            [(ngModel)]="oneUser.role_id"
+            [value]="oneUser.role_id"
             placeholder="Enter role"
           />
         </ng-container>
@@ -142,14 +155,10 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">
-          Save changes
-        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
-<script>
-  $("#exampleModal").modal("show");
-</script>
+
 <!--================End Cart Area =================-->

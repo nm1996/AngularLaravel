@@ -1,105 +1,208 @@
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
-    <div class="container">
-        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-            <div class="col-first">
-                <h1>Men</h1>
-                <nav class="d-flex align-items-center">
-                    <a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
-                    <a routerLink="/products/man-products">Men Products</a>
-                </nav>
-            </div>
-        </div>
+  <div class="container">
+    <div
+      class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end"
+    >
+      <div class="col-first">
+        <h1>Men</h1>
+        <nav class="d-flex align-items-center">
+          <a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
+          <a routerLink="/products/man-products">Men Products</a>
+        </nav>
+      </div>
     </div>
+  </div>
 </section>
 <!-- End Banner Area -->
 <div class="container">
-    <div class="row">
-        <div class="col-xl-3 col-lg-4 col-md-5">
-            <div class="sidebar-categories">
-                <div class="head">Browse Categories</div>
-                <ul class="main-categories">
-                    <li class="main-nav-list">
-                        <a data-toggle="collapse" aria-expanded="false" routerLink="/p/men-products"><span class="lnr lnr-arrow-right"></span>Men Products<span
+  <div class="row">
+    <div class="col-xl-3 col-lg-4 col-md-5">
+      <div class="sidebar-categories">
+        <div class="head">Browse Categories</div>
+        <ul class="main-categories">
+          <li class="main-nav-list">
+            <a
+              data-toggle="collapse"
+              aria-expanded="false"
+              routerLink="/p/men-products"
+              ><span class="lnr lnr-arrow-right"></span>Men Products<span
                 class="number"
               ></span
             ></a>
-                    </li>
-                    <li class="main-nav-list">
-                        <a data-toggle="collapse" aria-expanded="false" routerLink="/products/women-products"><span class="lnr lnr-arrow-right"></span>Women Products<span
+          </li>
+          <li class="main-nav-list">
+            <a
+              data-toggle="collapse"
+              aria-expanded="false"
+              routerLink="/products/women-products"
+              ><span class="lnr lnr-arrow-right"></span>Women Products<span
                 class="number"
               ></span
             ></a>
-                    </li>
-                    <li class="main-nav-list">
-                        <a data-toggle="collapse" aria-expanded="false" routerLink="/products/kids-products"><span class="lnr lnr-arrow-right"></span>Kids Products<span
+          </li>
+          <li class="main-nav-list">
+            <a
+              data-toggle="collapse"
+              aria-expanded="false"
+              routerLink="/products/kids-products"
+              ><span class="lnr lnr-arrow-right"></span>Kids Products<span
                 class="number"
               ></span
             ></a>
-                    </li>
-                    <li class="main-nav-list">
-                        <a data-toggle="collapse" aria-expanded="false" routerLink="/products/sports-products"><span class="lnr lnr-arrow-right"></span>Sports Products<span
+          </li>
+          <li class="main-nav-list">
+            <a
+              data-toggle="collapse"
+              aria-expanded="false"
+              routerLink="/products/sports-products"
+              ><span class="lnr lnr-arrow-right"></span>Sports Products<span
                 class="number"
               ></span
             ></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-xl-9 col-lg-8 col-md-7">
-            <!-- Start Filter Bar -->
-            <div class="filter-bar d-flex flex-wrap align-items-center">
-                <div class="sorting mr-auto">
-                    <select (change)="onChange($event.target.value)" [(ngModel)]="show">
-            <option [value]="1">Show 1</option>
-            <option [value]="3">Show 3</option>
-            <option [value]="9">Show 9</option>
-          </select>
-                </div>
-                <jw-pagination class="paginacija" [items]="products" (changePage)="onChangePage($event)" [pageSize]="show"></jw-pagination>
-            </div>
-            <!-- End Filter Bar -->
-            <!-- Start Best Seller -->
-            <section class="lattest-product-area pb-40 category-list">
-                <ng-container *ngIf="products">
-                    <div class="row">
-                        <!-- single product -->
-                        <div class="col-lg-4 col-md-6" *ngFor="let product of pageOfItems">
-                            <div class="single-product">
-                                <img class="img-fluid image-height" [src]="dom.bypassSecurityTrustUrl('http://localhost:8000/'+product.image_path)" alt="" />
-                                <div class="product-details">
-                                    <h6>{{ product.name }}</h6>
-                                    <div class="price">
-                                        <h6>${{ product.price }}</h6>
-                                        <h6 class="l-through">${{ product.price }}</h6>
-                                    </div>
-                                    <div class="price">
-                                        <span class="lnr lnr-heart">{{product.likes}}</span>
-                                    </div>
-                                    <div class="price">
-                                        <span class="lnr lnr-calendar-full">{{product.date_arrive}}</span>
-                                    </div>
-                                    <div class="prd-bottom">
-                                        <a routerLink="/products/product-details/{{ product.id }}" class="social-info">
-                                            <span class="ti-bag"></span>
-                                            <p class="hover-text">add to bag</p>
-                                        </a>
-                                        <a (click)="onLike(product.id)" class="social-info">
-                                            <span class="lnr lnr-heart"></span>
-                                            <p class="hover-text">Like</p>
-                                        </a>
-                                        <a routerLink="/products/product-details/{{ product.id }}" class="social-info">
-                                            <span class="lnr lnr-move"></span>
-                                            <p class="hover-text">view more</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </ng-container>
-            </section>
-            <!-- End Best Seller -->
-        </div>
+          </li>
+        </ul>
+      </div>
     </div>
+    <div class="col-xl-9 col-lg-8 col-md-7">
+      <!-- Start Filter Bar -->
+      <div class="filter-bar d-flex flex-wrap align-items-center">
+        <div class="sorting mr-auto">
+          <select (change)="onChange($event.target.value)" [(ngModel)]="show">
+            <option [value]="6">Show 6</option>
+            <option [value]="9">Show 9</option>
+            <option [value]="12">Show 12</option>
+          </select>
+        </div>
+        <jw-pagination
+          class="paginacija"
+          [items]="products"
+          (changePage)="onChangePage($event)"
+          [pageSize]="show"
+        ></jw-pagination>
+      </div>
+      <!-- End Filter Bar -->
+      <!-- Start Best Seller -->
+      <section class="lattest-product-area pb-40 category-list">
+        <ng-container *ngIf="products">
+          <div class="row">
+            <!-- single product -->
+            <div class="col-lg-4 col-md-6" *ngFor="let product of pageOfItems">
+              <div class="single-product">
+                <img
+                  class="img-fluid image-height"
+                  [src]="
+                    dom.bypassSecurityTrustUrl(
+                      'http://localhost:8000/' + product.image_path
+                    )
+                  "
+                  alt=""
+                />
+                <div class="product-details">
+                  <h6>{{ product.name }}</h6>
+                  <div class="price">
+                    <h6>${{ product.price }}</h6>
+                    <h6 class="l-through">${{ product.price }}</h6>
+                  </div>
+                  <div class="price">
+                    <span class="lnr lnr-heart">{{ product.likes }}</span>
+                  </div>
+                  <div class="price">
+                    <span class="lnr lnr-calendar-full">{{
+                      product.date_arrive
+                    }}</span>
+                  </div>
+                  <div class="prd-bottom">
+                    <a
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                      class="social-info"
+                      (click)="getOneProduct(product.id)"
+                    >
+                      <span class="ti-bag"></span>
+                      <p class="hover-text">add to bag</p>
+                    </a>
+                    <a (click)="onLike(product.id)" class="social-info">
+                      <span class="lnr lnr-heart"></span>
+                      <p class="hover-text">Like</p>
+                    </a>
+                    <a
+                      routerLink="/products/product-details/{{ product.id }}"
+                      class="social-info"
+                    >
+                      <span class="lnr lnr-move"></span>
+                      <p class="hover-text">view more</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </section>
+      <!-- End Best Seller -->
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add to cart</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form #addForm="ngForm" (ngSubmit)="addToCart(oneProduct.id)">
+        <div class="modal-body">
+          <ng-container>
+            Quantity:
+            <input
+              type="number"
+              name="quantity"
+              id="sst"
+              maxlength="12"
+              title="Quantity:"
+              class="input-text qty"
+              [(ngModel)]="form.quantity"
+              required
+            /><br />
+            Number:
+            <select
+              class="form-control"
+              name="number"
+              id="number"
+              [(ngModel)]="form.number"
+              required
+            >
+              <option *ngFor="let number of numbers" value="{{ number }}">{{
+                number
+              }}</option>
+            </select>
+          </ng-container>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">
+            Insert
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

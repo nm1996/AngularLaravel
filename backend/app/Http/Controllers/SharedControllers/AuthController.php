@@ -46,9 +46,9 @@ class AuthController extends Controller
         $model->city = $request->city;
         $model->address = $request->address;
 
-        $model->create();
+        $item = $model->create();
 
-        return $this->login($request);
+        return response()->json($item, 200);
     }
 
     /**

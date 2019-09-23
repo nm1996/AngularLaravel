@@ -1,9 +1,13 @@
+import { FormGroup, Validators, FormControl } from "@angular/forms";
+import { Cart } from "src/app/shared/models/cart.model";
+import { CartService } from "./../../../cart-checkout/services/cart/cart.service";
 import { ProductService } from "../../services/products/product.service";
 import { Component, OnInit } from "@angular/core";
 import { Product } from "../../../../shared/models/product.model";
 import { LikeService } from "../../services/like/like.service";
 import { TokenService } from "src/app/shared/services/token/token.service";
 import { DomSanitizer } from "@angular/platform-browser";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-kids-product",
@@ -14,15 +18,26 @@ export class KidsProductComponent implements OnInit {
   products: Product[];
   productsPagionation: Product[];
   pageOfItems: Array<any>;
-  show: number = 9;
+  show: number = 3;
   user_id;
+  numbers;
+  oneProduct: Product;
+
+  public form = {
+    quantity: 0,
+    number: 0
+  };
 
   constructor(
     private kidsProducts: ProductService,
     private like: LikeService,
     private token: TokenService,
-    public dom: DomSanitizer
-  ) {}
+    public dom: DomSanitizer,
+    private cart: CartService,
+    private router: Router
+  ) {
+    this.numbers = [34, 35, 36, 37, 38, 39];
+  }
 
   ngOnInit() {
     this.kidsProducts.getKidsProducts().subscribe(
@@ -58,5 +73,31 @@ export class KidsProductComponent implements OnInit {
         }
       );
     });
+  }
+
+  getOneProduct(product_id: number) {
+    this.kidsProducts.getProductDetails(product_id).subscribe(
+      (response: Product) => {
+        console.log(response);
+        this.oneProduct = response;
+      },
+      error => error
+    );
+  }
+
+  addToCart(product_id: number, quantity: number, number: number) {
+    this.cart
+      .addToCart(product_id, this.user_id, this.form.quantity, this.form.number)
+      .subscribe((response: Cart) => {
+        console.log(response),
+          this.kidsProducts.getKidsProducts().subscribe(
+            (response: Product[]) => {
+              console.log(response), (this.products = response);
+            },
+            error => {
+              console.log(error);
+            }
+          );
+      });
   }
 }

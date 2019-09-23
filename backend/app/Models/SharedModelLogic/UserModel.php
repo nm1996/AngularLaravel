@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models\SharedModelLogic;
+
 use Illuminate\Support\Facades\DB;
 
 
@@ -18,20 +19,22 @@ class UserModel
     public function create()
     {
         return DB::table($this->table)
-        ->insert([
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => bcrypt($this->password),
-            'city' => $this->city,
-            'address' => $this->address,
-            'role_id' => 1
-        ]);
+            ->insert([
+                'name' => $this->name,
+                'email' => $this->email,
+                'password' => bcrypt($this->password),
+                'city' => $this->city,
+                'address' => $this->address,
+                'role_id' => 1
+            ]);
     }
 
-    public function getUser($id) {
+    public function getUser($id)
+    {
         return DB::table($this->table)
-        ->where('id', $id)
-        ->select()
-        ->first();
+            ->join('roles', 'users.role_id', '=', 'roles.id')
+            ->where('users.id', $id)
+            ->select('users.*', 'roles.name as role_name')
+            ->first();
     }
 }

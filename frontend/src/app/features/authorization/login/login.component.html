@@ -1,50 +1,93 @@
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
-    <div class="container">
-        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-            <div class="col-first">
-                <h1>Login/Register</h1>
-                <nav class="d-flex align-items-center">
-                    <a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
-                    <a routerLink="/login">Login/</a><a routerLink="/registration">Register</a>
-                </nav>
-            </div>
-        </div>
+  <div class="container">
+    <div
+      class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end"
+    >
+      <div class="col-first">
+        <h1>Login/Register</h1>
+        <nav class="d-flex align-items-center">
+          <a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
+          <a routerLink="/authorization/login">Login/</a
+          ><a routerLink="/authorization/registration">Register</a>
+        </nav>
+      </div>
     </div>
+  </div>
 </section>
 <!-- End Banner Area -->
 
 <!--================Login Box Area =================-->
 <section class="login_box_area section_gap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="login_box_img">
-                    <img class="img-fluid" src="assets/images/login.jpg" alt="">
-                    <div class="hover">
-                        <h4>New to our website?</h4>
-                        <p>Click here to sign up!</p>
-                        <a class="primary-btn" routerLink="/registration">Create an Account</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="login_form_inner">
-                    <h3>Log in to enter</h3>
-                    <form class="row login_form" id="contactForm" #loginForm=ngForm (ngSubmit)="onSubmit()">
-                        <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" [(ngModel)]="form.email" required>
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" [(ngModel)]="form.password" required>
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <button type="submit" value="submit" class="primary-btn" [disabled]="!loginForm.valid">Log In</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="login_box_img">
+          <img class="img-fluid" src="assets/images/login.jpg" alt="" />
+          <div class="hover">
+            <h4>New to our website?</h4>
+            <p>Click here to sign up!</p>
+            <a class="primary-btn" routerLink="/authorization/registration"
+              >Create an Account</a
+            >
+          </div>
         </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="login_form_inner">
+          <h3>Log in to enter</h3>
+          <form
+            class="row login_form"
+            id="contactForm"
+            [formGroup]="form"
+            (ngSubmit)="onSubmit()"
+          >
+            <div class="col-md-12 form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Email"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Email'"
+                formControlName="email"
+                required
+              />
+              <span class="text-danger" *ngIf="email.errors"
+                >Email is required.</span
+              >
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="Password"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Password'"
+                formControlName="password"
+                required
+              />
+              <span class="text-danger" *ngIf="password.errors"
+                >Password is required.</span
+              >
+            </div>
+            <div class="col-md-12 form-group">
+              <button
+                type="submit"
+                value="submit"
+                class="primary-btn"
+                [disabled]="!form.valid"
+              >
+                Log In
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 <!--================End Login Box Area =================-->

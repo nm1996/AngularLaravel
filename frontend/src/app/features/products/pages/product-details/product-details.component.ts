@@ -1,3 +1,5 @@
+import { Cart } from "src/app/shared/models/cart.model";
+import { CartService } from "./../../../cart-checkout/services/cart/cart.service";
 import { AuthService } from "../../../../shared/services/auth/auth.service";
 import { HttpClient } from "@angular/common/http";
 import { ProductService } from "../../services/products/product.service";
@@ -20,10 +22,8 @@ export class ProductDetailsComponent implements OnInit {
   product_id: number;
 
   public form = {
-    quantity: null,
-    number: 0,
-    user_id: 0,
-    product_id: 0
+    quantity: 0,
+    number: 0
   };
 
   constructor(
@@ -34,7 +34,8 @@ export class ProductDetailsComponent implements OnInit {
     private token: TokenService,
     private http: HttpClient,
     private like: LikeService,
-    public dom: DomSanitizer
+    public dom: DomSanitizer,
+    private cart: CartService
   ) {
     this.numbers = [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46];
   }
@@ -62,42 +63,21 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   /* Adding item to cart */
-  getProductId() {
-    let ProductId = parseInt(this.details.id);
-    return ProductId;
-  }
-
-  getUserId() {
-    let UserId = parseInt(this.user_id);
-    return UserId;
-  }
-
-  addToCart(data) {
-    return this.http.post(`${this.path}/${this.details.id}`, data);
-  }
-
-  handleResponse(data) {
-    this.details.id;
-    this.user_id;
-    this.router.navigateByUrl(`/buy/cart/${this.user_id}`);
-  }
-
-  handleError(error) {
-    this.error = error.error.errors;
-  }
-
   onSubmit() {
-    this.addToCart({
-      user_id: this.getUserId(),
-      product_id: this.getProductId(),
-      quantity: this.form.quantity,
-      number: this.form.number
-    }).subscribe(
-      data => {
-        this.handleResponse(data), console.log(data);
-      },
-      error => this.handleError(error)
-    );
+    this.cart
+      .addToCart(
+        +this.product_id,
+        +this.user_id,
+        +this.form.quantity,
+        +this.form.number
+      )
+      .subscribe(
+        (response: Cart) => {
+          console.log(response),
+            this.router.navigateByUrl(`/buy/cart/${this.user_id}`);
+        },
+        error => error
+      );
   }
 
   onLike(product_id) {

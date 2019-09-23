@@ -8,7 +8,8 @@
         <h1>Login/Register</h1>
         <nav class="d-flex align-items-center">
           <a routerLink="/">Home<span class="lnr lnr-arrow-right"></span></a>
-          <a routerLink="/login">Login/</a><a routerLink="/registration">Register</a>
+          <a routerLink="/authorization/login">Login/</a
+          ><a routerLink="/authorization/registration">Register</a>
         </nav>
       </div>
     </div>
@@ -26,17 +27,17 @@
           <div class="hover">
             <h4>Have account already?</h4>
             <p>Click here to log in</p>
-            <a class="primary-btn" routerLink="/login">Login</a>
+            <a class="primary-btn" routerLink="/authorization/login">Login</a>
           </div>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="login_form_inner">
-          <h3>Log in to enter</h3>
+          <h3>Register here</h3>
           <form
             class="row login_form"
             id="contactForm"
-            #signUp="ngForm"
+            [formGroup]="form"
             (ngSubmit)="onSubmit()"
           >
             <div class="col-md-12 form-group">
@@ -48,9 +49,12 @@
                 placeholder="Name"
                 onfocus="this.placeholder = ''"
                 onblur="this.placeholder = 'Name'"
-                [(ngModel)]="form.name"
+                formControlName="name"
                 required
               />
+              <span class="text-danger" *ngIf="name.invalid"
+                >Name is in invalid format.</span
+              >
             </div>
             <div class="col-md-12 form-group">
               <input
@@ -61,9 +65,13 @@
                 placeholder="City"
                 onfocus="this.placeholder = ''"
                 onblur="this.placeholder = 'City'"
-                [(ngModel)]="form.city"
+                formControlName="city"
                 required
               />
+
+              <span class="text-danger" *ngIf="city.invalid"
+                >City is in invalid format.</span
+              >
             </div>
             <div class="col-md-12 form-group">
               <input
@@ -74,9 +82,13 @@
                 placeholder="Address"
                 onfocus="this.placeholder = ''"
                 onblur="this.placeholder = 'Address'"
-                [(ngModel)]="form.address"
+                formControlName="address"
                 required
               />
+
+              <span class="text-danger" *ngIf="address.invalid"
+                >Address is in invalid format.</span
+              >
             </div>
             <div class="col-md-12 form-group">
               <input
@@ -87,9 +99,13 @@
                 placeholder="Email"
                 onfocus="this.placeholder = ''"
                 onblur="this.placeholder = 'Email'"
-                [(ngModel)]="form.email"
+                formControlName="email"
                 required
               />
+
+              <span class="text-danger" *ngIf="email.invalid"
+                >Email is in invalid format.</span
+              >
             </div>
             <div class="col-md-12 form-group">
               <input
@@ -100,9 +116,12 @@
                 placeholder="Password"
                 onfocus="this.placeholder = ''"
                 onblur="this.placeholder = 'Password'"
-                [(ngModel)]="form.password"
+                formControlName="password"
                 required
               />
+              <span class="text-danger" *ngIf="password.invalid"
+                >Password must be atleast 3 characters long.</span
+              >
             </div>
             <div class="col-md-12 form-group">
               <input
@@ -113,16 +132,19 @@
                 placeholder="Re-Password"
                 onfocus="this.placeholder = ''"
                 onblur="this.placeholder = 'Password'"
-                [(ngModel)]="form.password_confirmation"
+                formControlName="password_confirmation"
                 required
               />
+              <span class="text-danger" *ngIf="form.errors"
+                >Password not match.</span
+              >
             </div>
             <div class="col-md-12 form-group">
               <button
                 type="submit"
                 value="submit"
                 class="primary-btn"
-                [disabled]="!signUp.valid"
+                [disabled]="!form.valid"
               >
                 Sign Up
               </button>

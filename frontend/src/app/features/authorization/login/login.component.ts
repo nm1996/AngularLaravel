@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthService } from "../../../shared/services/auth/auth.service";
 import { JarService } from "../../../shared/services/jar/jar.service";
 import { Component, OnInit } from "@angular/core";
@@ -11,10 +12,7 @@ import { ProductService } from "../../products/services/products/product.service
   styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
-  public form = {
-    email: null,
-    password: null
-  };
+  form: FormGroup;
 
   public error = [];
 
@@ -24,30 +22,42 @@ export class LoginComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private productService: ProductService
-  ) {}
+  ) {
+    this.form = new FormGroup({
+      email: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required])
+    });
+  }
+
+  get email() {
+    return this.form.get("email");
+  }
+  get password() {
+    return this.form.get("password");
+  }
 
   onSubmit() {
-    this.jar.login(this.form).subscribe(
-      data => {
-        this.handleResponse(data);
-        this.handleUser(data["user"]);
-        this.handleRole(data["role_id"]);
-        console.log(data["user"], "user", "role_id");
-        this.productService.toRefreshNavigation();
-      },
-      error => this.handleError(error)
-    );
+    this.jar
+      .login({
+        email: this.form.value.email,
+        password: this.form.value.password
+      })
+      .subscribe(
+        data => {
+          this.handleResponse(data);
+          this.handleUser(data["user"]);
+          this.handleRole(data["role_id"]);
+          console.log(data["user"], "user", "role_id");
+          this.productService.toRefreshNavigation();
+        },
+        error => console.log(error)
+      );
   }
 
   handleResponse(data) {
     this.Token.handle(data.access_token);
     this.auth.changeAuthStatus(true);
-    let role = +this.Token.getRole();
-    if (role === 1) {
-      this.router.navigateByUrl("/");
-    } else if (role === 2) {
-      this.router.navigateByUrl("/admin/users");
-    }
+    this.router.navigateByUrl("/profile");
   }
 
   handleRole(role_id) {
@@ -56,10 +66,6 @@ export class LoginComponent implements OnInit {
 
   handleUser(user) {
     this.Token.handleUser(user);
-  }
-
-  handleError(error) {
-    this.error = error.error.error;
   }
 
   ngOnInit() {}
