@@ -6,9 +6,10 @@ import { UsersComponent } from "./pages/users/users.component";
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin.component";
 import { ProductsComponent } from "./pages/products/products.component";
+import { ContactAnswerComponent } from './pages/contact-answer/contact-answer.component';
 
 @NgModule({
-  declarations: [AdminComponent, UsersComponent, ProductsComponent],
+  declarations: [AdminComponent, UsersComponent, ProductsComponent, ContactAnswerComponent],
   imports: [CommonModule, AdminRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [UserService]
 })

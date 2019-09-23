@@ -56,4 +56,9 @@ Route::group([
     Route::post('adminUserStore', 'ProtectedControllers\AdminUserController@userStore');
     Route::post('adminUserDelete', 'ProtectedControllers\AdminUserController@delete');
     Route::post('adminUserUpdate/{id}', 'ProtectedControllers\AdminUserController@userUpdate');
+
+    /*Contact routes */
+
+    Route::get('adminContactQuestions', 'ProtectedControllers\AdminContactController@getAllContacts');
+    Route::get('adminContactAnswered', 'ProtectedControllers\AdminContactController@getAllAnswered');
 });

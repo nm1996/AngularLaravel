@@ -1,0 +1,122 @@
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+  <div class="container">
+    <div
+      class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end"
+    >
+      <div class="col-first">
+        <h1>Contact Answer</h1>
+        <nav class="d-flex align-items-center">
+          <a routerLink="/admin/contact">Contact Answer</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Cart Area =================-->
+<section class="cart_area">
+  <div class="container">
+    <div class="cart_inner">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Subject</th>
+              <th scope="col">Email</th>
+              <th scope="col">Message</th>
+              <th scope="col">Created</th>
+              <th scope="col">Clear</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let contact of contacts">
+              <td>
+                <h5>{{ contact.name }}</h5>
+              </td>
+              <td>
+                <h5>{{ contact.subject }}</h5>
+              </td>
+              <td>
+                <h5>{{ contact.email }}</h5>
+              </td>
+              <td>
+                <h5>{{ contact.message }}</h5>
+              </td>
+              <td>
+                <h5>{{ contact.created_at }}</h5>
+              </td>
+              <td>
+                <button class="btn btn-info waves-effect btn-xs">
+                  Clear
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-danger waves-effect btn-xs">
+                  Delete
+                </button>
+              </td>
+            </tr>
+            <tr class="out_button_area">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Email</th>
+            <th scope="col">Message</th>
+            <th scope="col">Answered</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let answer of answers">
+            <td>
+              <h5>{{ answer.name }}</h5>
+            </td>
+            <td>
+              <h5>{{ answer.subject }}</h5>
+            </td>
+            <td>
+              <h5>{{ answer.email }}</h5>
+            </td>
+            <td>
+              <h5>{{ answer.message }}</h5>
+            </td>
+            <td>
+              <h5>{{ answer.answered }}</h5>
+            </td>
+            <td>
+              <button class="btn btn-danger waves-effect btn-xs">
+                Delete
+              </button>
+            </td>
+          </tr>
+          <tr class="out_button_area">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

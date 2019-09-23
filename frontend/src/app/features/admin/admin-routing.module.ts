@@ -1,3 +1,4 @@
+import { ContactAnswerComponent } from "./pages/contact-answer/contact-answer.component";
 import { ProductsComponent } from "./pages/products/products.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: "products",
         component: ProductsComponent
+      },
+      {
+        path: "contact",
+        component: ContactAnswerComponent
       },
       {
         path: "**",

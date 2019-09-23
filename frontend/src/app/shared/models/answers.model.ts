@@ -1,8 +1,8 @@
-export class Contact {
-  public id?: number;
+export class Answers {
+  public id: number;
   public name: string;
   public email: string;
   public subject: string;
   public message: string;
-  public created_at: Date;
+  public answered: Date;
 }
