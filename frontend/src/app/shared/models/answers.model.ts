@@ -5,4 +5,5 @@ export class Answers {
   public subject: string;
   public message: string;
   public answered: Date;
+  public contact_id: number;
 }

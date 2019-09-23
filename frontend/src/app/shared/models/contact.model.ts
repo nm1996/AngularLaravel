@@ -4,5 +4,5 @@ export class Contact {
   public email: string;
   public subject: string;
   public message: string;
-  public created_at: Date;
+  public created_at?: Date;
 }

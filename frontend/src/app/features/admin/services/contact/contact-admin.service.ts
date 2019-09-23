@@ -18,4 +18,14 @@ export class ContactAdminService {
   getAnswers(): Observable<Answers[]> {
     return this.http.get<Answers[]>(`${this.path}/adminContactAnswered`);
   }
+
+  insertAnswer(contact_id: number): Observable<number> {
+    return this.http.post<number>(`${this.path}/insertAnswer`, contact_id);
+  }
+  deleteContact(id: number): Observable<Object> {
+    return this.http.post<Object>(`${this.path}/deleteContact`, id);
+  }
+  deleteAnswer(id: number): Observable<Object> {
+    return this.http.post<Object>(`${this.path}/deleteAnswer`, id);
+  }
 }

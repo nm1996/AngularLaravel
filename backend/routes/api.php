@@ -61,4 +61,8 @@ Route::group([
 
     Route::get('adminContactQuestions', 'ProtectedControllers\AdminContactController@getAllContacts');
     Route::get('adminContactAnswered', 'ProtectedControllers\AdminContactController@getAllAnswered');
+    Route::post('insertAnswer', 'ProtectedControllers\AdminContactController@insertAnswer');
+    Route::post('deleteContact', 'ProtectedControllers\AdminContactController@deleteContact');
+    Route::post('deleteAnswer', 'ProtectedControllers\AdminContactController@deleteAnswer');
+
 });

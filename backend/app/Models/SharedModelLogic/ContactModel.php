@@ -10,6 +10,7 @@ class ContactModel
     public $email;
     public $subject;
     public $message;
+    public $created_at;
 
     private $table = 'contact';
 
@@ -20,6 +21,7 @@ class ContactModel
             'email' => $this->email,
             'subject' => $this->subject,
             'message' => $this->message,
+            'created_at' => date('Y-m-d')
         ]);
     }
 }
