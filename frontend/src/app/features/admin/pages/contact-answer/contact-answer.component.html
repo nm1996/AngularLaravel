@@ -33,41 +33,43 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let contact of contacts">
-              <td>
-                <h5>{{ contact.name }}</h5>
-              </td>
-              <td>
-                <h5>{{ contact.subject }}</h5>
-              </td>
-              <td>
-                <h5>{{ contact.email }}</h5>
-              </td>
-              <td>
-                <h5>{{ contact.message }}</h5>
-              </td>
-              <td>
-                <h5>{{ contact.created_at }}</h5>
-              </td>
-              <td>
-                <button class="btn btn-info waves-effect btn-xs">
-                  Clear
-                </button>
-              </td>
-              <td>
-                <button class="btn btn-danger waves-effect btn-xs">
-                  Delete
-                </button>
-              </td>
-            </tr>
-            <tr class="out_button_area">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            <ng-container *ngFor="let contact of contacts">
+              <tr>
+                <td>
+                  <h5>{{ contact.name }}</h5>
+                </td>
+                <td>
+                  <h5>{{ contact.subject }}</h5>
+                </td>
+                <td>
+                  <h5>{{ contact.email }}</h5>
+                </td>
+                <td>
+                  <h5>{{ contact.message }}</h5>
+                </td>
+                <td>
+                  <h5>{{ contact.created_at }}</h5>
+                </td>
+                <td>
+                  <button class="btn btn-info waves-effect btn-xs">
+                    Clear
+                  </button>
+                </td>
+                <td>
+                  <button class="btn btn-danger waves-effect btn-xs">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+              <tr class="out_button_area">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </ng-container>
           </tbody>
         </table>
       </div>
@@ -85,36 +87,38 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let answer of answers">
-            <td>
-              <h5>{{ answer.name }}</h5>
-            </td>
-            <td>
-              <h5>{{ answer.subject }}</h5>
-            </td>
-            <td>
-              <h5>{{ answer.email }}</h5>
-            </td>
-            <td>
-              <h5>{{ answer.message }}</h5>
-            </td>
-            <td>
-              <h5>{{ answer.answered }}</h5>
-            </td>
-            <td>
-              <button class="btn btn-danger waves-effect btn-xs">
-                Delete
-              </button>
-            </td>
-          </tr>
-          <tr class="out_button_area">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+          <ng-container *ngFor="let answer of answers">
+            <tr>
+              <td>
+                <h5>{{ answer.name }}</h5>
+              </td>
+              <td>
+                <h5>{{ answer.subject }}</h5>
+              </td>
+              <td>
+                <h5>{{ answer.email }}</h5>
+              </td>
+              <td>
+                <h5>{{ answer.message }}</h5>
+              </td>
+              <td>
+                <h5>{{ answer.answered }}</h5>
+              </td>
+              <td>
+                <button class="btn btn-danger waves-effect btn-xs">
+                  Delete
+                </button>
+              </td>
+            </tr>
+            <tr class="out_button_area">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </ng-container>
         </tbody>
       </table>
     </div>
