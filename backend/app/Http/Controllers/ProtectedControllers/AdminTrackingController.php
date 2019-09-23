@@ -14,11 +14,33 @@ class AdminTrackingController
 
         $items = $model->getAll();
 
-        if(!empty($items)) {
+        if (!empty($items)) {
             return response()->json($items, 200);
+        } else {
+            abort(404);
         }
-        else{
-            abort (404);
-        }
+    }
+
+    public function deleteOne(Request $request)
+    {
+        $model = new AdminTrackingModel();
+
+        $id = $request->getContent();
+        try {
+            $item = $model->deleteOne($id);
+            if ($item) {
+                return response()->json($item, 200);
+            } else {
+                abort(404);
+            }
+        } catch (Exception $e) { }
+    }
+
+
+    public function deleteAll()
+    {
+        $model = new AdminTrackingModel();
+
+        $model->deleteAll();
     }
 }

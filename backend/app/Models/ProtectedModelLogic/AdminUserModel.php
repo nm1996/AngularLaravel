@@ -51,6 +51,7 @@ class AdminUserModel
     {
         return DB::table($this->table)
             ->where('id', $id)
+            ->select()
             ->get()
             ->first();
     }
@@ -63,15 +64,9 @@ class AdminUserModel
             'password' => bcrypt($this->password),
             'city' => $this->city,
             'address' => $this->address,
-            'updated_at' => date('Y-m-d')
+            'updated_at' => date('Y-m-d'),
+            'role_id' => $this->role_id
         ];
-
-        if ($this->role_id != null) {
-            $update = [
-                'role_id' => $this->role_id
-            ];
-        }
-
         return DB::table($this->table)
             ->where('id', $id)
             ->update($update);

@@ -15,6 +15,25 @@ export class TrackingComponent implements OnInit {
   ngOnInit() {
     this.tracking.getAll().subscribe((response: Tracking[]) => {
       this.tracks = response;
+      console.log(response);
+    });
+  }
+
+  deleteOne(id: number) {
+    this.tracking.deleteOne(id).subscribe(
+      (response: Object) => (
+        console.log(response),
+        this.tracking.getAll().subscribe((response: Tracking[]) => {
+          this.tracks = response;
+        })
+      )
+    );
+  }
+  deleteAll(data) {
+    this.tracking.deleteAll(data).subscribe((response: Object) => {
+      this.tracking.getAll().subscribe((response: Tracking[]) => {
+        this.tracks = response;
+      });
     });
   }
 }

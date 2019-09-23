@@ -13,10 +13,11 @@ class AdminUserController
         $model = new AdminUserModel();
         $items = $model->getAll();
 
-        if(!empty($items)) {
+        if (!empty($items)) {
             return response()->json($items, 200);
+        } else {
+            abort(404);
         }
-        else{ abort (404) ;}
     }
 
     public function userStore(Request $request)
@@ -46,10 +47,9 @@ class AdminUserController
         try {
             $items = $model->store();
             return response()->json($items, 200);
+        } catch (\Exception $e) {
+            \Log::error('message' . $e->getMessage());
         }
-            catch(\Exception $e) {
-                \Log::error('message' .$e->getMessage());
-            }
     }
 
     public function delete(Request $request)
@@ -59,26 +59,24 @@ class AdminUserController
 
 
 
-        try{
+        try {
             $items = $model->delete($id);
             return response()->json($items, 200);
+        } catch (Exception $e) {
+            \Log::error('message' . $e->getMessage());
         }
-            catch(Exception $e){
-                \Log::error('message'. $e->getMessage());
-            }
     }
 
-    public function getOneUser($id) {
+    public function getOneUser($id)
+    {
         $model = new AdminUserModel();
         $items = $model->getOne($id);
 
-        if(!empty($items)) {
+        if (!empty($items)) {
             return response()->json($items, 200);
+        } else {
+            abort(404);
         }
-        else{
-            abort (404);
-        }
-
     }
 
 
@@ -105,13 +103,11 @@ class AdminUserController
         $model->city = $request->city;
         $model->address = $request->address;
         $model->role_id = $request->role_id;
-
-        try{
+        try {
             $items = $model->update($id);
             return response()->json($items, 200);
+        } catch (Expectation $e) {
+            \Log::error("message" . $e->getMessage());
         }
-            catch(Expectation $e){
-                \Log::error("message" . $e->getMessage());
-            }
     }
 }

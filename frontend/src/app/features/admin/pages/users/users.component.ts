@@ -157,7 +157,7 @@ export class UsersComponent implements OnInit {
         .updateUser(
           id,
           this.editUserForm.value.name,
-          this.editUserForm.get("email").value,
+          this.editUserForm.value.email,
           this.editUserForm.value.password,
           this.editUserForm.value.city,
           this.editUserForm.value.address,
@@ -174,7 +174,7 @@ export class UsersComponent implements OnInit {
         .updateUser(
           id,
           this.editUserForm.value.name,
-          this.editUserForm.get("email").value,
+          this.editUserForm.value.email,
           this.editUserForm.value.password,
           this.editUserForm.value.city,
           this.editUserForm.value.address
