@@ -21,4 +21,41 @@ export class UserService {
   getOneUser(id: number): Observable<User> {
     return this.http.get<User>(`${this.path}/adminUserGetOne/${id}`);
   }
+
+  updateUser(
+    id: number,
+    name: string,
+    email: string,
+    password: string,
+    city: string,
+    address: string,
+    role_id?: number
+  ): Observable<number> {
+    return this.http.post<number>(`${this.path}/adminUserUpdate/${id}`, {
+      name,
+      email,
+      password,
+      city,
+      address,
+      role_id
+    });
+  }
+
+  insertUser(
+    name: string,
+    email: string,
+    password: string,
+    city: string,
+    address: string,
+    role_id: number
+  ): Observable<number> {
+    return this.http.post<number>(`${this.path}/adminUserStore`, {
+      name,
+      email,
+      password,
+      city,
+      address,
+      role_id
+    });
+  }
 }

@@ -78,7 +78,11 @@
               <td></td>
               <td>
                 <div class="checkout_btn_inner d-flex align-items-center">
-                  <button class="primary-btn">
+                  <button
+                    class="primary-btn"
+                    data-toggle="modal"
+                    data-target="#exampleModal2"
+                  >
                     Insert new user
                   </button>
                 </div>
@@ -112,51 +116,194 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <ng-container *ngIf="oneUser">
-          Name:
-          <input
-            type="text"
-            class="form-control my-1"
-            [value]="oneUser.name"
-            placeholder="Enter name"
-          />
-          Email:
-          <input
-            type="email"
-            class="form-control my-1"
-            [value]="oneUser.email"
-            placeholder="Enter email"
-          />
-          City:
-          <input
-            type="text"
-            class="form-control my-1"
-            [value]="oneUser.city"
-            placeholder="Enter city"
-          />
-          Address:
-          <input
-            type="text"
-            class="form-control my-1"
-            [value]="oneUser.address"
-            placeholder="Enter address"
-          />
-          Role:
-          <input
-            type="number"
-            class="form-control my-1"
-            [value]="oneUser.role_id"
-            placeholder="Enter role"
-          />
-        </ng-container>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
+      <form [formGroup]="editUserForm">
+        <div class="modal-body">
+          <ng-container *ngIf="oneUser">
+            Name:
+            <input
+              type="text"
+              class="form-control my-1"
+              [value]="oneUser.name"
+              placeholder="Enter name"
+              formControlName="name"
+            />
+            <span class="text-danger" *ngIf="updateName.errors?.required"
+              >Name is required.</span
+            ><br />
+            Email:
+            <input
+              type="email"
+              class="form-control my-1"
+              [value]="oneUser.email"
+              placeholder="Enter email"
+              formControlName="email"
+            />
+            <span class="text-danger" *ngIf="updateEmail.errors?.required"
+              >Email is required.</span
+            ><br />
+            Password:
+            <input
+              type="password"
+              class="form-control my-1"
+              formControlName="password"
+              placeholder="Enter password"
+            />
+            <span class="text-danger" *ngIf="updatePass.errors?.required"
+              >Password is required.</span
+            ><br />
+
+            City:
+            <input
+              type="text"
+              class="form-control my-1"
+              [value]="oneUser.city"
+              placeholder="Enter city"
+              formControlName="city"
+            />
+            <span class="text-danger" *ngIf="updateCity.errors?.required"
+              >City is required.</span
+            ><br />
+            Address:
+            <input
+              type="text"
+              class="form-control my-1"
+              [value]="oneUser.address"
+              placeholder="Enter address"
+              formControlName="address"
+            />
+            <span class="text-danger" *ngIf="updateAddress.errors?.required"
+              >Address is required.</span
+            ><br />
+            Role:<select
+              class="form-control"
+              name="number"
+              id="number"
+              formControlName="role_id"
+              required
+            >
+              <option value="1"> User</option>
+              <option value="2">Admin</option>
+            </select>
+            <span class="text-danger" *ngIf="updateRole.errors?.required"
+              >Role is required.</span
+            ><br />
+          </ng-container>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button
+            (click)="update(oneUser.id)"
+            type="button"
+            class="btn btn-primary"
+          >
+            Save changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal2"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel2"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Insert user</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
+      <form [formGroup]="insertUserForm">
+        <div class="modal-body">
+          <ng-container>
+            Name:
+            <input
+              type="text"
+              class="form-control my-1"
+              placeholder="Enter name"
+              formControlName="name"
+            />
+            <span class="text-danger" *ngIf="addName.errors?.required"
+              >Name is required.</span
+            ><br />
+            Email:
+            <input
+              type="email"
+              class="form-control my-1"
+              placeholder="Enter email"
+              formControlName="email"
+            />
+            <span class="text-danger" *ngIf="addEmail.errors?.required"
+              >Email is required.</span
+            ><br />
+            Password:
+            <input
+              type="password"
+              class="form-control my-1"
+              formControlName="password"
+              placeholder="Enter password"
+            />
+            <span class="text-danger" *ngIf="addPass.errors?.required"
+              >Password is required.</span
+            ><br />
+            City:
+            <input
+              type="text"
+              class="form-control my-1"
+              placeholder="Enter city"
+              formControlName="city"
+            />
+            <span class="text-danger" *ngIf="addCity.errors?.required"
+              >City is required.</span
+            ><br />
+            Address:
+            <input
+              type="text"
+              class="form-control my-1"
+              placeholder="Enter address"
+              formControlName="address"
+            />
+            <span class="text-danger" *ngIf="addAddress.errors?.required"
+              >Address is required.</span
+            ><br />
+            Role:<select
+              class="form-control"
+              name="number"
+              id="number"
+              formControlName="role_id"
+              required
+            >
+              <option value="1"> User</option>
+              <option value="2">Admin</option>
+            </select>
+            <span class="text-danger" *ngIf="addRole.errors?.required"
+              >Role is required.</span
+            >
+          </ng-container>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button (click)="insert()" type="button" class="btn btn-primary">
+            Insert
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
