@@ -10,12 +10,17 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class TrackingComponent implements OnInit {
   tracks: Tracking[];
+  delivered: Tracking[];
   constructor(private tracking: TrackingService, public dom: DomSanitizer) {}
 
   ngOnInit() {
     this.tracking.getAll().subscribe((response: Tracking[]) => {
       this.tracks = response;
       console.log(response);
+    });
+
+    this.tracking.getDelivered().subscribe((response: Tracking[]) => {
+      console.log(response), (this.delivered = response);
     });
   }
 
@@ -25,6 +30,9 @@ export class TrackingComponent implements OnInit {
         console.log(response),
         this.tracking.getAll().subscribe((response: Tracking[]) => {
           this.tracks = response;
+        }),
+        this.tracking.getDelivered().subscribe((response: Tracking[]) => {
+          this.delivered = response;
         })
       )
     );
@@ -34,6 +42,19 @@ export class TrackingComponent implements OnInit {
       this.tracking.getAll().subscribe((response: Tracking[]) => {
         this.tracks = response;
       });
+    });
+  }
+
+  makeDelivered(id: number) {
+    this.tracking.makeDeliver(id).subscribe((response: number) => {
+      console.log(response),
+        this.tracking.getAll().subscribe((response: Tracking[]) => {
+          this.tracks = response;
+          console.log(response);
+        }),
+        this.tracking.getDelivered().subscribe((response: Tracking[]) => {
+          console.log(response), (this.delivered = response);
+        });
     });
   }
 }

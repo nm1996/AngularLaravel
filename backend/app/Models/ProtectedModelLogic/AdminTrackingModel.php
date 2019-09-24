@@ -12,6 +12,7 @@ class AdminTrackingModel
     public $created_at;
     public $product_id;
     public $quantity;
+    public $delivered;
 
     private $table = "checkout";
 
@@ -21,6 +22,7 @@ class AdminTrackingModel
             ->join('products', 'checkout.product_id', '=', 'products.id')
             ->join('users', 'checkout.user_id', '=', 'users.id')
             ->join('product_images', 'products.id_image', '=', 'product_images.id')
+            ->where('checkout.delivered', 0)
             ->select('users.name as user_name', 'checkout.id', 'checkout.quantity as quantity', 'product_images.path as picture', 'products.name as name', 'products.price as price', 'checkout.created_at')
             ->orderByDesc('checkout.created_at')
             ->get();
@@ -37,5 +39,28 @@ class AdminTrackingModel
     {
         return DB::table($this->table)
             ->delete();
+    }
+
+    public function deliver($id)
+    {
+        $update = [
+            'created_at' => date('Y-m-d'),
+            'delivered' => 1
+        ];
+        return DB::table($this->table)
+            ->where('id', $id)
+            ->update($update);
+    }
+
+    public function getDelivered()
+    {
+        return DB::table($this->table)
+            ->join('products', 'checkout.product_id', '=', 'products.id')
+            ->join('users', 'checkout.user_id', '=', 'users.id')
+            ->join('product_images', 'products.id_image', '=', 'product_images.id')
+            ->where('checkout.delivered', 1)
+            ->select('users.name as user_name', 'checkout.id', 'checkout.quantity as quantity', 'product_images.path as picture', 'products.name as name', 'products.price as price', 'checkout.created_at')
+            ->orderByDesc('checkout.created_at')
+            ->get();
     }
 }

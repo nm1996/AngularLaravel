@@ -70,4 +70,6 @@ Route::group([
     Route::get('adminTrackingIndex', 'ProtectedControllers\AdminTrackingController@getAllCheckouts');
     Route::post('adminTrackingDeleteOne', 'ProtectedControllers\AdminTrackingController@deleteOne');
     Route::post('adminTrackingDeleteAll', 'ProtectedControllers\AdminTrackingController@deleteAll');
+    Route::get('adminTrackingIndexDelivered', 'ProtectedControllers\AdminTrackingController@getDelivered');
+    Route::post('adminTrackingDeliver', 'ProtectedControllers\AdminTrackingController@makeDeliver');
 });

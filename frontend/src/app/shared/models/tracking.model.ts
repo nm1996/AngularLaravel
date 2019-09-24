@@ -6,4 +6,5 @@ export class Tracking {
   public price: number;
   public created_at: Date;
   public user_name: string;
+  public delivered: boolean;
 }

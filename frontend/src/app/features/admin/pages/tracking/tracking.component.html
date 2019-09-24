@@ -28,6 +28,8 @@
               <th scope="col">Quantity</th>
               <th scope="col">User</th>
               <th scope="col">Date</th>
+              <th scope="col">Total price</th>
+              <th scope="col">Deliver it</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
@@ -68,6 +70,14 @@
               </td>
               <td>
                 <button
+                  (click)="makeDelivered(item.id)"
+                  class="btn btn-success waves-effect btn-xs"
+                >
+                  Deliver
+                </button>
+              </td>
+              <td>
+                <button
                   (click)="deleteOne(item.id)"
                   class="btn btn-danger waves-effect btn-xs"
                 >
@@ -75,22 +85,82 @@
                 </button>
               </td>
             </tr>
-            <tr class="out_button_area">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <div class="checkout_btn_inner d-flex align-items-center">
-                  <button class="primary-btn" (click)="deleteAll(tracks)">
-                    Delete all
-                  </button>
-                </div>
-              </td>
-            </tr>
           </tbody>
         </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">User</th>
+                <th scope="col">Date of deliver</th>
+                <th scope="col">Total price</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let deliver of delivered">
+                <td>
+                  <div class="media">
+                    <div class="d-flex ">
+                      <img
+                        class="cart-height"
+                        [src]="
+                          dom.bypassSecurityTrustUrl(
+                            'http://localhost:8000/' + deliver.picture
+                          )
+                        "
+                        alt=""
+                      />
+                    </div>
+                    <div class="media-body">
+                      <p>{{ deliver.name }}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <h5>{{ deliver.price | currency }}</h5>
+                </td>
+                <td>
+                  <h5>{{ deliver.quantity }}</h5>
+                </td>
+                <td>
+                  <h5>{{ deliver.user_name }}</h5>
+                </td>
+                <td>
+                  <h5>{{ deliver.created_at }}</h5>
+                </td>
+                <td>
+                  <h5>${{ deliver.price * deliver.quantity }}</h5>
+                </td>
+                <td>
+                  <button
+                    (click)="deleteOne(deliver.id)"
+                    class="btn btn-danger waves-effect btn-xs"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+              <tr class="out_button_area">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <div class="checkout_btn_inner d-flex align-items-center">
+                    <button class="primary-btn" (click)="deleteAll(tracks)">
+                      Delete all
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

@@ -20,4 +20,14 @@ export class TrackingService {
   deleteAll(data): Observable<Object> {
     return this.http.post<Object>(`${this.path}/adminTrackingDeleteAll`, data);
   }
+
+  getDelivered(): Observable<Tracking[]> {
+    return this.http.get<Tracking[]>(
+      `${this.path}/adminTrackingIndexDelivered`
+    );
+  }
+
+  makeDeliver(id: number): Observable<number> {
+    return this.http.post<number>(`${this.path}/adminTrackingDeliver`, id);
+  }
 }
