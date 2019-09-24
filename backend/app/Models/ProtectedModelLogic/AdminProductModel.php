@@ -40,7 +40,7 @@ class AdminProductModel
 
     public function store() {
         return DB::table($this->table)
-        ->insert([
+        ->insertGetId([
             'name' => $this->name,
             'id_category' => $this->id_category,
             'price' => $this->price,

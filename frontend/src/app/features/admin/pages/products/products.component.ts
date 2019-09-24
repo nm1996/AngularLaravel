@@ -16,21 +16,9 @@ export class ProductsComponent implements OnInit {
   constructor(private product: ProductAdminService, public dom: DomSanitizer) {
     this.form = new FormGroup({
       id_category: new FormControl("", Validators.required),
-      name: new FormControl("", [
-        Validators.required,
-        Validators.maxLength(20),
-        Validators.minLength(3)
-      ]),
-      price: new FormControl("", [
-        Validators.required,
-        Validators.maxLength(20),
-        Validators.minLength(3)
-      ]),
-      color: new FormControl("", [
-        Validators.required,
-        Validators.maxLength(20),
-        Validators.minLength(3)
-      ]),
+      name: new FormControl("", [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
+      price: new FormControl("", [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
+      color: new FormControl("", [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
       popular_rating: new FormControl("", Validators.required),
       picture: new FormControl("")
     });
@@ -56,31 +44,19 @@ export class ProductsComponent implements OnInit {
   }
 
   insert() {
-    console.log(this.form.value.id_category);
-    console.log(this.form.value.name);
-    console.log(this.form.value.price);
-    console.log(this.form.value.color);
-    console.log(this.form.value.popular_rating);
-    console.log(this.form.value.picture);
-
     const formData = new FormData();
     formData.append("picture", this.form.value.picture);
-    console.log(formData.get("picture"), "test");
-    this.product
-      .insertProduct(
-        this.form.value.name,
-        this.form.value.id_category,
-        this.form.value.price,
-        this.form.value.color,
-        this.form.value.popular_rating,
-        this.form.value.picture
-      )
-      .subscribe((response: number) => {
-        console.log(response),
-          this.product.getAllProducts().subscribe((response: Product[]) => {
-            this.products = response;
-          });
+    formData.append("id_category", this.form.value.id_category);
+    formData.append("name", this.form.value.name);
+    formData.append("price", this.form.value.price);
+    formData.append("color", this.form.value.color);
+    formData.append("popular_rating", this.form.value.popular_rating);
+    this.product.insertProduct(formData).subscribe((response: Object) => {
+      console.log(response);
+      this.product.getAllProducts().subscribe((response: Product[]) => {
+        this.products = response;
       });
+    });
   }
 
   onFileSelect(event) {

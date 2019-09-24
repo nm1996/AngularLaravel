@@ -22,21 +22,7 @@ export class ProductAdminService {
     return this.http.get<Product>(`${this.path}/getOneProduct/${id}`);
   }
 
-  insertProduct(
-    name: string,
-    id_category: number,
-    price: number,
-    color: string,
-    popular_rating: number,
-    picture
-  ): Observable<number> {
-    return this.http.post<number>(`${this.path}/adminProductStore`, {
-      name,
-      id_category,
-      price,
-      color,
-      popular_rating,
-      picture
-    });
+  insertProduct(formData: FormData): Observable<Object> {
+    return this.http.post<Object>(`${this.path}/adminProductStore`, formData);
   }
 }

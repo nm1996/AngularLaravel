@@ -43,8 +43,9 @@ class AdminProductController
         $modelPicture = new AdminPictureModel();
 
         #picture
-        $pictureDirectory = public_path('images/products/');
+
         $picturePath = $request->file('picture');
+        $pictureDirectory = public_path('images/products/');
         $pictureName = "product_" . time() . ".jpg";
         $picturePath->move($pictureDirectory, $pictureName);
 
