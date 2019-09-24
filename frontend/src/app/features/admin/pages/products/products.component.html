@@ -1,160 +1,298 @@
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
-    <div class="container">
-        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-            <div class="col-first">
-                <h1>Products</h1>
-                <nav class="d-flex align-items-center">
-                    <a routerLink="/admin/products">Products</a>
-                </nav>
-            </div>
-        </div>
+  <div class="container">
+    <div
+      class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end"
+    >
+      <div class="col-first">
+        <h1>Products</h1>
+        <nav class="d-flex align-items-center">
+          <a routerLink="/admin/products">Products</a>
+        </nav>
+      </div>
     </div>
+  </div>
 </section>
 <!-- End Banner Area -->
 
 <!--================Cart Area =================-->
 <section class="cart_area">
-    <div class="container">
-        <div class="cart_inner">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Color</th>
-                            <th scope="col">Popular rating</th>
-                            <th scope="col">Likes</th>
-                            <th scope="col">Date of arriving</th>
-                            <th scope="col">Edit</th>
-                            <th scope="col">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let product of products">
-                            <td>
-                                <div class="media">
-                                    <div class="d-flex ">
-                                        <img class="cart-height" [src]="dom.bypassSecurityTrustUrl('http://localhost:8000/' + product.image_path)" alt="" />
-                                    </div>
-                                    <div class="media-body">
-                                        <p>{{ product.name }}</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <h5>{{ product.category_name | titlecase }}</h5>
-                            </td>
-                            <td>
-                                <h5>{{ product.price | currency }}</h5>
-                            </td>
-                            <td>
-                                <h5>{{ product.color | titlecase }}</h5>
-                            </td>
-                            <td>
-                                <h5>{{ product.popular_rating }}</h5>
-                            </td>
-                            <td>
-                                <h5>{{ product.likes }}</h5>
-                            </td>
-                            <td>
-                                <h5>{{ product.date_arrive }}</h5>
-                            </td>
-                            <td>
-                                <a (click)="getOne(product.id)" class="btn btn-info waves-effect btn-xs"  data-toggle="modal" data-target="#exampleModal3">Edit</a>
-                            </td>
-                            <td>
-                                <button (click)="deleteProduct(product.id)" class="btn btn-danger waves-effect btn-xs">
-                  Delete
-                </button>
-                            </td>
-                        </tr>
-                        <tr class="out_button_area">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <div class="checkout_btn_inner d-flex align-items-center">
-                                    <button class="primary-btn" data-toggle="modal" data-target="#exampleModal2">
+  <div class="container">
+    <div class="cart_inner">
+      <div class="filter-bar d-flex flex-wrap align-items-center">
+        <div class="sorting mr-auto">
+          <select (change)="onChange($event.target.value)" [(ngModel)]="show">
+            <option [value]="10">Show 10</option>
+            <option [value]="20">Show 20</option>
+            <option [value]="30">Show 30</option>
+          </select>
+        </div>
+        <jw-pagination
+          class="paginacija"
+          [items]="products"
+          (changePage)="onChangePage($event)"
+          [pageSize]="show"
+        ></jw-pagination>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Price</th>
+              <th scope="col">Color</th>
+              <th scope="col">Popular rating</th>
+              <th scope="col">Likes</th>
+              <th scope="col">Date of arriving</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="products">
+              <tr *ngFor="let product of pageOfItems">
+                <td>
+                  <div class="media">
+                    <div class="d-flex ">
+                      <img
+                        class="cart-height"
+                        [src]="
+                          dom.bypassSecurityTrustUrl(
+                            'http://localhost:8000/' + product.image_path
+                          )
+                        "
+                        alt=""
+                      />
+                    </div>
+                    <div class="media-body">
+                      <p>{{ product.name }}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <h5>{{ product.category_name | titlecase }}</h5>
+                </td>
+                <td>
+                  <h5>{{ product.price | currency }}</h5>
+                </td>
+                <td>
+                  <h5>{{ product.color | titlecase }}</h5>
+                </td>
+                <td>
+                  <h5>{{ product.popular_rating }}</h5>
+                </td>
+                <td>
+                  <h5>{{ product.likes }}</h5>
+                </td>
+                <td>
+                  <h5>{{ product.date_arrive }}</h5>
+                </td>
+                <td>
+                  <a
+                    (click)="getOne(product.id)"
+                    class="btn btn-info waves-effect btn-xs"
+                    data-toggle="modal"
+                    data-target="#exampleModal3"
+                    >Edit</a
+                  >
+                </td>
+                <td>
+                  <button
+                    (click)="deleteProduct(product.id)"
+                    class="btn btn-danger waves-effect btn-xs"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+            <tr class="out_button_area">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <div class="checkout_btn_inner d-flex align-items-center">
+                  <button
+                    class="primary-btn"
+                    data-toggle="modal"
+                    data-target="#exampleModal2"
+                  >
                     Insert new product
                   </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </section>
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel2">Insert product</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div
+  class="modal fade"
+  id="exampleModal2"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel2"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Insert product</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
-            </div>
-            <form [formGroup]="form">
-                <div class="modal-body">
-                    <ng-container>
-                        Name:
-                        <input type="text" class="form-control my-1" placeholder="Enter name" formControlName="name" /> Category:
-                        <input type="number" class="form-control my-1" placeholder="Enter category" formControlName="id_category" /> Price:
-                        <input type="number" class="form-control my-1" placeholder="Enter price" formControlName="price" /> Color:
-                        <input type="email" class="form-control my-1" placeholder="Enter color" formControlName="color" /> Rating:
-                        <input type="email" class="form-control my-1" placeholder="Enter rating" formControlName="popular_rating" /> Picture:
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileSelect($event)" />
-                    </ng-container>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+      </div>
+      <form [formGroup]="form">
+        <div class="modal-body">
+          <ng-container>
+            Name:
+            <input
+              type="text"
+              class="form-control my-1"
+              placeholder="Enter name"
+              formControlName="name"
+            />
+            Category:
+            <input
+              type="number"
+              class="form-control my-1"
+              placeholder="Enter category"
+              formControlName="id_category"
+            />
+            Price:
+            <input
+              type="number"
+              class="form-control my-1"
+              placeholder="Enter price"
+              formControlName="price"
+            />
+            Color:
+            <input
+              type="email"
+              class="form-control my-1"
+              placeholder="Enter color"
+              formControlName="color"
+            />
+            Rating:
+            <input
+              type="email"
+              class="form-control my-1"
+              placeholder="Enter rating"
+              formControlName="popular_rating"
+            />
+            Picture:
+            <input
+              type="file"
+              class="form-control-file"
+              id="exampleFormControlFile1"
+              (change)="onFileSelect($event)"
+            />
+          </ng-container>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-                    <button (click)="insert()" type="button" class="btn btn-primary">
+          <button (click)="insert()" type="button" class="btn btn-primary">
             Insert
           </button>
-                </div>
-            </form>
         </div>
+      </form>
     </div>
+  </div>
 </div>
 <!--================End Cart Area =================-->
-<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+<div
+  class="modal fade"
+  id="exampleModal3"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel3"
+  aria-hidden="true"
+>
   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel3">Insert product</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-          </div>
-          <form [formGroup]="updateForm">
-              <div class="modal-body">
-                  <ng-container>
-                      Name:
-                      <input type="text" class="form-control my-1" placeholder="Enter name" formControlName="name" /> Category:
-                      <input type="number" class="form-control my-1" placeholder="Enter category" formControlName="id_category" /> Price:
-                      <input type="number" class="form-control my-1" placeholder="Enter price" formControlName="price" /> Color:
-                      <input type="email" class="form-control my-1" placeholder="Enter color" formControlName="color" /> Rating:
-                      <input type="email" class="form-control my-1" placeholder="Enter rating" formControlName="popular_rating" /> Picture:
-                      <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileSelect($event)" />
-                  </ng-container>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel3">Edit product</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
         </button>
-                  <button (click)="update(oneProduct.id)" type="button" class="btn btn-primary">
-          Insert
-        </button>
-              </div>
-          </form>
       </div>
+      <form [formGroup]="updateForm">
+        <div class="modal-body">
+          <ng-container>
+            Name:
+            <input
+              type="text"
+              class="form-control my-1"
+              placeholder="Enter name"
+              formControlName="name"
+            />
+            Category:
+            <input
+              type="number"
+              class="form-control my-1"
+              placeholder="Enter category"
+              formControlName="id_category"
+            />
+            Price:
+            <input
+              type="number"
+              class="form-control my-1"
+              placeholder="Enter price"
+              formControlName="price"
+            />
+            Color:
+            <input
+              type="email"
+              class="form-control my-1"
+              placeholder="Enter color"
+              formControlName="color"
+            />
+            Rating:
+            <input
+              type="email"
+              class="form-control my-1"
+              placeholder="Enter rating"
+              formControlName="popular_rating"
+            />
+            Picture:
+            <input
+              type="file"
+              class="form-control-file"
+              id="exampleFormControlFile1"
+              (change)="fileChange($event)"
+            />
+          </ng-container>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button
+            (click)="update(oneProduct.id)"
+            type="button"
+            class="btn btn-primary"
+          >
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

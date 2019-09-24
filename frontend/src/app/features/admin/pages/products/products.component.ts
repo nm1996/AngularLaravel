@@ -15,20 +15,48 @@ export class ProductsComponent implements OnInit {
   form: FormGroup;
   updateForm: FormGroup;
 
+  pageOfItems: Array<any>;
+  show: number = 10;
+  productsPagionation: Product[];
+
   constructor(private product: ProductAdminService, public dom: DomSanitizer) {
     this.form = new FormGroup({
       id_category: new FormControl("", Validators.required),
-      name: new FormControl("", [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
-      price: new FormControl("", [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
-      color: new FormControl("", [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
+      name: new FormControl("", [
+        Validators.required,
+        Validators.maxLength(20),
+        Validators.minLength(3)
+      ]),
+      price: new FormControl("", [
+        Validators.required,
+        Validators.maxLength(20),
+        Validators.minLength(3)
+      ]),
+      color: new FormControl("", [
+        Validators.required,
+        Validators.maxLength(20),
+        Validators.minLength(3)
+      ]),
       popular_rating: new FormControl("", Validators.required),
       picture: new FormControl("")
     });
     this.updateForm = new FormGroup({
       id_category: new FormControl("", Validators.required),
-      name: new FormControl("", [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
-      price: new FormControl("", [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
-      color: new FormControl("", [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
+      name: new FormControl("", [
+        Validators.required,
+        Validators.maxLength(20),
+        Validators.minLength(3)
+      ]),
+      price: new FormControl("", [
+        Validators.required,
+        Validators.maxLength(20),
+        Validators.minLength(3)
+      ]),
+      color: new FormControl("", [
+        Validators.required,
+        Validators.maxLength(20),
+        Validators.minLength(3)
+      ]),
       popular_rating: new FormControl("", Validators.required),
       picture: new FormControl("")
     });
@@ -38,6 +66,15 @@ export class ProductsComponent implements OnInit {
     this.product.getAllProducts().subscribe((response: Product[]) => {
       this.products = response;
     });
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    this.pageOfItems = pageOfItems;
+  }
+
+  onChange(event) {
+    console.log(event);
+    this.show = +event;
   }
 
   deleteProduct(id: number) {

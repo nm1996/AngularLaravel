@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models\ProtectedModelLogic;
+
 use Illuminate\Support\Facades\DB;
 
 class AdminPictureModel
@@ -10,23 +11,26 @@ class AdminPictureModel
     public $path;
     private $table = "product_images";
 
-    public function store() {
+    public function store()
+    {
         return DB::table($this->table)
-        ->insertGetId([
-            'name' => $this->name,
-            'path' => $this->path
-        ]);
+            ->insertGetId([
+                'name' => $this->name,
+                'path' => $this->path
+            ]);
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         return DB::table($this->table)
-        ->delete($id);
+            ->delete($id);
     }
 
-    public function getOne($id) {
+    public function getOne($id)
+    {
         return DB::table($this->table)
-        ->where('id', $id)
-        ->get('picture.*')
-        ->first();
+            ->where('id', $id)
+            ->get('')
+            ->first();
     }
 }

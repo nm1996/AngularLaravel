@@ -21,7 +21,16 @@ import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [SharedModule, BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, HomeModule, ProductsModule, RouterModule],
+  imports: [
+    SharedModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    HomeModule,
+    ProductsModule,
+    RouterModule
+  ],
   providers: [TokenService, JarService, AuthService],
   bootstrap: [AppComponent]
 })

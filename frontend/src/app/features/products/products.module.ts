@@ -27,6 +27,7 @@ import { JwPaginationComponent } from "jw-angular-pagination";
     FormsModule,
     ReactiveFormsModule
   ],
+  exports: [JwPaginationComponent],
   providers: [ProductService]
 })
 export class ProductsModule {}

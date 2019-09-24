@@ -46,7 +46,7 @@ class AdminProductController
 
         $picturePath = $request->file('picture');
         $pictureDirectory = public_path('images/products/');
-        $pictureName = "product_" . time() . ".jpg";
+        $pictureName = "product_" . time() . $picturePath->getClientOriginalName();
         $picturePath->move($pictureDirectory, $pictureName);
 
         $modelPicture->path = "images/products/" . $pictureName;
@@ -95,42 +95,49 @@ class AdminProductController
         $product = new AdminProductModel();
         $picture = new AdminPictureModel();
 
+        $product->id_category = $request->id_category;
         $product->name = $request->name;
         $product->id_category = $request->id_category;
         $product->price = $request->price;
         $product->color = $request->color;
         $product->popular_rating = $request->popular_rating;
-
-
         if ($request->hasFile('picture')) {
-            $oldPic = $product->id_image($id);
-            try {
-                $path = $request->file('picture');
-                $directory = public_path('images/products/');
-                $picName = "product" . "_" . time() . $path->getClientOriginalName();
-                $path->move($directory, $picName);
+            $oldPic = $product->pictureId($id);
 
-                $picture->path = "images/products/" . $picName;
-                $picture->name = "product" . time();
+            try {
+                $picturePath = $request->file('picture');
+                $pictureDirectory = public_path('images/products/');
+                $pictureName = "product_" . time() . $picturePath->getClientOriginalName();
+                $picturePath->move($pictureDirectory, $pictureName);
+
+                $picture->path = "images/products/" . $pictureName;
+                $picture->name = "picture";
                 $product->id_image = $picture->store();
             } catch (QueryException $e) {
-                \Log::error($e->getMessage());
+                \Log::error("message" . $e->getMessage());
+            } catch (FileException $e) {
+                \Log::error("error" . $e->getMessage());
             }
         }
 
-        try {
-            $product->update($id);
 
-            try {
-                if ($oldPic) {
-                    $picture = new AdminPictureModel();
-                    $pic = $picture->getOne($oldPic);
-                    unlink(public_path($picture->path));
-                    $picture->delete($oldPic);
-                }
-            } catch (Exception $e) {
-                \Log::error("error" . $e->getMessage());
+
+        try {
+            $items =  $product->update($id);
+            if (!empty($items)) {
+                return response()->json($items, 200);
+            } else {
+                abort(404);
             }
-        } catch (Exception $e) { }
+            // if ($oldPic) {
+            //     $picture = new AdminPictureModel();
+            //     $pic = $picture->getOne($oldPic);
+            //     $directory = public_path();
+            //     unlink($directory . '/' . $picture->path);
+            //     $picture->delete($oldPic);
+            // }
+        } catch (QueryException $e) {
+            \Log::error("message" . $e->getMessage());
+        }
     }
 }
