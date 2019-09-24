@@ -28,6 +28,9 @@ export class ProductAdminService {
 
   updateProduct(formData: FormData, id: number): Observable<Object> {
     console.log(formData.get("picture"));
-    return this.http.post<Object>(`${this.path}/adminUpdateProduct/${id}`, formData);
+    return this.http.post<Object>(
+      `${this.path}/adminUpdateProduct/${id}`,
+      formData
+    );
   }
 }

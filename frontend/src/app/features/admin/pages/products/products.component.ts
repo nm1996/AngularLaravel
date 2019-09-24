@@ -80,6 +80,9 @@ export class ProductsComponent implements OnInit {
   deleteProduct(id: number) {
     this.product.deleteProduct(id).subscribe((response: number) => {
       console.log(response);
+      this.product.getAllProducts().subscribe((response: Product[]) => {
+        this.products = response;
+      });
     });
   }
 

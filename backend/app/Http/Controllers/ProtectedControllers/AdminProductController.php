@@ -66,26 +66,14 @@ class AdminProductController
 
     public function deleteProduct(Request $request)
     {
-        $picId = null;
         $id = $request->getContent();
         $product = new AdminProductModel();
         $picture = new AdminPictureModel();
 
-        $productItem = $product->getOne($id);
-
-        $pictureId = $productItem->picture_id;
-
-        $pictureItem = $picture->getOne($pictureId);
-        // try {
-
-        //     $picture->delete($pictureId);
-        //     $product->delete($id);
-        // } catch (\Exception $e) {
-        //     \Log::error('message' . $e->getMessage());
-        // }
-
-
-        return response()->json([$productItem, $pictureItem], 200);
+        $item = $product->getOne($id);
+        $picture->delete($item->id_image);
+        $delete = $product->delete($id);
+        return response()->json($delete, 200);
     }
 
 
