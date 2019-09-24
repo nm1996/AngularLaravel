@@ -49,6 +49,7 @@ Route::group([
     Route::get('adminProductsIndex', 'ProtectedControllers\AdminProductController@productsIndex');
     Route::post('adminProductDelete', 'ProtectedControllers\AdminProductController@deleteProduct');
     Route::get('adminOneProduct/{id}', 'ProtectedControllers\AdminProductController@getOneProduct');
+    Route::get('adminUpdateProduct/{id}', 'ProtectedControllers\AdminProductController@updateProduct');
     /* User routes */
 
     Route::get('adminUsersIndex', 'ProtectedControllers\AdminUserController@usersIndex');

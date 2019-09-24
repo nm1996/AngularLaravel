@@ -19,10 +19,15 @@ export class ProductAdminService {
   }
 
   getOneProduct(id: number): Observable<Product> {
-    return this.http.get<Product>(`${this.path}/getOneProduct/${id}`);
+    return this.http.get<Product>(`${this.path}/adminOneProduct/${id}`);
   }
 
   insertProduct(formData: FormData): Observable<Object> {
     return this.http.post<Object>(`${this.path}/adminProductStore`, formData);
+  }
+
+  updateProduct(formData: FormData, id: number): Observable<Object> {
+    console.log(formData.get("picture"));
+    return this.http.post<Object>(`${this.path}/adminUpdateProduct/${id}`, formData);
   }
 }

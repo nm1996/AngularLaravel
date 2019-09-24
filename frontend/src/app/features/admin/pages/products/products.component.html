@@ -63,7 +63,7 @@
                                 <h5>{{ product.date_arrive }}</h5>
                             </td>
                             <td>
-                                <a class="btn btn-info waves-effect btn-xs">Edit</a>
+                                <a (click)="getOne(product.id)" class="btn btn-info waves-effect btn-xs"  data-toggle="modal" data-target="#exampleModal3">Edit</a>
                             </td>
                             <td>
                                 <button (click)="deleteProduct(product.id)" class="btn btn-danger waves-effect btn-xs">
@@ -125,3 +125,36 @@
     </div>
 </div>
 <!--================End Cart Area =================-->
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel3">Insert product</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+          </div>
+          <form [formGroup]="updateForm">
+              <div class="modal-body">
+                  <ng-container>
+                      Name:
+                      <input type="text" class="form-control my-1" placeholder="Enter name" formControlName="name" /> Category:
+                      <input type="number" class="form-control my-1" placeholder="Enter category" formControlName="id_category" /> Price:
+                      <input type="number" class="form-control my-1" placeholder="Enter price" formControlName="price" /> Color:
+                      <input type="email" class="form-control my-1" placeholder="Enter color" formControlName="color" /> Rating:
+                      <input type="email" class="form-control my-1" placeholder="Enter rating" formControlName="popular_rating" /> Picture:
+                      <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileSelect($event)" />
+                  </ng-container>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+                  <button (click)="update(oneProduct.id)" type="button" class="btn btn-primary">
+          Insert
+        </button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>

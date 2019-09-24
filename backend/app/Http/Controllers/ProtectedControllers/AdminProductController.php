@@ -28,7 +28,7 @@ class AdminProductController
     {
         $model = new AdminProductModel();
 
-        $items = $model->getOneProduct($id);
+        $items = $model->getOne($id);
 
         if (!empty($items)) {
             return response()->json($items, 200);
