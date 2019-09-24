@@ -3,6 +3,9 @@ import { CartComponent } from "./features/cart-checkout/pages/cart/cart.componen
 import { CheckoutComponent } from "./features/cart-checkout/pages/checkout/checkout.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { AuthGuard } from "./shared/services/guard/auth.guard";
+import { AdminGuardGuard } from "./shared/services/guard/admin-guard.guard";
+import { NoAuthGuardGuard } from "./shared/services/guard/no-auth-guard.guard";
 
 const routes: Routes = [
   {
@@ -15,10 +18,20 @@ const routes: Routes = [
   },
   {
     path: "admin",
+    canActivate: [AdminGuardGuard],
     loadChildren: "./features/admin/admin.module#AdminModule"
   },
-  { path: "authorization", loadChildren: "./features/authorization/authorization.module#AuthorizationModule" },
-  { path: "buy", loadChildren: "./features/cart-checkout/cart.module#CartModule" }
+  {
+    path: "authorization",
+    canActivate: [NoAuthGuardGuard],
+    loadChildren:
+      "./features/authorization/authorization.module#AuthorizationModule"
+  },
+  {
+    path: "buy",
+    canActivate: [AuthGuard],
+    loadChildren: "./features/cart-checkout/cart.module#CartModule"
+  }
 ];
 
 @NgModule({

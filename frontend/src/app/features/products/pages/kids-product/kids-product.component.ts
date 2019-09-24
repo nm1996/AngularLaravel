@@ -8,6 +8,7 @@ import { LikeService } from "../../services/like/like.service";
 import { TokenService } from "src/app/shared/services/token/token.service";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+import { AuthService } from "src/app/shared/services/auth/auth.service";
 
 @Component({
   selector: "app-kids-product",
@@ -18,10 +19,11 @@ export class KidsProductComponent implements OnInit {
   products: Product[];
   productsPagionation: Product[];
   pageOfItems: Array<any>;
-  show: number = 3;
+  show: number = 6;
   user_id;
   numbers;
   oneProduct: Product;
+  loggedIn: boolean;
 
   public form = {
     quantity: 0,
@@ -34,12 +36,13 @@ export class KidsProductComponent implements OnInit {
     private token: TokenService,
     public dom: DomSanitizer,
     private cart: CartService,
-    private router: Router
+    private auth: AuthService
   ) {
     this.numbers = [34, 35, 36, 37, 38, 39];
   }
 
   ngOnInit() {
+    this.auth.authStatus.subscribe(value => (this.loggedIn = value));
     this.kidsProducts.getKidsProducts().subscribe(
       (response: Product[]) => {
         console.log(response), (this.products = response);

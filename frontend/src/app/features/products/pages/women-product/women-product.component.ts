@@ -6,6 +6,7 @@ import { TokenService } from "src/app/shared/services/token/token.service";
 import { LikeService } from "../../services/like/like.service";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Cart } from "src/app/shared/models/cart.model";
+import { AuthService } from "src/app/shared/services/auth/auth.service";
 
 @Component({
   selector: "app-women-product",
@@ -18,16 +19,17 @@ export class WomenProductComponent implements OnInit {
     private token: TokenService,
     private like: LikeService,
     public dom: DomSanitizer,
-    private cart: CartService
+    private cart: CartService,
+    private auth: AuthService
   ) {
     this.numbers = [34, 35, 36, 37, 38, 39, 40, 41];
   }
 
   products: Product[];
-
+  loggedIn: boolean;
   productsPagionation: Product[];
   pageOfItems: Array<any>;
-  show: number = 3;
+  show: number = 6;
   user_id;
 
   numbers;
@@ -39,6 +41,7 @@ export class WomenProductComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.auth.authStatus.subscribe(value => (this.loggedIn = value));
     this.womenProducts.getWomenProducts().subscribe(
       (response: Product[]) => {
         console.log(response), (this.products = response);

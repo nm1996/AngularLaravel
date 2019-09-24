@@ -114,19 +114,21 @@
                     }}</span>
                   </div>
                   <div class="prd-bottom">
-                    <a
-                      data-toggle="modal"
-                      data-target="#exampleModal"
-                      class="social-info"
-                      (click)="getOneProduct(product.id)"
-                    >
-                      <span class="ti-bag"></span>
-                      <p class="hover-text">add to bag</p>
-                    </a>
-                    <a (click)="onLike(product.id)" class="social-info">
-                      <span class="lnr lnr-heart"></span>
-                      <p class="hover-text">Like</p>
-                    </a>
+                    <ng-container *ngIf="loggedIn">
+                      <a
+                        data-toggle="modal"
+                        data-target="#exampleModal"
+                        class="social-info"
+                        (click)="getOneProduct(product.id)"
+                      >
+                        <span class="ti-bag"></span>
+                        <p class="hover-text">add to bag</p>
+                      </a>
+                      <a (click)="onLike(product.id)" class="social-info">
+                        <span class="lnr lnr-heart"></span>
+                        <p class="hover-text">Like</p>
+                      </a>
+                    </ng-container>
                     <a
                       routerLink="/products/product-details/{{ product.id }}"
                       class="social-info"

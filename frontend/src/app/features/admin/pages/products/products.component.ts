@@ -3,7 +3,6 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { Component, OnInit } from "@angular/core";
 import { ProductAdminService } from "../../services/product/product-admin.service";
 import { Product } from "src/app/shared/models/product.model";
-import { HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: "app-products",
@@ -14,11 +13,7 @@ export class ProductsComponent implements OnInit {
   products: Product[];
   oneProduct: Product;
   form: FormGroup;
-  constructor(
-    private product: ProductAdminService,
-    public dom: DomSanitizer,
-    private headers: HttpHeaders
-  ) {
+  constructor(private product: ProductAdminService, public dom: DomSanitizer) {
     this.form = new FormGroup({
       id_category: new FormControl("", Validators.required),
       name: new FormControl("", [
@@ -71,8 +66,6 @@ export class ProductsComponent implements OnInit {
     const formData = new FormData();
     formData.append("picture", this.form.value.picture);
     console.log(formData.get("picture"), "test");
-    this.headers.append("Content-Type", "multipar/form-data");
-    this.headers.append("Accept", "application/json");
     this.product
       .insertProduct(
         this.form.value.name,
@@ -80,7 +73,7 @@ export class ProductsComponent implements OnInit {
         this.form.value.price,
         this.form.value.color,
         this.form.value.popular_rating,
-        formData
+        this.form.value.picture
       )
       .subscribe((response: number) => {
         console.log(response),

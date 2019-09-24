@@ -7,6 +7,7 @@ import { UsersComponent } from "./pages/users/users.component";
 import { RouterModule, Routes } from "@angular/router";
 import { Tracking } from "src/app/shared/models/tracking.model";
 import { TrackingComponent } from "./pages/tracking/tracking.component";
+import { AuthGuard } from "src/app/shared/services/guard/auth.guard";
 
 const routes: Routes = [
   {

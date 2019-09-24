@@ -49,6 +49,8 @@ export class LoginComponent implements OnInit {
           this.handleRole(data["role_id"]);
           console.log(data["user"], "user", "role_id");
           this.productService.toRefreshNavigation();
+
+          console.log(this.Token.isAdmin(), "isAdmin?");
         },
         error => console.log(error)
       );

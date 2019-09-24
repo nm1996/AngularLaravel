@@ -68,11 +68,11 @@ export class TokenService {
     return this.isValid();
   }
 
-  // isAdmin() {
-  //   let role_id = +this.getRole();
+  isAdmin() {
+    let role_id = +this.getRole();
 
-  //   return role_id == 2 ? true : false;
-  // }
+    return role_id == 2 ? true : false;
+  }
 
   setRole(role_id) {
     console.log("role_id");

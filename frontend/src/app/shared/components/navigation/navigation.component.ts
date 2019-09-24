@@ -2,7 +2,6 @@ import { TokenService } from "../../services/token/token.service";
 import { AuthService } from "../../services/auth/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { GuardAdminService } from "../../services/guard/admin/guard-admin.service";
 import { ProductService } from "src/app/features/products/services/products/product.service";
 
 @Component({
@@ -19,7 +18,6 @@ export class NavigationComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private token: TokenService,
-    private admin: GuardAdminService,
     private productService: ProductService
   ) {}
 

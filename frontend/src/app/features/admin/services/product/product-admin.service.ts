@@ -28,7 +28,7 @@ export class ProductAdminService {
     price: number,
     color: string,
     popular_rating: number,
-    picture: FormData
+    picture
   ): Observable<number> {
     return this.http.post<number>(`${this.path}/adminProductStore`, {
       name,
