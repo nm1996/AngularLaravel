@@ -70,11 +70,10 @@ class AdminProductModel
             'price' => $this->price,
             'color' => $this->color,
             'popular_rating' => $this->popular_rating,
-            'id_image' => $this->id_image
-        ];
 
+        ];
         if ($this->id_image != null) {
-            $updated['id_image'] = $this->id_image;
+            $updated = ['id_image' => $this->id_image];
         }
 
         return DB::table($this->table)

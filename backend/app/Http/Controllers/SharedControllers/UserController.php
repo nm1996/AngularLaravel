@@ -13,11 +13,23 @@ class UserController
         $model = new UserModel();
         $items = $model->getUser($id);
 
-        if(!empty($items)) {
+        if (!empty($items)) {
             return response()->json($items, 200);
+        } else {
+            abort(404);
         }
-        else {
-            abort (404);
+    }
+
+    public function getUserCheckout($id)
+    {
+        $model = new UserModel();
+
+        $items = $model->getUserCheckouts($id);
+
+        if (!empty($items)) {
+            return response()->json($items, 200);
+        } else {
+            abort(404);
         }
     }
 }

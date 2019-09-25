@@ -41,6 +41,7 @@ Route::group([
 
     # profile route
     Route::get('profile/{id}', 'SharedControllers\UserController@getUser');
+    Route::get('profileCheckout/{id}', 'SharedControllers\UserController@getUserCheckout');
 
     # admin routes
 

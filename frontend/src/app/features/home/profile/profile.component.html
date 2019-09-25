@@ -21,37 +21,87 @@
   <div class="container" *ngIf="items">
     <div class="row">
       <div class="col-md-12 text-center">
-        <div class="contact_info">
-          <div>
-            <i class="lnr lnr-home center-icon"></i>
-            <h6 class="d-inline">{{ items.city }}</h6>
-          </div>
-
-          <div>
-            <i class="lnr lnr-apartment center-icon"></i>
-            <h6 class="d-inline">{{ items.address }}</h6>
-          </div>
-
-          <div>
-            <i class="lnr lnr-user center-icon"></i>
-            <h6 class="d-inline">
-              <a>{{ items.name }}</a>
-            </h6>
-          </div>
-          <div class="center-icon">
-            <i class="lnr lnr-envelope center-icon"></i>
-            <h6 class="d-inline">
-              <a>{{ items.email }}</a>
-            </h6>
-          </div>
-          <div *ngIf="items.role_id == 1">
-            <i class="lnr lnr-star center-icon"></i>
-            <h6 class="d-inline">{{ items.role_name }}</h6>
-          </div>
-          <div *ngIf="items.role_id == 2">
-            <i class="lnr lnr-cog center-icon"></i>
-            <h6 class="d-inline">{{ items.role_name }}</h6>
-          </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <h5>{{ items.name }}</h5>
+                </td>
+                <td>
+                  <h5>{{ items.email }}</h5>
+                </td>
+                <td>
+                  <h5>{{ items.city }}</h5>
+                </td>
+                <td>
+                  <h5>{{ items.address }}</h5>
+                </td>
+                <td>
+                  <h5>{{ items.role_name }}</h5>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br /><br /><br /><br /><br />
+        <h1 *ngIf="checkouts">All your checkouts</h1>
+        <div class="table-responsive" *ngIf="checkouts">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Date</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let checkout of checkouts">
+                <td>
+                  <h5>
+                    <img
+                      class="cart-height"
+                      [src]="
+                        dom.bypassSecurityTrustUrl(
+                          'http://localhost:8000/' + checkout.picture
+                        )
+                      "
+                      alt=""
+                    />
+                  </h5>
+                  <h5>{{ checkout.product_name }}</h5>
+                </td>
+                <td>
+                  <h5>{{ checkout.created_at }}</h5>
+                </td>
+                <td>
+                  <h5>{{ checkout.quantity }}</h5>
+                </td>
+                <td>
+                  <h5>{{ checkout.price | currency }}</h5>
+                </td>
+                <td>
+                  <h5>{{ checkout.quantity * checkout.price | currency }}</h5>
+                </td>
+                <td>
+                  <h5 *ngIf="checkout.delivered == 1">Delivered</h5>
+                  <h5 *ngIf="checkout.delivered == 0">Not delivered</h5>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

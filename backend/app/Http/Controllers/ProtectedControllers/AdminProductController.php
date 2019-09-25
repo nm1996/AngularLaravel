@@ -70,8 +70,9 @@ class AdminProductController
         $product = new AdminProductModel();
         $picture = new AdminPictureModel();
 
-        $item = $product->getOne($id);
-        $picture->delete($item->id_image);
+        $product->getOne($id);
+        $pic = $product->pictureId($id);
+        $picture->delete($pic);
         $delete = $product->delete($id);
         return response()->json($delete, 200);
     }
@@ -109,21 +110,27 @@ class AdminProductController
         }
 
 
-
         try {
             $items =  $product->update($id);
+            try {
+                if ($oldPic) {
+                    $picture = new AdminPictureModel();
+                    $pic = $picture->getOne($oldPic);
+                    $directory = public_path();
+                    unlink($directory . '/' . $picture->path);
+                    $picture->delete($oldPic);
+                }
+            } catch (\Exception $e) {
+                \Log::error("message" . $e->getMessage());
+            }
+
+
             if (!empty($items)) {
+
                 return response()->json($items, 200);
             } else {
                 abort(404);
             }
-            // if ($oldPic) {
-            //     $picture = new AdminPictureModel();
-            //     $pic = $picture->getOne($oldPic);
-            //     $directory = public_path();
-            //     unlink($directory . '/' . $picture->path);
-            //     $picture->delete($oldPic);
-            // }
         } catch (QueryException $e) {
             \Log::error("message" . $e->getMessage());
         }
