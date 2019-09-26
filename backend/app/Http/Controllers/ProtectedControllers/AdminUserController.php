@@ -26,7 +26,7 @@ class AdminUserController
             'name' => 'required|alpha',
             'email' => 'required|email',
             'city' => 'required|alpha',
-            'address' => 'required|alpha',
+            'address' => 'required',
             'password' => 'required|min:2|max:20',
         ];
 

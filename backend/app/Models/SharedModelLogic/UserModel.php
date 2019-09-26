@@ -44,6 +44,7 @@ class UserModel
             ->join('checkout', 'users.id', '=', 'checkout.user_id')
             ->join('products', 'checkout.product_id', '=', 'products.id')
             ->join('product_images', 'products.id_image', '=', 'product_images.id')
+            ->where('users.id', $id)
             ->where('users.role_id', 1)
             ->select('users.*', 'products.name as product_name', 'products.price as price', 'checkout.*', 'product_images.path as picture')
             ->get();
