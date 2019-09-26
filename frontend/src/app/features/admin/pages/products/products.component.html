@@ -161,14 +161,19 @@
               class="form-control my-1"
               placeholder="Enter name"
               formControlName="name"
-            />
-            Category:
-            <input
-              type="number"
-              class="form-control my-1"
-              placeholder="Enter category"
+            />Category:
+            <select
+              class="form-control"
+              name="number"
+              id="number"
               formControlName="id_category"
-            />
+              required
+            >
+              <option value="1"> Men</option>
+              <option value="2">Women</option>
+              <option value="3">Kids</option>
+              <option value="4">Sports</option>
+            </select>
             Price:
             <input
               type="number"
@@ -244,12 +249,18 @@
               formControlName="name"
             />
             Category:
-            <input
-              type="number"
-              class="form-control my-1"
-              placeholder="Enter category"
+            <select
+              class="form-control"
+              name="number"
+              id="number"
               formControlName="id_category"
-            />
+              required
+            >
+              <option value="1"> Men</option>
+              <option value="2">Women</option>
+              <option value="3">Kids</option>
+              <option value="4">Sports</option>
+            </select>
             Price:
             <input
               type="number"

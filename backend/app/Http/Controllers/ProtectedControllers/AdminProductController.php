@@ -39,6 +39,16 @@ class AdminProductController
 
     public function productStore(Request $request)
     {
+        $rules = [
+            'name' => 'required',
+            'id_category' => 'required',
+            'price' => 'required|numeric',
+            'color' => 'required|alpha',
+            'popular_rating' => 'required|numeric'
+        ];
+
+        $validator = \Validator::make($request->all(), $rules);
+        $validator->validate();
         $modelProduct = new AdminProductModel();
         $modelPicture = new AdminPictureModel();
 
@@ -68,11 +78,6 @@ class AdminProductController
     {
         $id = $request->getContent();
         $product = new AdminProductModel();
-        $picture = new AdminPictureModel();
-
-        $product->getOne($id);
-        $pic = $product->pictureId($id);
-        $picture->delete($pic);
         $delete = $product->delete($id);
         return response()->json($delete, 200);
     }
@@ -80,7 +85,15 @@ class AdminProductController
 
     public function updateProduct(Request $request, $id)
     {
-        $oldPic = null;
+        $rules = [
+            'name' => 'required',
+            'id_category' => 'required',
+            'price' => 'required|numeric',
+            'color' => 'required|alpha',
+            'popular_rating' => 'required|numeric'
+        ];
+        $validator = \Validator::make($request->all(), $rules);
+        $validator->validate();
         $product = new AdminProductModel();
         $picture = new AdminPictureModel();
 
@@ -92,7 +105,7 @@ class AdminProductController
         $product->popular_rating = $request->popular_rating;
         if ($request->hasFile('picture')) {
             $oldPic = $product->pictureId($id);
-
+            $oldPath = $product->getOldPath($id);
             try {
                 $picturePath = $request->file('picture');
                 $pictureDirectory = public_path('images/products/');
@@ -114,23 +127,16 @@ class AdminProductController
             $items =  $product->update($id);
             try {
                 if ($oldPic) {
-                    $picture = new AdminPictureModel();
-                    $pic = $picture->getOne($oldPic);
-                    $directory = public_path();
-                    unlink($directory . '/' . $picture->path);
                     $picture->delete($oldPic);
+                    $directory = public_path();
+                    unlink($directory
+                        . $oldPath);
                 }
             } catch (\Exception $e) {
                 \Log::error("message" . $e->getMessage());
             }
 
-
-            if (!empty($items)) {
-
-                return response()->json($items, 200);
-            } else {
-                abort(404);
-            }
+            return response()->json($items, 200);
         } catch (QueryException $e) {
             \Log::error("message" . $e->getMessage());
         }

@@ -1,5 +1,5 @@
 export class Product {
-  id?: number;
+  id: number;
   category_name: string;
   color: string;
   date_arrive?: Date;

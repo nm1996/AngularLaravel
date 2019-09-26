@@ -1,6 +1,3 @@
-import { EditComponent } from "./features/cart-checkout/pages/cart/edit/edit.component";
-import { CartComponent } from "./features/cart-checkout/pages/cart/cart.component";
-import { CheckoutComponent } from "./features/cart-checkout/pages/checkout/checkout.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "./shared/services/guard/auth.guard";

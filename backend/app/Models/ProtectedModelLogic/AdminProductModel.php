@@ -73,7 +73,7 @@ class AdminProductModel
 
         ];
         if ($this->id_image != null) {
-            $updated = ['id_image' => $this->id_image];
+            $updated['id_image'] = $this->id_image;
         }
 
         return DB::table($this->table)
@@ -87,7 +87,16 @@ class AdminProductModel
             ->where('id', $id)
             ->select('products.id_image as id')
             ->get()
-            ->first()
-            ->id;
+            ->first();
+    }
+
+    public function getOldPath($id)
+    {
+        return DB::table($this->table)
+            ->join('product_images', 'products.id_image', '=', 'product_images.id')
+            ->where('products.id', $id)
+            ->select('product_images.path as path')
+            ->get()
+            ->first();
     }
 }

@@ -1,6 +1,6 @@
 export class Cart {
   public created_at?: Date;
-  public id?: number;
+  public id: number;
   public name?: string;
   public number?: number;
   public picture?: string;
